@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — My Space (Personal Shelf & Preferences)</title>
+  <meta name="description" content="Your private personal sanctuary on Manarah. Revisit saved Qur'anic reflections, bookmarked du'as, favorite Names of Allah, and manage local data and preferences securely on your device.">
+  
+  <!-- Premium Google Fonts matching Manarah System Architecture -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH DESIGN SYSTEM — MIDNIGHT EMERALD & GOLD THEME
+       ========================================================================== */
+    :root {
+      /* Palette Tokens */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --danger-red: #e06c75;
+
+      /* Typography Tokens */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Typography Clamps */
+      --fs-hero-title: clamp(2.2rem, 5vw + 1rem, 3.8rem);
+      --fs-section-title: clamp(1.4rem, 2.5vw + 0.8rem, 2rem);
+
+      /* Layout Spacing & Radii */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Animation Motion Tokens */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.4s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a { color: inherit; text-decoration: none; transition: all var(--transition-fast); }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 1.5rem;
+      background: var(--accent-gold); color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem; font-weight: 700; border-radius: var(--radius-sm);
+      z-index: 9999; transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* HEADER & NAVIGATION */
+    .site-header {
+      position: sticky; top: 0; height: var(--header-h); z-index: 1000;
+      background: rgba(4, 8, 7, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { display: flex; align-items: center; gap: clamp(0.4rem, 1.5vw, 0.85rem); text-decoration: none; min-height: 44px; }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600;
+      letter-spacing: 0.18em; background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; line-height: 1;
+    }
+    .brand-wordmark .brand-ar { font-family: var(--font-arabic); font-size: clamp(1.5rem, 3.2vw, 2rem); color: var(--accent-gold); line-height: 1; opacity: 0.9; }
+
+    .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.25rem); }
+    .nav-link { font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.5rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold-light); }
+    .nav-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-gold), transparent); transition: width var(--transition-fast); border-radius: var(--radius-pill); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta-btn, .btn-primary, .btn-secondary, .btn-danger {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; min-height: 44px;
+      transition: all var(--transition-smooth); cursor: pointer; padding: 0.75rem 1.5rem;
+    }
+    .nav-cta-btn {
+      background: var(--accent-gold); border: 1px solid var(--accent-gold);
+      color: var(--bg-midnight); padding: 0.6rem 1.35rem; font-weight: 700;
+    }
+    .nav-cta-btn:hover { background: var(--accent-gold-light); box-shadow: 0 0 20px rgba(212, 175, 106, 0.35); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight); font-weight: 700; border: none;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 106, 0.4); }
+
+    .btn-secondary {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light);
+    }
+    .btn-secondary:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--text-primary); }
+
+    .btn-danger {
+      background: rgba(224, 108, 117, 0.1); border: 1px solid rgba(224, 108, 117, 0.3);
+      color: var(--danger-red);
+    }
+    .btn-danger:hover { background: rgba(224, 108, 117, 0.2); border-color: var(--danger-red); }
+
+    .mobile-nav-toggle { display: none; padding: 0.5rem; color: var(--text-primary); min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border-radius: var(--radius-sm); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--header-h); left: 0; width: 100%; height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight); padding: 2rem 1.5rem 3rem; flex-direction: column; gap: 1rem; z-index: 999;
+      border-top: 1px solid var(--border-subtle); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { font-size: 1.2rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); width: 100%; }
+
+    /* HERO SECTION */
+    .hero-section { padding: clamp(2.5rem, 6vh, 4.5rem) 0 clamp(1.5rem, 4vh, 2.5rem); text-align: center; position: relative; }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium); padding: 0.4linker 1.2rem; border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem); letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-gold-light); margin-bottom: 1.25rem; font-weight: 600; padding-left: 1.2rem; padding-right: 1.2rem;
+    }
+    .hero-title { font-family: var(--font-display); font-size: var(--fs-hero-title); line-height: 1.15; margin-bottom: 1rem; }
+    .hero-subtitle-arabic { font-family: var(--font-arabic); font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--accent-gold-light); direction: rtl; margin-bottom: 0.75rem; line-height: 1.2; }
+    .hero-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: var(--text-secondary); max-width: 760px; margin: 0 auto 2.25rem; line-height: 1.65; }
+
+    /* OVERVIEW STATS GRID */
+    .stats-overview {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 3rem;
+    }
+    .stat-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; text-align: center; transition: all var(--transition-fast);
+    }
+    .stat-card:hover { border-color: var(--border-medium); background: var(--bg-surface-2); }
+    .stat-number { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.25rem; }
+    .stat-label { font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; }
+
+    /* MAIN SECTION WRAPPER */
+    .content-section { margin-bottom: 4rem; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .section-title { font-family: var(--font-display); font-size: var(--fs-section-title); color: var(--text-primary); }
+
+    /* CONTROLS & FILTERS */
+    .space-controls { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .filter-tab {
+      font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1.15rem; border-radius: var(--radius-pill);
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .filter-tab:hover, .filter-tab.active { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--accent-gold-light); }
+
+    .space-search { position: relative; width: 100%; max-width: 320px; }
+    .space-search input {
+      width: 100%; height: 44px; background: var(--bg-surface-1); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill); padding: 0 1.25rem 0 2.75rem; color: var(--text-primary); font-size: 0.9rem;
+      outline: none; transition: all var(--transition-fast);
+    }
+    .space-search input:focus { border-color: var(--accent-gold); background: var(--bg-surface-2); }
+    .space-search svg { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--accent-gold); pointer-events: none; }
+
+    /* SAVED CARDS GRID */
+    .saved-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .saved-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+      padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; transition: all var(--transition-smooth);
+      position: relative;
+    }
+    .saved-card:hover { border-color: var(--border-glow); background: var(--bg-surface-2); box-shadow: var(--shadow-card-hover); }
+    .card-meta-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .category-tag {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent-gold); background: rgba(212, 175, 106, 0.08); padding: 0.2rem 0.75rem;
+      border-radius: var(--radius-pill); border: 1px solid var(--border-subtle);
+    }
+    .remove-bookmark-btn {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--bg-surface-0); border: 1px solid var(--border-subtle);
+      color: var(--text-tertiary); display: inline-flex; align-items: center; justify-content: center; transition: all var(--transition-fast);
+    }
+    .remove-bookmark-btn:hover { background: rgba(224, 108, 117, 0.15); color: var(--danger-red); border-color: var(--danger-red); }
+
+    .card-content-preview { font-size: 0.95rem; color: var(--text-primary); line-height: 1.6; }
+    .card-arabic-snippet { font-family: var(--font-arabic); font-size: 1.35rem; color: var(--accent-gold-light); direction: rtl; text-align: right; line-height: 1.6; }
+    .card-footer-link {
+      display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 600;
+      color: var(--accent-gold); margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--border-subtle);
+    }
+    .card-footer-link:hover { color: var(--accent-gold-light); }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center; padding: 4rem 1.5rem; background: var(--bg-surface-1); border: 1px dashed var(--border-medium);
+      border-radius: var(--radius-lg); grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    }
+    .empty-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(212, 175, 106, 0.08); display: flex; align-items: center; justify-content: center; color: var(--accent-gold); margin-bottom: 0.5rem; }
+    .empty-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--text-primary); }
+    .empty-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 500px; line-height: 1.6; }
+
+    /* PERSONAL REFLECTION / NOTES SECTION */
+    .reflection-box {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+      padding: 2rem; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .reflection-textarea {
+      width: 100%; min-height: 140px; background: var(--bg-surface-0); border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md); padding: 1rem; color: var(--text-primary); font-family: var(--font-sans);
+      font-size: 0.95rem; line-height: 1.6; resize: vertical; outline: none; transition: all var(--transition-fast);
+    }
+    .reflection-textarea:focus { border-color: var(--accent-gold); background: var(--bg-surface-2); }
+    .reflection-actions { display: flex; justify-content: flex-end; gap: 1rem; }
+
+    /* PREFERENCES & DATA MANAGEMENT PANEL */
+    .settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .setting-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+      padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .setting-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--text-primary); }
+    .setting-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; background: var(--bg-surface-3);
+      border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(20px); pointer-events: none; transition: all var(--transition-smooth);
+    }
+    .toast-notification.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* CONFIRMATION MODAL */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(4, 8, 7, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      z-index: 4000; display: none; align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-backdrop.is-open { display: flex; }
+    .modal-card {
+      background: var(--bg-surface-2); border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      width: 100%; max-width: 480px; padding: 2.25rem; display: flex; flex-direction: column; gap: 1.25rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9); text-align: center;
+    }
+    .modal-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--text-primary); }
+    .modal-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+    .modal-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; }
+
+    /* FOOTER */
+    .site-footer { background: #020403; border-top: 1px solid var(--border-subtle); padding: clamp(3rem, 6vh, 5rem) 0 2.5rem; margin-top: auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+    .footer-brand { max-width: 360px; width: 100%; }
+    .footer-brand .brand-wordmark { margin-bottom: 0.85rem; }
+    .footer-tagline { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+    .footer-links-group { display: flex; gap: clamp(2rem, 5vw, 4.5rem); flex-wrap: wrap; width: 100%; max-width: 650px; justify-content: space-between; }
+    .footer-column-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links-list a { font-size: 0.875rem; color: var(--text-secondary); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; font-size: 0.8125rem; color: var(--text-tertiary); }
+    .accuracy-statement { max-width: 650px; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    @media (max-width: 899px) { .desktop-nav { display: none; } .mobile-nav-toggle { display: flex; } }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link">Prophets</a>
+        <a href="seerah.html" class="nav-link">Seerah</a>
+        <a href="calendar.html" class="nav-link">Calendar</a>
+        <a href="daily-worship.html" class="nav-link">Daily Worship</a>
+        <a href="my-space.html" class="nav-cta-btn active" aria-current="page">My Space</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link active" style="color: var(--accent-gold);" aria-current="page">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          PRIVATE SANCTUARY
+        </div>
+        <h1 class="hero-title">My Space</h1>
+        <div class="hero-subtitle-arabic" lang="ar">مَسَاحَتِي الخَاصَّة</div>
+        <p class="hero-subtitle">
+          “A little space for the things you want to remember, the lessons you want to revisit, and the reflections you hope to nurture.”
+        </p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- STATS OVERVIEW -->
+      <div class="stats-overview" id="stats-overview-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-saved-count">0</div>
+          <div class="stat-label">Saved Du'as & Items</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-names-count">0</div>
+          <div class="stat-label">Favorited Names of Allah</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Local</div>
+          <div class="stat-label">Device Storage Only</div>
+        </div>
+      </div>
+
+      <!-- SAVED FOR LATER SECTION -->
+      <section class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">Saved for Later</h2>
+        </div>
+
+        <div class="space-controls">
+          <div class="filter-tabs" id="filter-tabs-group">
+            <button class="filter-tab active" onclick="filterSaved('all')">All Saved</button>
+            <button class="filter-tab" onclick="filterSaved('dua')">Rabbana Du'as</button>
+            <button class="filter-tab" onclick="filterSaved('allah-name')">Names of Allah</button>
+            <button class="filter-tab" onclick="filterSaved('reflection')">Heart Reflections</button>
+          </div>
+
+          <div class="space-search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="space-search-input" placeholder="Search saved items..." aria-label="Search saved items">
+          </div>
+        </div>
+
+        <div class="saved-grid" id="saved-grid-container">
+          <!-- Dynamically populated from localStorage -->
+        </div>
+      </section>
+
+      <!-- PERSONAL REFLECTION NOTE -->
+      <section class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">Personal Note &amp; Intention</h2>
+        </div>
+        <div class="reflection-box">
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">
+            Write a private personal note, prayer intention, or ayah reflection. This note is stored securely in your browser and is never sent to any server.
+          </p>
+          <textarea class="reflection-textarea" id="personal-note-textarea" placeholder="Write your reflection or intention here..."></textarea>
+          <div class="reflection-actions">
+            <button class="btn-primary" onclick="savePersonalNote()">Save Note</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA MANAGEMENT & PREFERENCES -->
+      <section class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">Data &amp; Preferences</h2>
+        </div>
+        <div class="settings-grid">
+          <div class="setting-card">
+            <div class="setting-title">Export My Data</div>
+            <div class="setting-desc">Download a backup JSON file of all your saved bookmarks, favorite names, and notes stored on this device.</div>
+            <div style="margin-top: auto;">
+              <button class="btn-secondary" onclick="exportMyData()">Export Backup (.json)</button>
+            </div>
+          </div>
+
+          <div class="setting-card">
+            <div class="setting-title">Clear Personal Data</div>
+            <div class="setting-desc">Remove all saved bookmarks, favorite names, and personal notes from your browser's local storage.</div>
+            <div style="margin-top: auto;">
+              <button class="btn-danger" onclick="openResetModal()">Reset My Space</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- CONFIRMATION MODAL FOR RESET -->
+  <div class="modal-backdrop" id="reset-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <h3 class="modal-title" id="modal-title">Reset My Space?</h3>
+      <p class="modal-desc">
+        This action will permanently delete all your saved Rabbana du'as, favorite Names of Allah, and personal reflection notes stored in this browser. This cannot be undone unless you previously exported a backup.
+      </p>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeResetModal()">Cancel</button>
+        <button class="btn-danger" onclick="confirmResetSpace()">Yes, Clear My Space</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Action completed successfully</span>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Explorer</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+              <li><a href="privacy.html">Privacy &amp; Data</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Privacy Notice:</strong> My Space operates entirely using local browser storage. No personal data or notes are transmitted to external servers.
+        </div>
+        <div>Manarah &copy; 2026. Built with care.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       INTEGRATED STORAGE & RENDER LOGIC
+       ========================================================================== -->
+  <script>
+    // Embedded lookup of Rabbana Duas to render detailed cards when bookmarked from rabbana-duas.html
+    const RABBANA_LOOKUP = {
+      "rabbana-1": { ref: "Surah Al-Baqarah 2:127", translation: "Our Lord, accept [this service] from us. Indeed, You are the All-Hearing, the All-Knowing.", arabic: "رَبَّنَا تَقَبَّلْ مِنَّا ۖ إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ" },
+      "rabbana-2": { ref: "Surah Al-Baqarah 2:128", translation: "Our Lord, and make us submissive [in Islam] to You and from our descendants a Muslim nation...", arabic: "رَبَّنَا وَاجْعَلْنَا مُسْلِمَيْنِ لَكَ وَمِن ذُرِّيَّتِنَا أُمَّةً مُّسْلِمَةً لَّكَ..." },
+      "rabbana-3": { ref: "Surah Al-Baqarah 2:201", translation: "Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire.", arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ" },
+      "rabbana-4": { ref: "Surah Al-Baqarah 2:250", translation: "Our Lord, pour upon us patience and plant firmly our feet and give us victory over the disbelieving people.", arabic: "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ" },
+      "rabbana-5": { ref: "Surah Al-Baqarah 2:286", translation: "Our Lord, do not impose blame upon us if we have forgotten or erred.", arabic: "رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا" },
+      "rabbana-6": { ref: "Surah Al-Baqarah 2:286", translation: "Our Lord, and lay not upon us a burden like that which You laid upon those before us.", arabic: "رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا" },
+      "rabbana-7": { ref: "Surah Al-Baqarah 2:286", translation: "Our Lord, and burden us not with that which we have no ability to bear...", arabic: "رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ..." },
+      "rabbana-8": { ref: "Surah Ali 'Imran 3:8", translation: "Our Lord, let not our hearts swerve after You have guided us and grant us from Yourself mercy...", arabic: "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا..." },
+      "rabbana-9": { ref: "Surah Ali 'Imran 3:9", translation: "Our Lord, surely You will gather the people for a Day about which there is no doubt.", arabic: "رَبَّنَا إِنَّكَ جَامِعُ النَّاسِ لِيَوْمٍ لَّا رَيْبَ فِيهِ..." },
+      "rabbana-10": { ref: "Surah Ali 'Imran 3:16", translation: "Our Lord, indeed we have believed, so forgive us our sins and protect us from the punishment of the Fire.", arabic: "رَبَّنَا إِنَّنَا آمَنَّا فَاغْفِرْ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ النَّارِ" },
+      "rabbana-11": { ref: "Surah Ali 'Imran 3:53", translation: "Our Lord, we have believed in what You revealed and have followed the messenger...", arabic: "رَبَّنَا آمَنَّا بِمَا أَنزَلْتَ وَاتَّبَعْنَا الرَّسُولَ..." },
+      "rabbana-12": { ref: "Surah Ali 'Imran 3:147", translation: "Our Lord, forgive us our sins and the excess [committed] in our affairs...", arabic: "رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا..." },
+      "rabbana-13": { ref: "Surah Ali 'Imran 3:191", translation: "Our Lord, You did not create all this without purpose; exalted are You...", arabic: "رَبَّنَا مَا خَلَقْتَ هَٰذَا بَاطِلًا سُبْحَانَكَ..." },
+      "rabbana-14": { ref: "Surah Ali 'Imran 3:192", translation: "Our Lord, indeed whoever You admit to the Fire - You have disgraced him...", arabic: "رَبَّنَا إِنَّكَ مَن تُدْخِلِ النَّارَ فَقَدْ أَخْزَيْتَهُ..." },
+      "rabbana-15": { ref: "Surah Ali 'Imran 3:193", translation: "Our Lord, indeed we have heard a caller calling to faith...", arabic: "رَبَّنَا إِنَّنَا سَمِعْنَا مُنَادِيًا يُنَادِي لِلْإِيمَانِ..." },
+      "rabbana-16": { ref: "Surah Ali 'Imran 3:194", translation: "Our Lord, and grant us what You promised us through Your messengers...", arabic: "رَبَّنَا وَآتِنَا مَا وَعَدتَّنَا عَلَىٰ رُسُلِكَ..." },
+      "rabbana-17": { ref: "Surah An-Nisa 4:75", translation: "Our Lord, take us out of this city of oppressive people...", arabic: "رَبَّنَا أَخْرِجْنَا مِنْ هَٰذِهِ الْقَرْيَةِ الظَّالِمِ أَهْلُهَا..." },
+      "rabbana-18": { ref: "Surah Al-Ma'idah 5:83", translation: "Our Lord, we have believed, so write us down among the witnesses.", arabic: "رَبَّنَا آمَنَّا فَاكْتُبْنَا مَعَ الشَّاهِدِينَ" },
+      "rabbana-19": { ref: "Surah Al-Ma'idah 5:114", translation: "O Allah, our Lord, send down to us a table [spread with food] from the heaven...", arabic: "رَبَّنَا أَنزِلْ عَلَيْنَا مَائِدَةً مِّنَ السَّمَاءِ..." },
+      "rabbana-20": { ref: "Surah Al-A'raf 7:23", translation: "Our Lord, we have wronged ourselves, and if You do not forgive us...", arabic: "رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا..." },
+      "rabbana-21": { ref: "Surah Al-A'raf 7:47", translation: "Our Lord, do not place us with the wrongdoing people.", arabic: "رَبَّنَا لَا تَجْعَلْنَا مَعَ الْقَوْمِ الظَّالِمِينَ" },
+      "rabbana-22": { ref: "Surah Al-A'raf 7:89", translation: "Our Lord, judge between us and our people in truth...", arabic: "رَبَّنَا افْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِالْحَقِّ..." },
+      "rabbana-23": { ref: "Surah Al-A'raf 7:126", translation: "Our Lord, pour upon us patience and let us die as Muslims.", arabic: "رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَتَوَفَّنَا مُسْلِمِينَ" },
+      "rabbana-24": { ref: "Surah Yunus 10:85-86", translation: "Our Lord, make us not [objects of] trial for the wrongdoing people...", arabic: "رَبَّنَا لَا تَجْعَلْنَا فِتْنَةً لِّلْقَوْمِ الظَّالِمِينَ..." },
+      "rabbana-25": { ref: "Surah Ibrahim 14:38", translation: "Our Lord, indeed You know what we conceal and what we declare...", arabic: "رَبَّنَا إِنَّكَ تَعْلَمُ مَا نُخْفِي وَمَا نُعْلِنُ..." },
+      "rabbana-26": { ref: "Surah Ibrahim 14:40", translation: "My Lord, make me an establisher of prayer, and from my descendants...", arabic: "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي..." },
+      "rabbana-27": { ref: "Surah Ibrahim 14:41", translation: "Our Lord, forgive me and my parents and the believers the Day the account is established.", arabic: "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ..." },
+      "rabbana-28": { ref: "Surah Al-Kahf 18:10", translation: "Our Lord, grant us from Yourself mercy and prepare for us from our affair right guidance.", arabic: "رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا" },
+      "rabbana-29": { ref: "Surah Taha 20:45", translation: "Our Lord, indeed we fear that he will hasten [punishment] against us...", arabic: "رَبَّنَا إِنَّنَا نَخَافُ أَن يَفْرُطَ عَلَيْنَا أَوْ أَن يَطْغَىٰ" },
+      "rabbana-30": { ref: "Surah Al-Mu'minun 23:109", translation: "Our Lord, we have believed, so forgive us and have mercy upon us...", arabic: "رَبَّنَا آمَنَّا فَاغْفِرْ لَنَا وَارْحَمْنَا وَأَنتَ خَيْرُ الرَّاحِمِينَ" },
+      "rabbana-31": { ref: "Surah Al-Mu'minun 23:118", translation: "My Lord, forgive and have mercy, and You are the best of the merciful.", arabic: "رَبِّ اغْفِرْ وَارْحَمْ وَأَنتَ خَيْرُ الرَّاحِمِينَ" },
+      "rabbana-32": { ref: "Surah Al-Furqan 25:65-66", translation: "Our Lord, avert from us the punishment of Hell...", arabic: "رَبَّنَا اصْرِفْ عَنَّا عَذَابَ جَهَنَّمَ..." },
+      "rabbana-33": { ref: "Surah Al-Furqan 25:74", translation: "Our Lord, grant us from among our wives and offspring comfort to our eyes...", arabic: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ..." },
+      "rabbana-34": { ref: "Surah Ash-Shu'ara 26:83-85", translation: "My Lord, grant me wisdom and join me with the righteous...", arabic: "رَبِّ هَبْ لِي حُكْمًا وَأَلْحِقْنِي بِالصَّالِحِينَ..." },
+      "rabbana-35": { ref: "Surah Ghafir 40:7", translation: "Our Lord, You have encompassed all things in mercy and knowledge...", arabic: "رَبَّنَا وَسِعْتَ كُلَّ شَيْءٍ رَّحْمَةً وَعِلْمًا..." },
+      "rabbana-36": { ref: "Surah Ghafir 40:8", translation: "Our Lord, and admit them to gardens of perpetual residence...", arabic: "رَبَّنَا وَأَدْخِلْهُمْ جَنَّاتِ عَدْنٍ الَّتِي وَعَدتَّهُم..." },
+      "rabbana-37": { ref: "Surah Al-Ahqaf 46:15", translation: "My Lord, enable me to be grateful for Your favor...", arabic: "رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ..." },
+      "rabbana-38": { ref: "Surah Al-Hashr 59:10", translation: "Our Lord, forgive us and our brothers who preceded us in faith...", arabic: "رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَانِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَانِ..." },
+      "rabbana-39": { ref: "Surah Al-Mumtahanah 60:4", translation: "Our Lord, upon You we have relied, and to You we have returned...", arabic: "رَّبَّنَا عَلَيْكَ تَوَكَّلْنَا وَإِلَيْكَ أَنَبْنَا..." },
+      "rabbana-40": { ref: "Surah At-Tahrim 66:11", translation: "My Lord, build for me near You a house in Paradise.", arabic: "رَبِّ ابْنِ لِي عِندَكَ بَيْتًا فِي الْجَنَّةِ" }
+    };
+
+    let currentFilter = 'all';
+    let currentSearchTerm = '';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setupMobileNav();
+      loadPersonalNote();
+      renderSavedContent();
+      setupSearch();
+    });
+
+    function getSavedDuas() {
+      return JSON.parse(localStorage.getItem('manarah_saved_duas') || '[]');
+    }
+
+    function getSavedNames() {
+      return JSON.parse(localStorage.getItem('manarah_saved_names') || '[]');
+    }
+
+    function renderSavedContent() {
+      const container = document.getElementById('saved-grid-container');
+      const statSaved = document.getElementById('stat-saved-count');
+      const statNames = document.getElementById('stat-names-count');
+      if (!container) return;
+
+      const duas = getSavedDuas();
+      const names = getSavedNames();
+
+      if (statSaved) statSaved.textContent = duas.length;
+      if (statNames) statNames.textContent = names.length;
+
+      // Build unified items list
+      let items = [];
+
+      duas.forEach(id => {
+        const d = RABBANA_LOOKUP[id] || { ref: id, translation: "Saved Rabbana Supplication", arabic: "رَبَّنَا" };
+        items.push({
+          type: 'dua',
+          id: id,
+          title: `Rabbana Dua — ${d.ref}`,
+          preview: d.translation,
+          arabic: d.arabic,
+          link: 'rabbana-duas.html'
+        });
+      });
+
+      names.forEach(nameKey => {
+        items.push({
+          type: 'allah-name',
+          id: nameKey,
+          title: `Name of Allah — ${nameKey}`,
+          preview: `Favorited from Daily Worship portal.`,
+          arabic: nameKey,
+          link: 'daily-worship.html'
+        });
+      });
+
+      // Filter by tab
+      if (currentFilter !== 'all') {
+        items = items.filter(item => item.type === currentFilter);
+      }
+
+      // Filter by search query
+      if (currentSearchTerm.trim() !== '') {
+        const q = currentSearchTerm.toLowerCase();
+        items = items.filter(item => 
+          item.title.toLowerCase().includes(q) || 
+          item.preview.toLowerCase().includes(q) ||
+          item.arabic.includes(q)
+        );
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="empty-title">Your space is waiting to be filled</h3>
+            <p class="empty-desc">
+              Explore the Qur'an, Rabbana Du'as, or Daily Worship, and click the bookmark icon on any item to save it here for quick reflection.
+            </p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+              <a href="rabbana-duas.html" class="btn-primary">Explore Rabbana Du'as</a>
+              <a href="daily-worship.html" class="btn-secondary">Daily Worship</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map(item => `
+        <div class="saved-card">
+          <div class="card-meta-top">
+            <span class="category-tag">${item.type === 'dua' ? 'Rabbana Dua' : 'Name of Allah'}</span>
+            <button class="remove-bookmark-btn" onclick="removeItem('${item.type}', '${item.id}')" aria-label="Remove bookmark" title="Remove">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          ${item.arabic ? `<div class="card-arabic-snippet" lang="ar">${item.arabic}</div>` : ''}
+          <div class="card-content-preview">
+            <strong>${item.title}</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">${item.preview}</span>
+          </div>
+          <a href="${item.link}" class="card-footer-link">
+            <span>View in original page</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      `).join('');
+    }
+
+    function filterSaved(tabKey) {
+      document.querySelectorAll('#filter-tabs-group .filter-tab').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      currentFilter = tabKey;
+      renderSavedContent();
+    }
+
+    function setupSearch() {
+      const searchInput = document.getElementById('space-search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          currentSearchTerm = searchInput.value;
+          renderSavedContent();
+        });
+      }
+    }
+
+    function removeItem(type, id) {
+      if (type === 'dua') {
+        let duas = getSavedDuas();
+        duas = duas.filter(item => item !== id);
+        localStorage.setItem('manarah_saved_duas', JSON.stringify(duas));
+        showToast("Removed Du'a from saved list");
+      } else if (type === 'allah-name') {
+        let names = getSavedNames();
+        names = names.filter(item => item !== id);
+        localStorage.setItem('manarah_saved_names', JSON.stringify(names));
+        showToast("Removed Name from favorites");
+      }
+      renderSavedContent();
+    }
+
+    function loadPersonalNote() {
+      const textarea = document.getElementById('personal-note-textarea');
+      if (textarea) {
+        const savedNote = localStorage.getItem('manarah_personal_note') || '';
+        textarea.value = savedNote;
+      }
+    }
+
+    function savePersonalNote() {
+      const textarea = document.getElementById('personal-note-textarea');
+      if (textarea) {
+        localStorage.setItem('manarah_personal_note', textarea.value.trim());
+        showToast("Personal note saved securely");
+      }
+    }
+
+    function exportMyData() {
+      const exportPayload = {
+        app: "Manarah",
+        exportDate: new Date().toISOString(),
+        savedDuas: getSavedDuas(),
+        savedNames: getSavedNames(),
+        personalNote: localStorage.getItem('manarah_personal_note') || ''
+      };
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `manarah-space-backup-${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("Data backup exported successfully");
+    }
+
+    function openResetModal() {
+      const modal = document.getElementById('reset-modal');
+      if (modal) modal.classList.add('is-open');
+    }
+
+    function closeResetModal() {
+      const modal = document.getElementById('reset-modal');
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    function confirmResetSpace() {
+      localStorage.removeItem('manarah_saved_duas');
+      localStorage.removeItem('manarah_saved_names');
+      localStorage.removeItem('manarah_personal_note');
+      
+      closeResetModal();
+      loadPersonalNote();
+      renderSavedContent();
+      showToast("My Space data has been reset.");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 3000);
+    }
+
+    function setupMobileNav() {
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — A Sanctuary for Reflection & Learning</title>
+  <meta name="description" content="A refined Islamic learning and reflection platform. Explore the Qur'an, prophetic wisdom, daily worship, and timeless spiritual guidance.">
+  
+  <!-- Premium Fonts: Playfair Display for Serene Headings, Plus Jakarta Sans for UI, Amiri for Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH ARCHITECTURAL DESIGN SYSTEM (ULTRA PREMIUM DARK EMERALD & FLUID RESPONSIVE)
+       ========================================================================== */
+    :root {
+      /* Color Architecture */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --gold-glow-radial: radial-gradient(circle, rgba(212, 175, 106, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+
+      --emerald-accent: #1e3d34;
+      --emerald-glow: rgba(30, 61, 52, 0.5);
+
+      /* Typography */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Clamp Typography */
+      --fs-hero-title: clamp(2.15rem, 5.5vw + 1rem, 4rem);
+      --fs-section-title: clamp(1.75rem, 3.5vw + 0.8rem, 2.75rem);
+      --fs-quran-arabic: clamp(1.65rem, 3.5vw + 0.5rem, 2.6rem);
+      --fs-quran-trans: clamp(1.15rem, 2vw + 0.5rem, 1.6rem);
+
+      /* Layout Spacing */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Motion & Shadows */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.45s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    /* Modern Reset & Touch Optimization */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    /* Ambient Decorative Grid Pattern Background */
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+      touch-action: manipulation;
+    }
+
+    /* Focus States for Accessibility */
+    :focus-visible {
+      outline: 2px solid var(--accent-gold);
+      outline-offset: 4px;
+    }
+
+    /* Utility Container */
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .container-narrow {
+      max-width: 860px;
+    }
+
+    /* Skip Navigation */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1.5rem;
+      background: var(--accent-gold);
+      color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      height: var(--header-h);
+      z-index: 1000;
+      background: rgba(4, 8, 7, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Pure Typographic Logo */
+    .brand-wordmark {
+      display: flex;
+      align-items: baseline;
+      gap: clamp(0.4rem, 1.5vw, 0.85rem);
+      text-decoration: none;
+      min-height: 44px;
+      align-items: center;
+    }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .brand-wordmark .brand-ar {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.5rem, 3.2vw, 2rem);
+      color: var(--accent-gold);
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Desktop Links */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2vw, 2.25rem);
+    }
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 0.5rem 0;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-gold-light);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
+      transition: width var(--transition-fast);
+      border-radius: var(--radius-pill);
+    }
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light);
+      padding: 0.6rem 1.35rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.875rem;
+      font-weight: 600;
+      min-height: 44px;
+      transition: all var(--transition-fast);
+    }
+    .nav-cta-btn:hover {
+      background: var(--accent-gold);
+      color: var(--bg-midnight);
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 20px rgba(212, 175, 106, 0.35);
+    }
+
+    /* Mobile Nav Toggle Button */
+    .mobile-nav-toggle {
+      display: none;
+      padding: 0.5rem;
+      color: var(--text-primary);
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+    }
+    .mobile-nav-toggle:active {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Mobile Drawer Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      width: 100%;
+      height: calc(100vh - var(--header-h));
+      height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight);
+      padding: 2rem 1.5rem 3rem;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+      border-top: 1px solid var(--border-subtle);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { 
+      font-size: 1.2rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: clamp(3rem, 10vh, 7rem) 0 clamp(2.5rem, 6vh, 5rem);
+      text-align: center;
+      position: relative;
+    }
+    .hero-ambient-glow {
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100vw, 800px);
+      height: 450px;
+      background: var(--gold-glow-radial);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(40px);
+    }
+    .hero-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium);
+      padding: 0.4rem 1.2rem;
+      border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-gold-light);
+      margin-bottom: clamp(1.25rem, 3vh, 2rem);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-hero-title);
+      line-height: 1.15;
+      margin-bottom: clamp(1.25rem, 3vh, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span.gold-gradient {
+      background: linear-gradient(135deg, #ffffff 20%, var(--accent-gold-light) 70%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight);
+      font-weight: 700;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      padding: 0.95rem 2rem;
+      min-height: 48px;
+      width: 100%;
+      max-width: 280px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(212, 175, 106, 0.3);
+      transition: all var(--transition-fast);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(212, 175, 106, 0.45);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-medium);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      padding: 0.95rem 2rem;
+      min-height: 48px;
+      width: 100%;
+      max-width: 280px;
+      border-radius: var(--radius-pill);
+      transition: all var(--transition-fast);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive button width on desktop */
+    @media (min-width: 640px) {
+      .btn-primary, .btn-secondary {
+        width: auto;
+      }
+    }
+
+    /* ==========================================================================
+       BOOKSHELF EMOTIONAL CHECK-IN SECTION
+       ========================================================================== */
+    .checkin-section {
+      padding: clamp(3rem, 6vh, 5rem) 0;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: clamp(2rem, 4vh, 3.5rem);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-section-title);
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Bookshelf Structure */
+    .bookshelf-container {
+      max-width: 1060px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0 0.5rem 1rem;
+    }
+
+    /* Responsive Horizontal Scroll for Mobile / Grid for Desktop */
+    .bookshelf-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: clamp(0.6rem, 1.5vw, 1.25rem);
+      padding: 1.5rem 0.5rem 0.5rem;
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-gold-dark) transparent;
+    }
+
+    .bookshelf-row::-webkit-scrollbar {
+      height: 6px;
+    }
+    .bookshelf-row::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-pill);
+    }
+    .bookshelf-row::-webkit-scrollbar-thumb {
+      background: var(--border-medium);
+      border-radius: var(--radius-pill);
+    }
+
+    @media (min-width: 900px) {
+      .bookshelf-row {
+        justify-content: center;
+        overflow-x: visible;
+      }
+    }
+
+    /* Wooden Bookshelf Base Edge */
+    .bookshelf-wood-shelf {
+      height: 18px;
+      width: 100%;
+      background: linear-gradient(180deg, #3d2716 0%, #1c1109 100%);
+      border-top: 2px solid #8c5b34;
+      border-radius: 4px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+      margin-top: -2px;
+    }
+
+    /* Individual Spine Design */
+    .book-spine-btn {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      flex: 0 0 auto;
+      width: clamp(80px, 20vw, 105px);
+      height: clamp(190px, 40vh, 230px);
+      padding: 1rem 0.35rem;
+      border-radius: 6px 12px 12px 2px;
+      transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
+      cursor: pointer;
+      text-align: center;
+      box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5), inset -2px 0 4px rgba(0, 0, 0, 0.3), inset 2px 0 4px rgba(255, 255, 255, 0.15);
+      border-left: 2px solid rgba(255, 255, 255, 0.2);
+      transform-origin: bottom center;
+      scroll-snap-align: center;
+    }
+
+    /* Touch & Mouse Hover Interactions */
+    .book-spine-btn:hover,
+    .book-spine-btn:focus-visible {
+      transform: translateY(-16px) scale(1.03);
+      box-shadow: -6px 12px 20px rgba(0, 0, 0, 0.7), 0 0 20px var(--book-glow);
+      z-index: 10;
+    }
+    .book-spine-btn:active {
+      transform: translateY(-8px) scale(0.98);
+    }
+
+    /* Book Spine Components */
+    .book-ribbon {
+      width: clamp(8px, 1.5vw, 12px);
+      height: clamp(18px, 3.5vh, 28px);
+      background: var(--book-accent);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+      margin-bottom: 0.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .book-icon-wrapper {
+      width: clamp(32px, 6vw, 42px);
+      height: clamp(32px, 6vw, 42px);
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      backdrop-filter: blur(4px);
+    }
+    .book-icon-wrapper svg {
+      width: clamp(16px, 3.5vw, 20px);
+      height: clamp(16px, 3.5vw, 20px);
+    }
+
+    .book-title-vertical {
+      font-family: var(--font-display);
+      font-size: clamp(0.78rem, 1.8vw, 0.95rem);
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      word-break: break-word;
+    }
+
+    .book-gold-stamp {
+      font-size: clamp(0.55rem, 1.2vw, 0.65rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: auto;
+      font-weight: 700;
+    }
+
+    /* Custom Book Volume Color Palettes */
+    .book-overwhelmed {
+      --book-glow: rgba(79, 110, 138, 0.5);
+      --book-accent: #8baac9;
+      background: linear-gradient(135deg, #1e2d3b 0%, #0e1721 100%);
+      border-right: 2px solid #3a5269;
+    }
+    .book-sad {
+      --book-glow: rgba(92, 107, 115, 0.5);
+      --book-accent: #9db2bf;
+      background: linear-gradient(135deg, #2b353b 0%, #12191d 100%);
+      border-right: 2px solid #485963;
+    }
+    .book-anxious {
+      --book-glow: rgba(72, 149, 139, 0.5);
+      --book-accent: #7bc4ba;
+      background: linear-gradient(135deg, #193833 0%, #0a1f1c 100%);
+      border-right: 2px solid #29544d;
+    }
+    .book-angry {
+      --book-glow: rgba(184, 75, 69, 0.5);
+      --book-accent: #e5827d;
+      background: linear-gradient(135deg, #421a18 0%, #210a09 100%);
+      border-right: 2px solid #6e2d2a;
+    }
+    .book-grateful {
+      --book-glow: rgba(212, 175, 106, 0.5);
+      --book-accent: #f5e6c8;
+      background: linear-gradient(135deg, #4a3b1a 0%, #241a08 100%);
+      border-right: 2px solid #7c632e;
+    }
+    .book-hopeful {
+      --book-glow: rgba(217, 140, 95, 0.5);
+      --book-accent: #f0b088;
+      background: linear-gradient(135deg, #482a1a 0%, #241208 100%);
+      border-right: 2px solid #75462d;
+    }
+    .book-patience {
+      --book-glow: rgba(122, 158, 126, 0.5);
+      --book-accent: #a8d1ab;
+      background: linear-gradient(135deg, #233b26 0%, #0e1c10 100%);
+      border-right: 2px solid #3b5e3f;
+    }
+    .book-forgiveness {
+      --book-glow: rgba(155, 126, 189, 0.5);
+      --book-accent: #d2beea;
+      background: linear-gradient(135deg, #322342 0%, #160d1f 100%);
+      border-right: 2px solid #543c6e;
+    }
+
+    /* ==========================================================================
+       FEATURED QUR'ANIC REFLECTION
+       ========================================================================== */
+    .reflection-section {
+      padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+    .reflection-card {
+      background: linear-gradient(180deg, var(--bg-surface-1) 0%, var(--bg-surface-0) 100%);
+      border: 1px solid var(--border-medium);
+      border-radius: clamp(var(--radius-lg), 4vw, var(--radius-xl));
+      padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 4vw, 3.5rem);
+      position: relative;
+      text-align: center;
+      box-shadow: var(--shadow-ambient);
+      overflow: hidden;
+    }
+    .reflection-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+    }
+    .quran-arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--fs-quran-arabic);
+      color: var(--accent-gold-light);
+      margin-bottom: 1.5rem;
+      line-height: 2.1;
+      direction: rtl;
+    }
+    .quran-translation {
+      font-family: var(--font-display);
+      font-size: var(--fs-quran-trans);
+      font-style: italic;
+      color: var(--text-primary);
+      max-width: 720px;
+      margin: 0 auto 1.25rem;
+      line-height: 1.5;
+    }
+    .quran-source {
+      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+    .reflection-notes {
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 1.5rem;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .reflection-notes-header {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .reflection-notes-body {
+      font-size: clamp(0.9375rem, 1.5vw, 1.05rem);
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       FEATURE DIRECTORY (GRID & FLEX HYBRID FOR ALL DEVICES)
+       ========================================================================== */
+    .explore-section {
+      padding: clamp(3.5rem, 7vh, 6rem) 0;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(1rem, 2vw, 1.75rem);
+      margin-top: clamp(2rem, 4vh, 3.5rem);
+    }
+
+    .feature-card {
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3.5vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      grid-column: span 12; /* Default Mobile Span */
+    }
+    .feature-card:hover {
+      background: var(--bg-surface-2);
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* Desktop/Tablet Grid Spans */
+    @media (min-width: 768px) {
+      .span-6 { grid-column: span 6; }
+    }
+    @media (min-width: 1024px) {
+      .span-8 { grid-column: span 8; }
+      .span-4 { grid-column: span 4; }
+      .span-6 { grid-column: span 6; }
+    }
+
+    .feature-icon {
+      width: clamp(44px, 5vw, 56px);
+      height: clamp(44px, 5vw, 56px);
+      border-radius: var(--radius-md);
+      background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-gold);
+      margin-bottom: 1.25rem;
+    }
+    .feature-icon svg { 
+      width: clamp(22px, 2.5vw, 28px); 
+      height: clamp(22px, 2.5vw, 28px); 
+    }
+
+    .feature-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .feature-card-desc {
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .feature-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      margin-top: auto;
+      min-height: 44px;
+    }
+    .feature-link-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform var(--transition-fast);
+    }
+    .feature-card:hover .feature-link-btn svg {
+      transform: translateX(6px);
+    }
+
+    /* ==========================================================================
+       UTILITY ROW (DID YOU KNOW & CALENDAR)
+       ========================================================================== */
+    .utility-row-section {
+      padding: clamp(2.5rem, 5vh, 4rem) 0 clamp(4rem, 8vh, 6rem);
+    }
+    .utility-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+    @media (min-width: 840px) {
+      .utility-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .utility-card {
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3.5vw, 2.5rem);
+    }
+    .utility-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .utility-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      color: var(--accent-gold-light);
+    }
+    .fact-content {
+      font-size: clamp(0.9375rem, 1.5vw, 1.05rem);
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .calendar-dates {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+    .gregorian-date-display {
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-family: var(--font-display);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .hijri-date-display {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--accent-gold);
+    }
+    .calendar-note {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       FOOTER SECTION
+       ========================================================================== */
+    .site-footer {
+      background: #020403;
+      border-top: 1px solid var(--border-subtle);
+      padding: clamp(3rem, 6vh, 5rem) 0 2.5rem;
+      margin-top: auto;
+    }
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+    }
+    .footer-brand {
+      max-width: 360px;
+      width: 100%;
+    }
+    .footer-brand .brand-wordmark {
+      margin-bottom: 0.85rem;
+    }
+    .footer-tagline {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .footer-links-group {
+      display: flex;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 650px;
+      justify-content: space-between;
+    }
+    .footer-column-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .footer-links-list a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      display: inline-block;
+      padding: 0.2rem 0;
+    }
+    .footer-links-list a:hover {
+      color: var(--accent-gold-light);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+    }
+    .accuracy-statement {
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    /* Device Media Queries for Special Navigation Handling */
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .mobile-nav-toggle { display: flex; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Pure Typographic Wordmark -->
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Guides</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link">Prophets</a>
+        <a href="seerah.html" class="nav-link">Seerah</a>
+        <a href="calendar.html" class="nav-link">Calendar</a>
+        <a href="my-space.html" class="nav-cta-btn">My Space</a>
+      </nav>
+
+      <!-- Mobile Nav Toggle -->
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Overlay Drawer -->
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Guides</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link" style="color: var(--accent-gold);">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" aria-label="Welcome">
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
+          A lighthouse for your heart
+        </div>
+        <h1 class="hero-title">
+          Some days call for answers.<br><span class="gold-gradient">Some days call for stillness.</span>
+        </h1>
+        <p class="hero-subtitle">
+          There is room for both here. Explore the Qur'an, reflect on sacred guidance, and cultivate daily habits in a quiet sanctuary built for your journey.
+        </p>
+        <div class="hero-actions">
+          <a href="my-heart.html" class="btn-primary">
+            Find guidance for my heart
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="quran.html" class="btn-secondary">
+            Explore the Qur'an
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKSHELF EMOTIONAL CHECK-IN SECTION -->
+    <section class="checkin-section" aria-label="Emotional Check-in Bookshelf">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Select a Volume from the Shelf</h2>
+          <p class="section-subtitle">Pull a book from the shelf corresponding to your current heart's state to open its spiritual guidance.</p>
+        </div>
+
+        <div class="bookshelf-container">
+          <div class="bookshelf-row">
+            
+            <!-- Book 1: Overwhelmed -->
+            <button class="book-spine-btn book-overwhelmed" data-mood="overwhelmed" aria-label="Overwhelmed volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <span class="book-title-vertical">Overwhelmed</span>
+              <span class="book-gold-stamp">VOL. I</span>
+            </button>
+
+            <!-- Book 2: Sad -->
+            <button class="book-spine-btn book-sad" data-mood="sad" aria-label="Sad volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/><line x1="8" y1="16" x2="8" y2="21"/><line x1="12" y1="14" x2="12" y2="21"/><line x1="16" y1="18" x2="16" y2="21"/></svg>
+              </div>
+              <span class="book-title-vertical">Sadness</span>
+              <span class="book-gold-stamp">VOL. II</span>
+            </button>
+
+            <!-- Book 3: Anxious -->
+            <button class="book-spine-btn book-anxious" data-mood="anxious" aria-label="Anxious volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              </div>
+              <span class="book-title-vertical">Anxious</span>
+              <span class="book-gold-stamp">VOL. III</span>
+            </button>
+
+            <!-- Book 4: Angry -->
+            <button class="book-spine-btn book-angry" data-mood="angry" aria-label="Angry volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5Z"/></svg>
+              </div>
+              <span class="book-title-vertical">Anger</span>
+              <span class="book-gold-stamp">VOL. IV</span>
+            </button>
+
+            <!-- Book 5: Grateful -->
+            <button class="book-spine-btn book-grateful" data-mood="grateful" aria-label="Grateful volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="book-title-vertical">Grateful</span>
+              <span class="book-gold-stamp">VOL. V</span>
+            </button>
+
+            <!-- Book 6: Hopeful -->
+            <button class="book-spine-btn book-hopeful" data-mood="hopeful" aria-label="Hopeful volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+              <span class="book-title-vertical">Hopeful</span>
+              <span class="book-gold-stamp">VOL. VI</span>
+            </button>
+
+            <!-- Book 7: Patience -->
+            <button class="book-spine-btn book-patience" data-mood="patience" aria-label="Patience volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <span class="book-title-vertical">Patience</span>
+              <span class="book-gold-stamp">VOL. VII</span>
+            </button>
+
+            <!-- Book 8: Forgiveness -->
+            <button class="book-spine-btn book-forgiveness" data-mood="forgiveness" aria-label="Forgiveness volume">
+              <div class="book-ribbon"></div>
+              <div class="book-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              </div>
+              <span class="book-title-vertical">Forgive</span>
+              <span class="book-gold-stamp">VOL. VIII</span>
+            </button>
+
+          </div>
+          <!-- Wooden Base Shelf -->
+          <div class="bookshelf-wood-shelf" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED QUR'ANIC REFLECTION -->
+    <section class="reflection-section" aria-label="Featured Qur'anic Verse">
+      <div class="container container-narrow">
+        <div class="reflection-card">
+          <!-- Verified text against Sahih International / Tanzil metadata -->
+          <div class="quran-arabic-text font-arabic" lang="ar">
+            فَإِنَّ مَعَ الْعُسْرِ يُسْرًا • إِنَّ مَعَ الْعُسْرِ يُسْرًا
+          </div>
+          <blockquote class="quran-translation">
+            “For indeed, with hardship [will be] ease. Indeed, with hardship [will be] ease.”
+          </blockquote>
+          <div class="quran-source">Surah Ash-Sharh (94:5–6) — Sahih International</div>
+
+          <div class="reflection-notes">
+            <div class="reflection-notes-header">Personal Reflection Note</div>
+            <p class="reflection-notes-body">
+              Notice that the divine promise repeats ease alongside hardship rather than merely after it. Even in seasons of heavy difficulty, hidden mercies and subtle avenues of strength are already present for the observing heart.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORE MANARAH (RESPONSIVE GRID) -->
+    <section class="explore-section" aria-label="App Features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Explore Manarah</h2>
+          <p class="section-subtitle">Structured pathways designed for deep learning, contemplation, and daily habit tracking.</p>
+        </div>
+
+        <div class="feature-grid">
+          
+          <!-- Feature 1: My Heart -->
+          <div class="feature-card span-8">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.75 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </div>
+              <h3 class="feature-card-title">My Heart</h3>
+              <p class="feature-card-desc">
+                Mood-based guidance tailored to what your soul is experiencing. Find solace during trials, patience in waiting, and gratitude in moments of ease.
+              </p>
+            </div>
+            <a href="my-heart.html" class="feature-link-btn">
+              Explore guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Feature 2: The Qur'an -->
+          <div class="feature-card span-4">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <h3 class="feature-card-title">The Qur'an</h3>
+              <p class="feature-card-desc">
+                Overview guides for all 114 Surahs, key thematic breakdowns, revelation contexts, and core takeaways.
+              </p>
+            </div>
+            <a href="quran.html" class="feature-link-btn">
+              Browse Surahs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Feature 3: Learn Islam -->
+          <div class="feature-card span-4">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <h3 class="feature-card-title">Learn Islam</h3>
+              <p class="feature-card-desc">
+                Clear guides on the Six Articles of Faith, Five Pillars, and foundational spiritual practices.
+              </p>
+            </div>
+            <a href="learn-islam.html" class="feature-link-btn">
+              Start learning <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Feature 4: Stories of the Prophets -->
+          <div class="feature-card span-4">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+              </div>
+              <h3 class="feature-card-title">Stories of Prophets</h3>
+              <p class="feature-card-desc">
+                Narratives and lessons from the 25 prophets mentioned by name in the Qur'an.
+              </p>
+            </div>
+            <a href="prophets.html" class="feature-link-btn">
+              Read stories <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Feature 5: Seerah -->
+          <div class="feature-card span-4">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <h3 class="feature-card-title">The Seerah</h3>
+              <p class="feature-card-desc">
+                A chronological exploration of the noble life, character, and mission of Prophet Muhammad ﷺ.
+              </p>
+            </div>
+            <a href="seerah.html" class="feature-link-btn">
+              Explore timeline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Feature 6: Rabbana Duas -->
+          <div class="feature-card span-6">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              </div>
+              <h3 class="feature-card-title">Rabbana Duas</h3>
+              <p class="feature-card-desc">
+                A curated collection of 40 essential supplications from the Qur'an beginning with "Rabbana" (Our Lord).
+              </p>
+            </div>
+            <a href="rabbana-duas.html" class="feature-link-btn">
+              View supplications <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Feature 7: Daily Worship & My Space -->
+          <div class="feature-card span-6">
+            <div>
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <h3 class="feature-card-title">Daily Worship & Space</h3>
+              <p class="feature-card-desc">
+                Build Sunnah habits, follow key dates, and maintain a private notebook for your reflections.
+              </p>
+            </div>
+            <a href="my-space.html" class="feature-link-btn">
+              Open My Space <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- UTILITY ROW -->
+    <section class="utility-row-section" aria-label="Daily Insights & Calendar">
+      <div class="container">
+        <div class="utility-grid">
+          
+          <!-- Daily Fact Card -->
+          <div class="utility-card">
+            <div class="utility-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <h3 class="utility-title">Did You Know?</h3>
+            </div>
+            <p class="fact-content" id="daily-fact-text">
+              The Qur'an consists of 114 Surahs (chapters), revealed over a period of 23 years. Surah Al-Baqarah is the longest surah with 286 verses, while Surah Al-Kawthar is the shortest with only 3 verses.
+            </p>
+          </div>
+
+          <!-- Islamic Calendar Card -->
+          <div class="utility-card">
+            <div class="utility-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <h3 class="utility-title">Islamic Calendar</h3>
+            </div>
+            <div class="calendar-dates">
+              <div class="gregorian-date-display" id="gregorian-date">Loading date...</div>
+              <div class="hijri-date-display">Islamic Year 1448 AH</div>
+            </div>
+            <p class="calendar-note">
+              * Hijri dates may vary by 1–2 days based on local sighting.
+            </p>
+            <a href="calendar.html" class="feature-link-btn" style="margin-top: 1rem;">
+              Full Islamic calendar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Guides</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Trust & Legal</div>
+            <ul class="footer-links-list">
+              <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Content Accuracy:</strong> All Qur'anic verses and translations are sourced from verified classical texts (e.g. Tanzil, Sahih International). Manarah is an educational reflection tool and does not replace classical Islamic scholarship.
+        </div>
+        <div>
+          Manarah &copy; 2026. Built with care.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // 1. Mobile Drawer Navigation Logic
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+          document.body.style.overflow = !isExpanded ? 'hidden' : '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            mobileToggleBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      // 2. Bookshelf Book Spine Router
+      const bookButtons = document.querySelectorAll('.book-spine-btn');
+      bookButtons.forEach(book => {
+        book.addEventListener('click', function() {
+          const mood = this.getAttribute('data-mood');
+          if (mood) {
+            window.location.href = `my-heart.html?mood=${encodeURIComponent(mood)}`;
+          }
+        });
+      });
+
+      // 3. Dynamic Gregorian Date
+      const gregorianDisplay = document.getElementById('gregorian-date');
+      if (gregorianDisplay) {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        gregorianDisplay.textContent = new Date().toLocaleDateString('en-US', options);
+      }
+
+      // 4. Stable Daily Fact
+      const factsList = [
+        "The Qur'an consists of 114 Surahs (chapters), revealed over a period of 23 years. Surah Al-Baqarah is the longest surah with 286 verses, while Surah Al-Kawthar is the shortest with only 3 verses.",
+        "There are 25 Prophets mentioned by name in the Qur'an, beginning with Prophet Adam (AS) and concluding with Prophet Muhammad ﷺ.",
+        "Surah Al-Ikhlas (112) is equal to one-third of the Qur'an in reward and meaning, as it encapsulates the absolute oneness (Tawhid) of Allah.",
+        "The phrase 'Bismillah' appears 114 times in the Qur'an—once at the start of every Surah except Surah At-Tawbah, and twice in Surah An-Naml."
+      ];
+      
+      const factTextElement = document.getElementById('daily-fact-text');
+      if (factTextElement) {
+        const today = new Date();
+        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+        factTextElement.textContent = factsList[dayOfYear % factsList.length];
+      }
+
+    });
+  </script>
+</body>
+</html>

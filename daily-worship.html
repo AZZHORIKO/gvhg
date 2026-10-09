@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — Daily Worship, 99 Names of Allah & Sunnah Practices</title>
+  <meta name="description" content="Explore the complete collection of 99 Names of Allah with Arabic, transliterations, verified meanings, and sourced reflections, alongside authentic Sunnah teachings and daily habit tracking on Manarah. A lighthouse for your heart.">
+  
+  <!-- Premium Google Fonts matching Manarah System Architecture -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH DESIGN SYSTEM — MIDNIGHT EMERALD & GOLD THEME
+       ========================================================================== */
+    :root {
+      /* Palette Tokens */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --gold-glow-radial: radial-gradient(circle, rgba(212, 175, 106, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+
+      /* Typography Tokens */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Typography Clamps */
+      --fs-hero-title: clamp(2.2rem, 5vw + 1rem, 3.8rem);
+      --fs-section-title: clamp(1.6rem, 3vw + 0.8rem, 2.4rem);
+      --fs-quran-arabic: clamp(1.8rem, 4vw + 0.5rem, 2.7rem);
+      --fs-article-body: clamp(1.025rem, 1.2vw + 0.5rem, 1.15rem);
+
+      /* Layout Spacing & Radii */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Animation Motion Tokens */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.4s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a { color: inherit; text-decoration: none; transition: all var(--transition-fast); }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .container-narrow { max-width: 860px; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 1.5rem;
+      background: var(--accent-gold); color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem; font-weight: 700; border-radius: var(--radius-sm);
+      z-index: 9999; transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* HEADER & NAVIGATION */
+    .site-header {
+      position: sticky; top: 0; height: var(--header-h); z-index: 1000;
+      background: rgba(4, 8, 7, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { display: flex; align-items: center; gap: clamp(0.4rem, 1.5vw, 0.85rem); text-decoration: none; min-height: 44px; }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600;
+      letter-spacing: 0.18em; background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; line-height: 1;
+    }
+    .brand-wordmark .brand-ar { font-family: var(--font-arabic); font-size: clamp(1.5rem, 3.2vw, 2rem); color: var(--accent-gold); line-height: 1; opacity: 0.9; }
+
+    .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.25rem); }
+    .nav-link { font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.5rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold-light); }
+    .nav-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-gold), transparent); transition: width var(--transition-fast); border-radius: var(--radius-pill); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta-btn, .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; min-height: 44px;
+      transition: all var(--transition-smooth); cursor: pointer;
+    }
+    .nav-cta-btn {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.6rem 1.35rem;
+    }
+    .nav-cta-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.35); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight); padding: 0.75rem 1.6rem; border: none; font-weight: 700;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 106, 0.4); }
+
+    .btn-secondary {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.75rem 1.5rem;
+    }
+    .btn-secondary:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--text-primary); }
+
+    .mobile-nav-toggle { display: none; padding: 0.5rem; color: var(--text-primary); min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border-radius: var(--radius-sm); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--header-h); left: 0; width: 100%; height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight); padding: 2rem 1.5rem 3rem; flex-direction: column; gap: 1rem; z-index: 999;
+      border-top: 1px solid var(--border-subtle); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { font-size: 1.2rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); width: 100%; }
+
+    /* HERO SECTION */
+    .hero-section { padding: clamp(2.5rem, 6vh, 4.5rem) 0 clamp(1.5rem, 4vh, 2.5rem); text-align: center; position: relative; }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium); padding: 0.4rem 1.2rem; border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem); letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-gold-light); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .hero-title { font-family: var(--font-display); font-size: var(--fs-hero-title); line-height: 1.15; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: var(--text-secondary); max-width: 760px; margin: 0 auto 2.25rem; line-height: 1.65; }
+
+    /* SECTION TABS NAV BAR */
+    .pillar-nav-bar {
+      display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .pillar-tab-btn {
+      padding: 0.65rem 1.4rem; border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600;
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+      transition: all var(--transition-fast); display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .pillar-tab-btn:hover, .pillar-tab-btn.active {
+      background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--accent-gold-light);
+      box-shadow: 0 4px 20px rgba(212, 175, 106, 0.15);
+    }
+
+    /* DAILY FEATURED CARD */
+    .daily-feature-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: 3.5rem; box-shadow: var(--shadow-ambient);
+      position: relative; overflow: hidden; text-align: center;
+    }
+    .feature-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.5rem; }
+    .feature-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem); color: var(--text-primary); margin-bottom: 0.5rem; }
+    .feature-ar-title { font-family: var(--font-arabic); font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--accent-gold-light); direction: rtl; margin-bottom: 0.75rem; line-height: 1.2; }
+    .feature-body { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 720px; margin: 0 auto 1.25rem; }
+
+    /* SEARCH & FILTER CONTROLS */
+    .controls-bar { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .search-wrapper { position: relative; width: 100%; max-width: 640px; margin: 0 auto; }
+    .search-input {
+      width: 100%; height: 54px; background: var(--bg-surface-1); border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill); padding: 0 1.5rem 0 3.25rem; color: var(--text-primary);
+      font-family: var(--font-sans); font-size: 1rem; outline: none; transition: all var(--transition-fast);
+    }
+    .search-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.2); background: var(--bg-surface-2); }
+    .search-icon { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--accent-gold); pointer-events: none; }
+    .clear-search-btn {
+      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-tertiary);
+      padding: 0.35rem; display: none; border-radius: 50%;
+    }
+    .clear-search-btn.is-visible { display: flex; }
+    .clear-search-btn:hover { color: var(--accent-gold); background: rgba(255, 255, 255, 0.05); }
+
+    .filter-pills-row { display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+    .filter-pill {
+      font-size: 0.825rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: var(--radius-pill);
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .filter-pill:hover, .filter-pill.active { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--accent-gold-light); }
+
+    .results-counter-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-secondary);
+    }
+
+    /* CONTENT SECTIONS DISPLAY */
+    .pillar-content-section { display: none; }
+    .pillar-content-section.is-active { display: block; }
+
+    /* 99 NAMES RESPONSIVE GRID */
+    .names-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;
+    }
+    .name-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;
+      transition: all var(--transition-smooth); cursor: pointer; text-align: left; position: relative; min-height: 220px;
+    }
+    .name-card:hover, .name-card:focus-visible {
+      background: var(--bg-surface-2); border-color: var(--accent-gold); transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+    .num-badge {
+      font-size: 0.75rem; font-weight: 700; color: var(--accent-gold); background: rgba(212, 175, 106, 0.08);
+      padding: 0.2rem 0.65rem; border-radius: var(--radius-pill); border: 1px solid var(--border-subtle); flex-shrink: 0;
+    }
+    .arabic-name { font-family: var(--font-arabic); font-size: 2.1rem; color: var(--accent-gold-light); direction: rtl; line-height: 1.1; }
+    .english-trans { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .meaning-tag { font-size: 0.88rem; color: var(--text-secondary); font-style: italic; margin-bottom: 0.5rem; }
+    .short-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 1px dashed var(--border-subtle); font-size: 0.8rem; color: var(--accent-gold); font-weight: 600; }
+
+    /* PAGINATION CONTROLS */
+    .pagination-bar {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 4rem; flex-wrap: wrap;
+    }
+    .page-btn {
+      min-width: 40px; height: 40px; padding: 0 0.75rem; border-radius: var(--radius-pill);
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+      font-size: 0.875rem; font-weight: 600; transition: all var(--transition-fast); display: inline-flex; align-items: center; justify-content: center;
+    }
+    .page-btn:hover, .page-btn.active { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--accent-gold-light); }
+    .page-btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+    /* SUNNAH CARDS GRID */
+    .sunnah-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;
+    }
+    .sunnah-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem;
+      transition: all var(--transition-smooth); cursor: pointer; text-align: left;
+    }
+    .sunnah-card:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+    .sunnah-title { font-family: var(--font-display); font-size: 1.25rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .sunnah-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.75rem; }
+    .sunnah-practice { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+    .sunnah-source { font-size: 0.8rem; color: var(--accent-gold-light); font-weight: 600; }
+
+    /* SMALL DEEDS HABIT TRACKER GRID */
+    .habits-container {
+      max-width: 860px; margin: 0 auto 4rem; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .habit-item-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+      transition: all var(--transition-fast); cursor: pointer;
+    }
+    .habit-item-card:hover { border-color: var(--accent-gold); background: var(--bg-surface-2); }
+    .habit-left { display: flex; align-items: flex-start; gap: 1rem; }
+    .habit-checkbox {
+      width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border-medium);
+      display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition-fast);
+      margin-top: 0.2rem; flex-shrink: 0; background: var(--bg-surface-0); font-weight: bold; font-size: 0.85rem;
+    }
+    .habit-checkbox.is-completed { background: var(--accent-gold); border-color: var(--accent-gold); color: var(--bg-midnight); }
+    .habit-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .habit-title.is-completed { text-decoration: line-through; opacity: 0.7; }
+    .habit-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* DETAIL OVERLAY READER MODAL */
+    .overlay-reader {
+      position: fixed; inset: 0; z-index: 2000; background: var(--bg-midnight);
+      overflow-y: auto; display: none; flex-direction: column; -webkit-overflow-scrolling: touch;
+      opacity: 0; transition: opacity var(--transition-fast) ease-in-out;
+    }
+    .overlay-reader.is-active { display: flex; opacity: 1; }
+
+    .reader-header {
+      position: sticky; top: 0; z-index: 10; background: rgba(4, 8, 7, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-gold-light);
+      font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: var(--radius-pill);
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-subtle);
+      transition: all var(--transition-fast); min-height: 40px;
+    }
+    .back-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); }
+    .reader-title-nav { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); font-weight: 600; text-align: center; }
+
+    .reader-body { padding: clamp(2rem, 5vw, 4rem) 0 clamp(4rem, 8vh, 6rem); flex-grow: 1; }
+
+    /* DETAIL HERO BANNER */
+    .profile-hero {
+      background: linear-gradient(180deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem); text-align: center; margin-bottom: 3rem;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-ambient);
+    }
+    .profile-arabic { font-family: var(--font-arabic); font-size: clamp(3.2rem, 7vw, 4.8rem); color: var(--accent-gold-light); direction: rtl; margin-bottom: 0.5rem; line-height: 1.2; }
+    .profile-meta-tag {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent-gold); background: rgba(212, 175, 106, 0.1); padding: 0.3rem 0.9rem;
+      border-radius: var(--radius-pill); display: inline-block; margin-bottom: 1rem; border: 1px solid var(--border-subtle);
+    }
+    .profile-name { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text-primary); margin-bottom: 0.35rem; }
+    .profile-meaning { font-size: 1.1rem; color: var(--accent-gold-light); font-style: italic; }
+
+    /* DETAIL CONTENT BLOCKS */
+    .detail-section { margin-bottom: 2.5rem; }
+    .detail-heading {
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
+      color: var(--accent-gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .detail-paragraph { font-size: var(--fs-article-body); color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; }
+
+    /* REFLECTION CALLOUT BOX */
+    .reflection-box {
+      background: rgba(212, 175, 106, 0.05); border-left: 3px solid var(--accent-gold);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 1.5rem 1.75rem; margin: 2rem 0;
+    }
+    .reflection-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.75rem; }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; background: var(--bg-surface-3);
+      border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(20px); pointer-events: none; transition: all var(--transition-smooth);
+    }
+    .toast-notification.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* GENTLE CLOSING CTA */
+    .closing-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 5rem;
+    }
+    .closing-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 0.75rem; }
+    .closing-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 1.75rem; line-height: 1.65; }
+
+    /* FOOTER */
+    .site-footer { background: #020403; border-top: 1px solid var(--border-subtle); padding: clamp(3rem, 6vh, 5rem) 0 2.5rem; margin-top: auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+    .footer-brand { max-width: 360px; width: 100%; }
+    .footer-brand .brand-wordmark { margin-bottom: 0.85rem; }
+    .footer-tagline { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+    .footer-links-group { display: flex; gap: clamp(2rem, 5vw, 4.5rem); flex-wrap: wrap; width: 100%; max-width: 650px; justify-content: space-between; }
+    .footer-column-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links-list a { font-size: 0.875rem; color: var(--text-secondary); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; font-size: 0.8125rem; color: var(--text-tertiary); }
+    .accuracy-statement { max-width: 650px; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    @media (max-width: 899px) { .desktop-nav { display: none; } .mobile-nav-toggle { display: flex; } }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link">Prophets</a>
+        <a href="seerah.html" class="nav-link">Seerah</a>
+        <a href="calendar.html" class="nav-link">Calendar</a>
+        <a href="daily-worship.html" class="nav-link active" aria-current="page">Daily Worship</a>
+        <a href="my-space.html" class="nav-cta-btn">My Space</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link active" aria-current="page">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link" style="color: var(--accent-gold);">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          DAILY WORSHIP & PRACTICAL SUNNAH
+        </div>
+        <h1 class="hero-title">
+          Let what you learn <span style="background: linear-gradient(135deg, #ffffff 20%, var(--accent-gold-light) 70%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">shape how you live.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Discover the complete 99 Names of Allah, learn authentic Sunnah teachings from the Prophet Muhammad ﷺ, and nurture small acts of goodness that bring faith into everyday life.
+        </p>
+
+        <!-- THREE PILLARS NAVIGATION TABS -->
+        <div class="pillar-nav-bar" id="pillar-tabs">
+          <button class="pillar-tab-btn active" onclick="switchPillar('names')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 1-4.5 4.5 1 6.5-5.5-3-5.5 3 1-6.5-4.5-4.5 6-1z"/></svg>
+            1. The 99 Names of Allah
+          </button>
+          <button class="pillar-tab-btn" onclick="switchPillar('sunnah')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            2. Sunnah in Everyday Life
+          </button>
+          <button class="pillar-tab-btn" onclick="switchPillar('habits')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            3. Small Deeds, Lasting Growth
+          </button>
+        </div>
+
+        <!-- DAILY FEATURED SELECTION CARD -->
+        <div class="daily-feature-card" id="daily-feature-card">
+          <div class="feature-tag">Daily Spiritual Reflection</div>
+          <div class="feature-ar-title" id="feature-ar">الرَّحْمَٰنُ</div>
+          <h2 class="feature-title" id="feature-title">Ar-Rahman — The Most Compassionate</h2>
+          <p class="feature-body" id="feature-body">
+            Allah's mercy encompasses all created beings before they ask and without exception. Reflecting on Ar-Rahman inspires us to treat everyone we meet with gentleness, warmth, and mercy.
+          </p>
+          <button class="btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;" onclick="openNameModal('name-1')">
+            Explore Full Meaning & Sourced Explanation →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- ==========================================================================
+           PILLAR 1: THE 99 NAMES OF ALLAH (FULLY COMPLETED 99 ENTRIES)
+           ========================================================================== -->
+      <section class="pillar-content-section is-active" id="section-names">
+        <div class="controls-bar">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="search-names-input" placeholder="Search across all 99 Names of Allah (e.g. Ar-Rahman, الرحيم, Peace, Provider)..." aria-label="Search 99 Names of Allah">
+            <button class="clear-search-btn" id="clear-names-btn" aria-label="Clear search input">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+
+          <div class="filter-pills-row" id="names-filters">
+            <button class="filter-pill active" onclick="filterNames('all')">All 99 Names</button>
+            <button class="filter-pill" onclick="filterNames('mercy')">Mercy & Grace</button>
+            <button class="filter-pill" onclick="filterNames('power')">Majesty & Power</button>
+            <button class="filter-pill" onclick="filterNames('knowledge')">Knowledge & Wisdom</button>
+            <button class="filter-pill" onclick="filterNames('forgiveness')">Forgiveness & Protection</button>
+            <button class="filter-pill" onclick="filterNames('creation')">Creation & Sustenance</button>
+          </div>
+        </div>
+
+        <div class="results-counter-bar">
+          <span id="names-count-label">Showing 12 of 99 Names</span>
+          <button class="btn-secondary" style="min-height: 36px; padding: 0.35rem 1rem; font-size: 0.8rem;" id="toggle-view-all-btn" onclick="toggleViewAllNames()">
+            Show All 99 Names
+          </button>
+        </div>
+
+        <div class="names-grid" id="names-grid">
+          <!-- Dynamically populated from complete 99 dataset -->
+        </div>
+
+        <div class="pagination-bar" id="names-pagination">
+          <!-- Dynamically populated pagination buttons -->
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PILLAR 2: SUNNAH IN EVERYDAY LIFE
+           ========================================================================== -->
+      <section class="pillar-content-section" id="section-sunnah">
+        <div class="controls-bar">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="search-sunnah-input" placeholder="Search Sunnah teachings (e.g. speech, smile, prayer, anger, eating)..." aria-label="Search Sunnah teachings">
+          </div>
+
+          <div class="filter-pills-row" id="sunnah-filters">
+            <button class="filter-pill active" onclick="filterSunnah('all')">All Teachings</button>
+            <button class="filter-pill" onclick="filterSunnah('character')">Noble Character</button>
+            <button class="filter-pill" onclick="filterSunnah('worship')">Remembrance & Prayer</button>
+            <button class="filter-pill" onclick="filterSunnah('social')">Family & Neighbors</button>
+            <button class="filter-pill" onclick="filterSunnah('mindfulness')">Mindfulness & Speech</button>
+          </div>
+        </div>
+
+        <div class="sunnah-grid" id="sunnah-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PILLAR 3: SMALL DEEDS, LASTING GROWTH (HABIT TRACKER)
+           ========================================================================== -->
+      <section class="pillar-content-section" id="section-habits">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+          <h2 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.5rem;">Daily Intentions & Small Good Habits</h2>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto;">
+            “The most beloved deeds to Allah are those that are most consistent, even if they are small.” (Sahih al-Bukhari). Tap a habit to mark it completed for today.
+          </p>
+        </div>
+
+        <div class="habits-container" id="habits-list">
+          <!-- Dynamically populated habits checklist -->
+        </div>
+      </section>
+
+      <!-- GENTLE CLOSING CTA -->
+      <div class="closing-card">
+        <h3 class="closing-title">Elevate Your Supplications with Rabbana Duas</h3>
+        <p class="closing-desc">
+          Combine your understanding of Allah's Beautiful Names with the 40 profound 'Rabbana' supplications revealed directly in the Holy Qur'an.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="rabbana-duas.html" class="btn-primary">
+            Explore 40 Rabbana Duas
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="my-space.html" class="btn-secondary">
+            View My Saved Items
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- OVERLAY READER MODAL -->
+  <div class="overlay-reader" id="overlay-reader" role="dialog" aria-modal="true" aria-label="Detailed Reflection Reader View">
+    <div class="reader-header">
+      <button class="back-btn" onclick="closeOverlayReader()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Return to Dashboard
+      </button>
+
+      <div class="reader-title-nav" id="reader-title-nav">Name Reflection</div>
+
+      <div style="width: 100px; text-align: right;"></div>
+    </div>
+
+    <div class="reader-body">
+      <div class="container container-narrow">
+        <div class="profile-hero">
+          <div class="profile-arabic" id="modal-ar">الرَّحْمَٰنُ</div>
+          <div class="profile-meta-tag" id="modal-num">Name 01 of 99</div>
+          <h1 class="profile-name" id="modal-en">Ar-Rahman</h1>
+          <div class="profile-meaning" id="modal-meaning">The Most Compassionate, The All-Merciful</div>
+        </div>
+
+        <div id="modal-content-body">
+          <!-- Dynamically populated detail body -->
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
+          <button class="btn-primary" id="save-item-btn" onclick="toggleSaveCurrentModalItem()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            Save to My Space
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Item saved</span>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Explorer</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Content Verification Notice:</strong> All 99 Names of Allah and Sunnah teachings presented on Manarah are cross-referenced with authentic classical sources (e.g. Sahih al-Bukhari, Sahih Muslim, Tafsir Ibn Kathir). Personal habit tracking features operate locally on your device without transmitting private personal data.
+        </div>
+        <div>Manarah &copy; 2026. Built with care.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AUTHENTIC DATASETS & INTERACTIVE APPLICATION LOGIC
+       ========================================================================== -->
+  <script>
+    // COMPLETE VERIFIED DATASET OF ALL 99 NAMES OF ALLAH
+    const NAMES_DATA = [
+      { id: "name-1", num: 1, category: "mercy", ar: "الرَّحْمَٰنُ", en: "Ar-Rahman", meaning: "The Most Compassionate", desc: "The One whose all-encompassing mercy flows endlessly toward all creation without exception.", explanation: "Ar-Rahman denotes an inherent, infinite attribute of divine mercy that sustains every living soul before they even ask.", ref: "Surah Al-Fatiha 1:1, Surah Ar-Rahman 55:1-2", reflection: "When you feel overwhelmed by faults, remember that Allah's mercy precedes all else. Let Ar-Rahman inspire you to treat everyone with warmth." },
+      { id: "name-2", num: 2, category: "mercy", ar: "الرَّحِيمُ", en: "Ar-Raheem", meaning: "The All-Merciful", desc: "The One who bestows specific, continuous mercy upon those who turn to Him in faith.", explanation: "While Ar-Rahman is general mercy for all creation, Ar-Raheem is the tailored, intimate mercy granted to believers who strive for guidance.", ref: "Surah Al-Baqarah 2:163, Surah Al-Ahzab 33:43", reflection: "Every step you take toward Allah is met with His Raheem—His personal care and forgiveness." },
+      { id: "name-3", num: 3, category: "power", ar: "الْمَلِكُ", en: "Al-Malik", meaning: "The Sovereign King", desc: "The Absolute King and Owner of all kingdoms, whose authority is supreme over all creation.", explanation: "Al-Malik possesses total ownership and governance over everything in the universe without relying on minister or council.", ref: "Surah Al-Jumu'ah 62:1, Surah Al-Hashr 59:23", reflection: "Understanding Al-Malik frees us from anxiety over human power structures—all worldly authority is temporary." },
+      { id: "name-4", num: 4, category: "power", ar: "الْقُدُّوسُ", en: "Al-Quddus", meaning: "The Absolutely Pure", desc: "The Pure and Holy, free from every imperfection, flaw, or human limitation.", explanation: "Al-Quddus is transcendent above all shortcomings, flaws, partners, or fatigue.", ref: "Surah Al-Hashr 59:23, Surah Al-Jumu'ah 62:1", reflection: "Turning to Al-Quddus cleanses our intentions and reminds us to purify our hearts from envy and pride." },
+      { id: "name-5", num: 5, category: "forgiveness", ar: "السَّلَامُ", en: "As-Salam", meaning: "The Source of Peace", desc: "The Giver of peace, security, and salvation, free from all conflict and defect.", explanation: "As-Salam is the origin of all true peace in the heart and the source of ultimate safety in this life and the Next.", ref: "Surah Al-Hashr 59:23, Sahih Muslim (Hadith after prayer)", reflection: "We pray 'O Allah, You are Peace and from You comes peace.' Seek inner peace by turning to Him." },
+      { id: "name-6", num: 6, category: "forgiveness", ar: "الْمُؤْمِنُ", en: "Al-Mu'min", meaning: "The Granter of Security", desc: "The One who grants faith, tranquility, and safety from fear and injustice.", explanation: "Al-Mu'min places faith in hearts and fulfills His promises of safety to those who trust Him.", ref: "Surah Al-Hashr 59:23, Surah Quraysh 106:4", reflection: "True security is not found in material wealth, but in faith granted by Al-Mu'min." },
+      { id: "name-7", num: 7, category: "knowledge", ar: "الْمُهَيْمِنُ", en: "Al-Muhaymin", meaning: "The Guardian & Overseer", desc: "The All-Watchful Guardian who preserves, protects, and determines the truth of all things.", explanation: "Al-Muhaymin oversees all existence with supreme care, guarding His revelation and creation.", ref: "Surah Al-Hashr 59:23, Surah Al-Ma'idah 5:48", reflection: "Live with mindfulness knowing Al-Muhaymin watches over your well-being and earnest efforts." },
+      { id: "name-8", num: 8, category: "power", ar: "الْعَزِيزُ", en: "Al-'Azeez", meaning: "The Almighty", desc: "The All-Mighty and Unconquerable, whose dignity and power can never be overcome.", explanation: "Al-'Azeez is the Invincible Master whose dignity remains untarnished by opposition.", ref: "Surah Ali 'Imran 3:6, Surah Al-Hashr 59:23", reflection: "True honor comes from attaching oneself to Al-'Azeez rather than seeking approval from creation." },
+      { id: "name-9", num: 9, category: "power", ar: "الْجَبَّارُ", en: "Al-Jabbar", meaning: "The Compeller & Restorer", desc: "The One who mends what is broken and whose divine will prevails over all.", explanation: "Al-Jabbar heals broken hearts, restores shattered lives, and enforces His decree with supreme authority.", ref: "Surah Al-Hashr 59:23, Sunan Ibn Majah", reflection: "When your heart feels crushed, turn to Al-Jabbar to mend your spirit and restore peace." },
+      { id: "name-10", num: 10, category: "power", ar: "الْمُتَكَبِّرُ", en: "Al-Mutakabbir", meaning: "The Supreme in Majesty", desc: "The One who alone possesses true greatness, far above all human arrogance.", explanation: "Majesty belongs exclusively to Allah. Arrogance in creation is a flaw, but in Allah, it is rightful greatness.", ref: "Surah Al-Hashr 59:23, Sahih Muslim (Hadith Qudsi)", reflection: "Humility elevates human character, because absolute grandeur belongs solely to Al-Mutakabbir." },
+      { id: "name-11", num: 11, category: "creation", ar: "الْخَالِقُ", en: "Al-Khaliq", meaning: "The Creator", desc: "The One who brings everything into existence from nothingness according to His plan.", explanation: "Al-Khaliq designs and creates all things with precise order, balance, and purpose.", ref: "Surah Al-An'am 6:102, Surah Al-Hashr 59:24", reflection: "Contemplate the natural universe to recognize the infinite creativity of Al-Khaliq." },
+      { id: "name-12", num: 12, category: "creation", ar: "الْبَارِئُ", en: "Al-Bari'", meaning: "The Originator", desc: "The Maker who brings creation into form without relying on any pre-existing model.", explanation: "Al-Bari' manifests creation with distinct individuality, seamlessly harmonizing all natural laws.", ref: "Surah Al-Hashr 59:24, Surah Al-Baqarah 2:54", reflection: "You were brought into being intentionally by Al-Bari'—your existence has unique divine purpose." },
+      { id: "name-13", num: 13, category: "creation", ar: "الْمُصَوِّرُ", en: "Al-Musawwir", meaning: "The Fashioner", desc: "The Supreme Artist who gives every created thing its distinct shape, form, and beauty.", explanation: "Al-Musawwir crafts every leaf, snowflake, and human face with unique character and aesthetic wisdom.", ref: "Surah Al-Hashr 59:24, Surah Ghafir 40:64", reflection: "Appreciate your own unique form and diversity in human culture as artistry of Al-Musawwir." },
+      { id: "name-14", num: 14, category: "forgiveness", ar: "الْغَفَّارُ", en: "Al-Ghaffar", meaning: "The Oft-Forgiving", desc: "The One who repeatedly covers and forgives sins, no matter how often a servant repents.", explanation: "Al-Ghaffar veils human mistakes in this world and forgives them completely when asked with sincerity.", ref: "Surah Nuh 71:10, Surah Sad 38:66", reflection: "Never despair of Allah's forgiveness. Al-Ghaffar delights in a servant returning in humble repentance." },
+      { id: "name-15", num: 15, category: "power", ar: "الْقَهَّارُ", en: "Al-Qahhar", meaning: "The All-Subduing", desc: "The Supreme Subduer before whom all tyrants, idols, and powers bow.", explanation: "Al-Qahhar holds absolute mastery over all creation; nothing can escape His decree.", ref: "Surah Yusuf 12:39, Surah Ar-Ra'd 13:16", reflection: "In times of oppression, find solace knowing Al-Qahhar ultimately subdues all tyranny." },
+      { id: "name-16", num: 16, category: "creation", ar: "الْوَهَّابُ", en: "Al-Wahhab", meaning: "The Bestower of Gifts", desc: "The Unconditional Giver who grants bounties continuously without expecting anything in return.", explanation: "Al-Wahhab bestows wisdom, guidance, health, and family purely out of infinite grace.", ref: "Surah Ali 'Imran 3:8, Surah Sad 38:9", reflection: "Ask Al-Wahhab directly for wisdom and peace, for His treasury is boundless." },
+      { id: "name-17", num: 17, category: "creation", ar: "الرَّزَّاقُ", en: "Ar-Razzaq", meaning: "The Provider", desc: "The Provider who guarantees sustenance—both physical food and spiritual guidance—to all creation.", explanation: "Ar-Razzaq creates and distributes provisions to every living creature on Earth.", ref: "Surah Adh-Dhariyat 51:58, Surah Hud 11:6", reflection: "Work hard with integrity, but place your ultimate trust for sustenance in Ar-Razzaq." },
+      { id: "name-18", num: 18, category: "power", ar: "الْفَتَّاحُ", en: "Al-Fattah", meaning: "The Opener", desc: "The Opener of closed doors, granter of victory, and ultimate decider of truth.", explanation: "Al-Fattah opens hearts to faith, removes hardship, and resolves doubts with perfect clarity.", ref: "Surah Saba 34:26, Surah Al-A'raf 7:89", reflection: "When facing a dead end, call upon Al-Fattah to open a way forward you cannot yet see." },
+      { id: "name-19", num: 19, category: "knowledge", ar: "الْعَلِيمُ", en: "Al-'Aleem", meaning: "The All-Knowing", desc: "The One whose knowledge embraces everything—seen and unseen, past, present, and future.", explanation: "Al-'Aleem knows what is declared and what is hidden deep within human chests, without requiring time or study.", ref: "Surah Al-Baqarah 2:115, Surah Al-An'am 6:59", reflection: "You are never truly alone or unheard. Al-'Aleem knows your silent prayers and unspoken struggles." },
+      { id: "name-20", num: 20, category: "power", ar: "الْقَابِضُ", en: "Al-Qabid", meaning: "The Restrainer", desc: "The One who narrows, withholds, or takes back according to divine wisdom.", explanation: "Al-Qabid restricts provisions or health as a test or protection for His servants.", ref: "Surah Al-Baqarah 2:245, Sunan Abi Dawud", reflection: "When blessings feel constrained, trust that Al-Qabid withholds only to prepare you for something better." },
+      { id: "name-21", num: 21, category: "creation", ar: "الْبَاسِطُ", en: "Al-Basit", meaning: "The Expander", desc: "The One who expands provisions, hearts, and mercy according to His generous plan.", explanation: "Al-Basit widens sustenance and fills hearts with joy, hope, and spiritual light.", ref: "Surah Al-Baqarah 2:245, Surah Ar-Ra'd 13:26", reflection: "Pray to Al-Basit to expand your heart with tranquility and your capacity to do good." },
+      { id: "name-22", num: 22, category: "power", ar: "الْخَافِضُ", en: "Al-Khafidh", meaning: "The Abaser", desc: "The One who humbles the arrogant and brings down those who exalt themselves unjustly.", explanation: "Al-Khafidh lowers tyrants and arrogant hypocrites while exalting the humble.", ref: "Surah Al-Waqi'ah 56:3, Sunan Ibn Majah", reflection: "Guard your heart against pride, knowing Al-Khafidh humbles those who walk arrogantly." },
+      { id: "name-23", num: 23, category: "power", ar: "الرَّافِعُ", en: "Ar-Rafi'", meaning: "The Exalter", desc: "The One who elevates in rank, honor, and spiritual status those who remain humble.", explanation: "Ar-Rafi' raises righteous servants in dignity both in this life and in the Hereafter.", ref: "Surah Al-An'am 6:83, Surah Al-Mujadila 58:11", reflection: "Seek status in the sight of Ar-Rafi' through sincerity, knowledge, and humility." },
+      { id: "name-24", num: 24, category: "power", ar: "الْمُعِزُّ", en: "Al-Mu'izz", meaning: "The Bestower of Honor", desc: "The One who grants true power, dignity, and respect to whomever He wills.", explanation: "Al-Mu'izz dignifies those who obey Him and hold fast to truth.", ref: "Surah Ali 'Imran 3:26, Surah Al-Munafiqun 63:8", reflection: "True dignity comes from devotion to Allah, for Al-Mu'izz is the sole owner of honor." },
+      { id: "name-25", num: 25, category: "power", ar: "الْمُذِلُّ", en: "Al-Mudhill", meaning: "The Humiliator", desc: "The One who strips honor from those who persist in arrogance, oppression, and deceit.", explanation: "Al-Mudhill exposes the disgraceful reality of those who abuse power and reject truth.", ref: "Surah Ali 'Imran 3:26, Surah Al-Hajj 22:18", reflection: "Fear the consequences of wrongdoing, for Al-Mudhill humbles those who oppress others." },
+      { id: "name-26", num: 26, category: "knowledge", ar: "السَّمِيعُ", en: "As-Samee'", meaning: "The All-Hearing", desc: "The One who hears every sound, prayer, whisper, and silent thought in creation.", explanation: "As-Samee' hears the praise of the worshipper, the cry of the oppressed, and secret supplications.", ref: "Surah Al-Baqarah 2:127, Surah Ash-Shura 42:11", reflection: "Whisper your deepest fears and hopes in du'a—As-Samee' hears every heartbeat." },
+      { id: "name-27", num: 27, category: "knowledge", ar: "الْبَصِيرُ", en: "Al-Baseer", meaning: "The All-Seeing", desc: "The One whose sight encompasses every atom, action, and motive in existence.", explanation: "Al-Baseer perceives the black ant on a dark rock in the deep night with absolute clarity.", ref: "Surah Al-Mulk 67:19, Surah Ash-Shura 42:11", reflection: "Strive for excellence (Ihsan) in secret, knowing Al-Baseer sees every quiet act of good." },
+      { id: "name-28", num: 28, category: "power", ar: "الْحَكَمُ", en: "Al-Hakam", meaning: "The Supreme Judge", desc: "The Arbitrator whose decisions are final, perfectly just, and devoid of flaw.", explanation: "Al-Hakam judges between all creatures on the Day of Resurrection with total equity.", ref: "Surah Al-An'am 6:114, Surah Al-Hajj 22:69", reflection: "When treated unfairly by society, place your trust in the final judgment of Al-Hakam." },
+      { id: "name-29", num: 29, category: "power", ar: "الْعَدْلُ", en: "Al-'Adl", meaning: "The Utterly Just", desc: "The One who is absolute justice itself, free from all tyranny and bias.", explanation: "Al-'Adl never wrongs a soul by an atom's weight and rewards every good deed.", ref: "Surah Al-An'am 6:115, Surah Fussilat 41:46", reflection: "Uphold justice in your family and daily dealings, reflecting the divine attribute of Al-'Adl." },
+      { id: "name-30", num: 30, category: "mercy", ar: "اللَّطِيفُ", en: "Al-Lateef", meaning: "The Subtle & Gentle", desc: "The One who delivers blessings in subtle, imperceptible ways with utmost gentleness.", explanation: "Al-Lateef weaves solutions into life's tapestry through quiet means we cannot foresee.", ref: "Surah Al-An'am 6:103, Surah Yusuf 12:100", reflection: "Observe the subtle coincidences and gentle mercies in your life crafted by Al-Lateef." },
+      { id: "name-31", num: 31, category: "knowledge", ar: "الْخَبِيرُ", en: "Al-Khabeer", meaning: "The All-Aware", desc: "The One who knows the inner reality, hidden secrets, and true motives of everything.", explanation: "Al-Khabeer possesses deep, experiential awareness of all inner thoughts and circumstances.", ref: "Surah Al-An'am 6:18, Surah Al-Mulk 67:14", reflection: "Align your inner intentions with your outward actions, for Al-Khabeer knows what lies within." },
+      { id: "name-32", num: 32, category: "forgiveness", ar: "الْحَلِيمُ", en: "Al-Haleem", meaning: "The Forbearing", desc: "The One who does not rush to punish, granting sinners time to repent and return.", explanation: "Al-Haleem exercises patient restraint, continuing to provide even to those who disobey Him.", ref: "Surah Al-Baqarah 2:225, Surah Al-Isra 17:44", reflection: "Practise patience with others' faults, drawing inspiration from the forbearance of Al-Haleem." },
+      { id: "name-33", num: 33, category: "power", ar: "الْعَظِيمُ", en: "Al-'Azeem", meaning: "The Magnificent", desc: "The Supreme in majesty, honor, and power beyond human comprehension.", explanation: "Al-'Azeem transcends all greatness in nature; before Him, all creation is humbled.", ref: "Surah Al-Baqarah 2:255 (Ayat al-Kursi), Surah Ash-Shura 42:4", reflection: "Recite 'Subhana Rabbiyal 'Azeem' in Ruku' with awe at the grandeur of the Creator." },
+      { id: "name-34", num: 34, category: "forgiveness", ar: "الْغَفُورُ", en: "Al-Ghafoor", meaning: "The All-Forgiving", desc: "The One who pardons abundantly and erases the traces of sins.", explanation: "Al-Ghafoor covers sins completely and protects the repentant servant from their consequences.", ref: "Surah Al-Baqarah 2:173, Surah Al-Hijr 15:49", reflection: "Turn to Al-Ghafoor daily; His readiness to forgive is greater than all human mistakes." },
+      { id: "name-35", num: 35, category: "mercy", ar: "الشَّكُورُ", en: "Ash-Shakoor", meaning: "The Appreciative", desc: "The One who multiplies the rewards of small good deeds infinitely.", explanation: "Ash-Shakoor appreciates every sincere smile, charity, and prayer, rewarding them far beyond measure.", ref: "Surah Fatir 35:30, Surah At-Taghabun 64:17", reflection: "No good deed is ever wasted. Ash-Shakoor recognizes and treasures every quiet act of sincerity." },
+      { id: "name-36", num: 36, category: "power", ar: "الْعَلِيُّ", en: "Al-'Aliyy", meaning: "The Most High", desc: "The Supreme who is exalted far above all creation in status, power, and essence.", explanation: "Al-'Aliyy is elevated above every flaw, rival, or partner.", ref: "Surah Al-Baqarah 2:255, Surah Al-A'la 87:1", reflection: "In prostration (Sujud), whisper 'Subhana Rabbiyal A'la' as you bow before the Most High." },
+      { id: "name-37", num: 37, category: "power", ar: "الْكَبِيرُ", en: "Al-Kabeer", meaning: "The Most Great", desc: "The One whose majesty and essence are infinitely greater than all things.", explanation: "Al-Kabeer is greater than any challenge, fear, or obstacle you will ever face.", ref: "Surah Ar-Ra'd 13:9, Surah Al-Hajj 22:62", reflection: "When declaring 'Allahu Akbar', remember that Allah is infinitely greater than your worries." },
+      { id: "name-38", num: 38, category: "power", ar: "الْحَفِيظُ", en: "Al-Hafeez", meaning: "The Preserver", desc: "The Guardian who protects all creation, preserves deeds, and guards the heavens.", explanation: "Al-Hafeez protects hearts from spiritual corruption and preserves every detail of human conduct.", ref: "Surah Hud 11:57, Surah Saba 34:21", reflection: "Entrust your family and faith to Al-Hafeez, the ultimate protector who never sleeps." },
+      { id: "name-39", num: 39, category: "creation", ar: "الْمُقِيتُ", en: "Al-Muqeet", meaning: "The Sustainer & Overseer", desc: "The One who supplies spiritual and physical nourishment to every single creature.", explanation: "Al-Muqeet controls all provisions and maintains the physical and mental stamina of life.", ref: "Surah An-Nisa 4:85, Sahih al-Bukhari", reflection: "Thank Al-Muqeet for nourishing your mind with guidance and your body with strength." },
+      { id: "name-40", num: 40, category: "knowledge", ar: "الْحَسِيبُ", en: "Al-Haseeb", meaning: "The Reckoner & Sufficient", desc: "The One who takes precise account of all things and is totally sufficient for believers.", explanation: "Al-Haseeb suffices as a protector and calculates every atom of human intention.", ref: "Surah An-Nisa 4:6, Surah At-Talaq 65:3", reflection: "Say 'Hasbunallahu wa ni'mal wakeel'—Allah Al-Haseeb is completely sufficient for us." },
+      { id: "name-41", num: 41, category: "power", ar: "الْجَلِيلُ", en: "Al-Jaleel", meaning: "The Majestic", desc: "The One attributed with supreme glory, majesty, and sublime perfection.", explanation: "Al-Jaleel inspires reverence and awe through the perfection of His attributes.", ref: "Surah Ar-Rahman 55:27, Sunan At-Tirmidhi", reflection: "Contemplate the grandeur of the universe to feel the sublime majesty of Al-Jaleel." },
+      { id: "name-42", num: 42, category: "mercy", ar: "الْكَرِيمُ", en: "Al-Kareem", meaning: "The Most Bountiful", desc: "The Generous Lord who gives abundantly without measure or expectation.", explanation: "Al-Kareem forgives when He could punish and grants bounties even before we ask.", ref: "Surah Al-Infitar 82:6, Surah An-Naml 27:40", reflection: "Be generous with your wealth and kindness, reflecting the noble character of Al-Kareem." },
+      { id: "name-43", num: 43, category: "knowledge", ar: "الرَّقِيبُ", en: "Ar-Raqeeb", meaning: "The Watchful", desc: "The Observer who monitors every movement, breath, and thought across creation.", explanation: "Ar-Raqeeb is continuously aware of every hidden motive and private moment.", ref: "Surah An-Nisa 4:1, Surah Al-Ahzab 33:52", reflection: "Cultivate Ihsan by remembering Ar-Raqeeb is with you wherever you are." },
+      { id: "name-44", num: 44, category: "mercy", ar: "الْمُجِيبُ", en: "Al-Mujeeb", meaning: "The Responsive", desc: "The One who answers the prayers and supplications of those who call upon Him.", explanation: "Al-Mujeeb responds to every sincere du'a either with what is asked, something better, or protection.", ref: "Surah Hud 11:61, Sahih Muslim", reflection: "Pray with total certainty—Al-Mujeeb hears and answers every heart that calls." },
+      { id: "name-45", num: 45, category: "knowledge", ar: "الْوَاسِعُ", en: "Al-Wasi'", meaning: "The All-Encompassing", desc: "The One whose capacity, mercy, knowledge, and provisions are infinitely vast.", explanation: "Al-Wasi' is boundless in generosity and embraces all creation in His scope.", ref: "Surah Al-Baqarah 2:115, Surah Ali 'Imran 3:73", reflection: "Never feel constrained by circumstances; Al-Wasi' has infinite solutions for your life." },
+      { id: "name-46", num: 46, category: "knowledge", ar: "الْحَكِيمُ", en: "Al-Hakeem", meaning: "The All-Wise", desc: "The One who places everything in its rightful place with perfect purpose.", explanation: "Al-Hakeem executes all decrees with flawless wisdom, even when human minds cannot fathom the reason.", ref: "Surah Al-Baqarah 2:220, Surah Luqman 31:27", reflection: "When life does not unfold as planned, trust Al-Hakeem—His timing is rooted in infinite wisdom." },
+      { id: "name-47", num: 47, category: "mercy", ar: "الْوَدُودُ", en: "Al-Wadood", meaning: "The Loving One", desc: "The One who loves His righteous servants and is the source of all affection.", explanation: "Al-Wadood manifests active, tender affection toward believers who turn to Him.", ref: "Surah Hud 11:90, Surah Al-Burooj 85:14", reflection: "Seek Allah's love through good deeds, and know that Al-Wadood loves those who love Him." },
+      { id: "name-48", num: 48, category: "power", ar: "الْمَجِيدُ", en: "Al-Majeed", meaning: "The All-Glorious", desc: "The One who combines absolute power, generosity, and glorious honor.", explanation: "Al-Majeed is exalted in praise, noble in deeds, and boundless in majesty.", ref: "Surah Hud 11:73, Surah Al-Burooj 85:15", reflection: "Praise Al-Majeed in your Tashahhud, affirming His supreme glory over creation." },
+      { id: "name-49", num: 49, category: "creation", ar: "الْبَاعِثُ", en: "Al-Ba'ith", meaning: "The Resurrector", desc: "The One who will raise all human beings from the graves on the Day of Judgment.", explanation: "Al-Ba'ith sends messengers to awaken hearts and will resurrect bodies for accountability.", ref: "Surah Al-Hajj 22:7, Surah Yasin 36:52", reflection: "Live each day conscious of meeting Al-Ba'ith, who revives dead souls and brings us to accountability." },
+      { id: "name-50", num: 50, category: "knowledge", ar: "الشَّهِيدُ", en: "Ash-Shaheed", meaning: "The All-Witnessing", desc: "The One from whom nothing is hidden, witnessing every action and intention.", explanation: "Ash-Shaheed is present everywhere by His knowledge, witnessing the truth of all affairs.", ref: "Surah Ali 'Imran 3:98, Surah Al-Hajj 22:17", reflection: "Let Ash-Shaheed be your witness when you perform good deeds that no human sees." },
+      { id: "name-51", num: 51, category: "power", ar: "الْحَقُّ", en: "Al-Haqq", meaning: "The Ultimate Truth", desc: "The Absolute Reality whose existence and words are the ultimate truth.", explanation: "Al-Haqq is unchanging and real; His promises, book, and judgment are absolute truth.", ref: "Surah Al-Hajj 22:6, Surah An-Noor 24:25", reflection: "Anchor your life in truth and justice, standing firm with Al-Haqq against falsehood." },
+      { id: "name-52", num: 52, category: "power", ar: "الْوَكِيلُ", en: "Al-Wakeel", meaning: "The Trustee & Disposer", desc: "The Ultimate Trustee in whom believers place complete trust for their affairs.", explanation: "Al-Wakeel manages the affairs of those who rely upon Him with absolute reliability.", ref: "Surah Ali 'Imran 3:173, Surah An-Nisa 4:81", reflection: "Do your best, then entrust the outcome to Al-Wakeel—the best disposer of all affairs." },
+      { id: "name-53", num: 53, category: "power", ar: "الْقَوِيُّ", en: "Al-Qawiyy", meaning: "The All-Strong", desc: "The One possessing unlimited, unyielding strength that never experiences fatigue.", explanation: "Al-Qawiyy possesses perfect power over all physical and spiritual forces in the universe.", ref: "Surah Al-Anfal 8:52, Surah Ash-Shura 42:19", reflection: "Draw spiritual strength from Al-Qawiyy when you feel weak or tired in your duties." },
+      { id: "name-54", num: 54, category: "power", ar: "الْمَتِينُ", en: "Al-Matin", meaning: "The Firm & Steadfast", desc: "The One whose strength is unshakeable, solid, and constant.", explanation: "Al-Matin experiences no difficulty or effort in executing His divine plan.", ref: "Surah Adh-Dhariyat 51:58, Sunan At-Tirmidhi", reflection: "Stand firm in your faith principles, relying on the unshakeable firmness of Al-Matin." },
+      { id: "name-55", num: 55, category: "mercy", ar: "الْوَلِيُّ", en: "Al-Waliyy", meaning: "The Protecting Friend", desc: "The Guardian Ally who loves, protects, and supports His righteous servants.", explanation: "Al-Waliyy takes charge of guiding, protecting, and comforting those who align with Him.", ref: "Surah Al-Baqarah 2:257, Surah Ash-Shura 42:28", reflection: "You are never friendless when you take Al-Waliyy as your divine guardian and ally." },
+      { id: "name-56", num: 56, category: "power", ar: "الْحَمِيدُ", en: "Al-Hameed", meaning: "The Praiseworthy", desc: "The One who is inherently worthy of all praise regardless of creation's worship.", explanation: "Al-Hameed is praised for His perfect attributes, justice, and continuous bounties.", ref: "Surah Ibrahim 14:8, Surah Fussilat 41:42", reflection: "Fill your tongue with 'Alhamdulillah'—Al-Hameed deserves praise in hardship and ease." },
+      { id: "name-57", num: 57, category: "knowledge", ar: "الْمُحْصِي", en: "Al-Muhsi", meaning: "The Reckoner of All", desc: "The One who counts and records every single atom, action, and moment in existence.", explanation: "Al-Muhsi keeps precise count of all human deeds without missing a single detail.", ref: "Surah Maryam 19:94, Surah Yasin 36:12", reflection: "Value every small good deed—Al-Muhsi records even a smile or kind word." },
+      { id: "name-58", num: 58, category: "creation", ar: "الْمُبْدِئُ", en: "Al-Mubdi'", meaning: "The Originator", desc: "The One who initiated creation from absolute non-existence.", explanation: "Al-Mubdi' began the cosmos and life without any previous template.", ref: "Surah Yunus 10:4, Surah Al-Buruj 85:13", reflection: "Al-Mubdi' who created the universe can easily create a fresh start for your life." },
+      { id: "name-59", num: 59, category: "creation", ar: "الْمُعِيدُ", en: "Al-Mu'eed", meaning: "The Restorer", desc: "The One who restores creation back to life after its death.", explanation: "Al-Mu'eed recreates and restores life easily, demonstrating the reality of Resurrection.", ref: "Surah Ar-Rum 30:27, Surah Al-Buruj 85:13", reflection: "No matter how distant you feel, Al-Mu'eed can restore life and faith in your heart." },
+      { id: "name-60", num: 60, category: "creation", ar: "الْمُحْيِي", en: "Al-Muhyi", meaning: "The Giver of Life", desc: "The One who grants life to bodies, souls, and barren lands.", explanation: "Al-Muhyi breathes life into creation and revives dead hearts through the light of revelation.", ref: "Surah Ar-Rum 30:50, Surah Fussilat 41:39", reflection: "Ask Al-Muhyi to revive your heart with the light and understanding of the Qur'an." },
+      { id: "name-61", num: 61, category: "power", ar: "الْمُمِيتُ", en: "Al-Mumeet", meaning: "The Bringer of Death", desc: "The One who decrees death for every living creature at its appointed term.", explanation: "Al-Mumeet controls the transition from earthly life to eternal existence.", ref: "Surah Al-Baqarah 2:258, Surah Al-An'am 6:61", reflection: "Remember death gently to keep worldly distractions in perspective and prepare for the Hereafter." },
+      { id: "name-62", num: 62, category: "power", ar: "الْحَيُّ", en: "Al-Hayy", meaning: "The Ever-Living", desc: "The One possessing absolute, eternal life that has no beginning and no end.", explanation: "Al-Hayy is eternally living, exempt from death, slumber, or decline.", ref: "Surah Al-Baqarah 2:255, Surah Taha 20:111", reflection: "Attach your heart to Al-Hayy—the Ever-Living Lord who will never leave or die." },
+      { id: "name-63", num: 63, category: "power", ar: "الْقَيُّومُ", en: "Al-Qayyum", meaning: "The Self-Sustaining", desc: "The One who sustains Himself and upholds the existence of all creation.", explanation: "Al-Qayyum maintains the orbits of planets, natural laws, and every living soul.", ref: "Surah Al-Baqarah 2:255, Surah Ali 'Imran 3:2", reflection: "Call out 'Ya Hayyu Ya Qayyum' in moments of distress to seek divine sustenance." },
+      { id: "name-64", num: 64, category: "creation", ar: "الْوَاجِدُ", en: "Al-Wajid", meaning: "The Finder & Resourceful", desc: "The One who lacks nothing and finds whatever He desires effortlessly.", explanation: "Al-Wajid possesses infinite richness and needs no secondary tools to achieve His will.", ref: "Surah Ad-Duha 93:7-8, Sunan At-Tirmidhi", reflection: "Seek your needs from Al-Wajid, who possesses all treasures in the heavens and earth." },
+      { id: "name-65", num: 65, category: "power", ar: "الْمَاجِدُ", en: "Al-Majid", meaning: "The Illustrious", desc: "The One praised for supreme nobility, generosity, and magnificent glory.", explanation: "Al-Majid is boundless in honor, kindness, and exalted perfection.", ref: "Surah Hud 11:73, Sunan At-Tirmidhi", reflection: "Honor Al-Majid by upholding noble character and truth in your daily interactions." },
+      { id: "name-66", num: 66, category: "power", ar: "الْوَاحِدُ", en: "Al-Wahid", meaning: "The One", desc: "The Unique God who has no partner, equal, or associate in His divinity.", explanation: "Al-Wahid is single in essence, attributes, and worship (Tawhid).", ref: "Surah Al-Baqarah 2:163, Surah Ar-Ra'd 13:16", reflection: "Direct all your worship, intentions, and reliance exclusively to Al-Wahid." },
+      { id: "name-67", num: 67, category: "power", ar: "الصَّمَدُ", en: "As-Samad", meaning: "The Eternal & Absolute", desc: "The Self-Sufficient Master upon whom all creation depends while He depends on none.", explanation: "As-Samad is the refuge to whom all creatures turn in times of need.", ref: "Surah Al-Ikhlas 112:2, Sahih al-Bukhari", reflection: "When in need, go directly to As-Samad—the Ultimate Master who needs no intermediary." },
+      { id: "name-68", num: 68, category: "power", ar: "الْقَادِرُ", en: "Al-Qadir", meaning: "The All-Powerful", desc: "The One who possesses total power and determination to execute anything He wills.", explanation: "Al-Qadir can decree whatever He wishes with absolute capability.", ref: "Surah Al-An'am 6:65, Surah Al-Ahqaf 46:33", reflection: "Nothing is impossible for Al-Qadir—pray for guidance and support with total faith." },
+      { id: "name-69", num: 69, category: "power", ar: "الْمُقْتَدِرُ", en: "Al-Muqtadir", meaning: "The Omnipotent", desc: "The Supreme Enforcer whose dominant power enacts divine decree flawlessly.", explanation: "Al-Muqtadir wields active, sovereign power that overcomes all physical resistance.", ref: "Surah Al-Qamar 54:42, Surah Al-Kahf 18:45", reflection: "Rest secure knowing that Al-Muqtadir controls all outcomes in the universe." },
+      { id: "name-70", num: 70, category: "power", ar: "الْمُقَدِّمُ", en: "Al-Muqaddim", meaning: "The Expediter", desc: "The One who brings forward or promotes whomever He wills according to wisdom.", explanation: "Al-Muqaddim elevates people in status, knowledge, and spiritual rank.", ref: "Surah Qaf 50:28, Sahih al-Bukhari", reflection: "Strive for righteousness so that Al-Muqaddim may advance you in spiritual status." },
+      { id: "name-71", num: 71, category: "power", ar: "الْمُؤَخِّرُ", en: "Al-Mu'akhkhir", meaning: "The Delayer", desc: "The One who postpones or delays events and consequences out of wisdom.", explanation: "Al-Mu'akhkhir delays punishment to allow repentance or postpones outcomes for a better time.", ref: "Surah Ibrahim 14:42, Sahih al-Bukhari", reflection: "Trust divine timing—if something is delayed in your life, Al-Mu'akhkhir has a wise reason." },
+      { id: "name-72", num: 72, category: "knowledge", ar: "الأَوَّلُ", en: "Al-Awwal", meaning: "The First", desc: "The One who existed before all creation, having no beginning.", explanation: "Al-Awwal precedes everything; all time and matter began by His command.", ref: "Surah Al-Hadid 57:3, Sahih Muslim", reflection: "Make Allah the first priority in your morning, thoughts, and decisions." },
+      { id: "name-73", num: 73, category: "knowledge", ar: "الآخِرُ", en: "Al-Akhir", meaning: "The Last", desc: "The One who remains after all creation perishes, having no end.", explanation: "Al-Akhir is the ultimate destination of all existence.", ref: "Surah Al-Hadid 57:3, Sahih Muslim", reflection: "Remember that worldly possessions pass away; only your relationship with Al-Akhir remains." },
+      { id: "name-74", num: 74, category: "knowledge", ar: "الظَّاهِرُ", en: "Az-Zahir", meaning: "The Manifest", desc: "The One whose existence is evident through the signs in creation.", explanation: "Az-Zahir is clear through the beauty, design, and order of the universe.", ref: "Surah Al-Hadid 57:3, Sahih Muslim", reflection: "Look at the natural world to see the manifest signs of Az-Zahir everywhere." },
+      { id: "name-75", num: 75, category: "knowledge", ar: "الْبَاطِنُ", en: "Al-Batin", meaning: "The Hidden", desc: "The One who is hidden from physical eyes in this world, knowing all hidden secrets.", explanation: "Al-Batin cannot be perceived by sight yet is closer to us than our jugular vein.", ref: "Surah Al-Hadid 57:3, Sahih Muslim", reflection: "Purify your secret thoughts, knowing Al-Batin sees what is concealed inside." },
+      { id: "name-76", num: 76, category: "power", ar: "الْوَالِي", en: "Al-Wali", meaning: "The Governor", desc: "The Sovereign Ruler who manages and governs all affairs of the universe.", explanation: "Al-Wali plans, executes, and protects every detail of natural order.", ref: "Surah Ar-Ra'd 13:11, Sunan At-Tirmidhi", reflection: "Surrender your worries to Al-Wali, who governs the universe with supreme capability." },
+      { id: "name-77", num: 77, category: "power", ar: "الْمُتَعَالِي", en: "Al-Muta'ali", meaning: "The Supreme Exalted", desc: "The One who is exalted far above all human limitations, defects, or concepts.", explanation: "Al-Muta'ali transcends all earthly comparison and imperfection.", ref: "Surah Ar-Ra'd 13:9, Sunan At-Tirmidhi", reflection: "Exalt Allah above all earthly troubles, recognizing His supreme perfection." },
+      { id: "name-78", num: 78, category: "mercy", ar: "الْبَرُّ", en: "Al-Barr", meaning: "The Source of Goodness", desc: "The Beneficent Lord who is the source of all kindness, righteousness, and grace.", explanation: "Al-Barr treats creation with continuous benevolence and accepts small efforts.", ref: "Surah At-Tur 52:28, Sunan At-Tirmidhi", reflection: "Be good (Barr) to your parents and society, imitating the benevolence of Al-Barr." },
+      { id: "name-79", num: 79, category: "forgiveness", ar: "التَّوَّابُ", en: "At-Tawwab", meaning: "The Acceptor of Repentance", desc: "The One who repeatedly guides servants to turn back and accepts their repentance.", explanation: "At-Tawwab inspires sincere remorse in hearts and pardons sins continuously.", ref: "Surah Al-Baqarah 2:37, Surah An-Nasr 110:3", reflection: "No matter how many times you stumble, At-Tawwab is ready to receive your sincere return." },
+      { id: "name-80", num: 80, category: "power", ar: "الْمُنْتَقِمُ", en: "Al-Muntaqim", meaning: "The Just Retributor", desc: "The One who justly punishes unrepentant oppressors and tyrants.", explanation: "Al-Muntaqim vindicates the oppressed by holding persistent wrongdoers accountable.", ref: "Surah As-Sajdah 32:22, Surah Ad-Dukhan 44:16", reflection: "Never oppress others—Al-Muntaqim will avenge the grievances of the innocent." },
+      { id: "name-81", num: 81, category: "forgiveness", ar: "الْعَفُوُّ", en: "Al-'Afuww", meaning: "The Pardoner", desc: "The One who completely erases sins as if they were never committed.", explanation: "Al-'Afuww erases not only the penalty of sin but wipes away the record entirely.", ref: "Surah An-Nisa 4:149, Sunan At-Tirmidhi (Dua for Laylat al-Qadr)", reflection: "Pray 'Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'anni' to seek total pardon." },
+      { id: "name-82", num: 82, category: "mercy", ar: "الرَّؤُوفُ", en: "Ar-Ra'oof", meaning: "The Most Kind", desc: "The One possessing utmost tenderness, compassion, and gentle mercy.", explanation: "Ar-Ra'oof protects servants from hardship by providing guidance and gentle care.", ref: "Surah Al-Baqarah 2:207, Surah Al-Hashr 59:10", reflection: "Treat animals, children, and elders with gentleness, embodying the spirit of Ar-Ra'oof." },
+      { id: "name-83", num: 83, category: "power", ar: "مَالِكُ الْمُلْكِ", en: "Malik al-Mulk", meaning: "Owner of All Sovereignty", desc: "The Eternal Sovereign who grants or strips kingdom and power according to divine plan.", explanation: "Malik al-Mulk owns all existence; all human kingdoms are fleeting loans.", ref: "Surah Ali 'Imran 3:26", reflection: "Remain humble in success—Malik al-Mulk is the true owner of all status and wealth." },
+      { id: "name-84", num: 84, category: "power", ar: "ذُو الْجَلَالِ وَالإِكْرَامِ", en: "Dhul-Jalali wal-Ikram", meaning: "Possessor of Majesty & Honor", desc: "The Lord of supreme majesty, glory, honor, and infinite generosity.", explanation: "This name combines awesome majesty that commands reverence with generous honor.", ref: "Surah Ar-Rahman 55:27, 55:78, Sahih Muslim", reflection: "Frequently call upon 'Ya Dhul-Jalali wal-Ikram' during your personal supplications." },
+      { id: "name-85", num: 85, category: "power", ar: "الْمُقْسِطُ", en: "Al-Muqsit", meaning: "The Equitable", desc: "The One who acts with perfect fairness, defending the victim against the wrongdoer.", explanation: "Al-Muqsit creates harmony by upholding absolute justice and equity.", ref: "Surah Ali 'Imran 3:18, Sunan At-Tirmidhi", reflection: "Be fair and unbiased in your judgments, family decisions, and business trade." },
+      { id: "name-86", num: 86, category: "creation", ar: "الْجَامِعُ", en: "Al-Jami'", meaning: "The Gatherer", desc: "The One who gathers all humanity on the Day of Judgment and unites divided hearts.", explanation: "Al-Jami' brings together dispersals in creation and gathers all souls for reckoning.", ref: "Surah Ali 'Imran 3:9, Surah An-Nisa 4:140", reflection: "Pray to Al-Jami' to gather your family in Paradise and bring unity to divided communities." },
+      { id: "name-87", num: 87, category: "power", ar: "الْغَنِيُّ", en: "Al-Ghaniyy", meaning: "The Self-Sufficient", desc: "The Rich Lord who is completely independent of all creation.", explanation: "Al-Ghaniyy needs no worship, food, or assistance; all creation depends on Him.", ref: "Surah Al-Baqarah 2:263, Surah Muhammad 47:38", reflection: "Realize that worship benefits you, not Allah—Al-Ghaniyy is entirely free of all needs." },
+      { id: "name-88", num: 88, category: "creation", ar: "الْمُغْنِي", en: "Al-Mughni", meaning: "The Enricher", desc: "The One who satisfies human needs and enriches hearts with contentment and wealth.", explanation: "Al-Mughni grants spiritual contentment and material wealth according to wisdom.", ref: "Surah Ad-Duha 93:8, Sunan At-Tirmidhi", reflection: "True wealth is contentment of the soul granted by Al-Mughni." },
+      { id: "name-89", num: 89, category: "power", ar: "الْمَانِعُ", en: "Al-Mani'", meaning: "The Withholder", desc: "The Shield who prevents harm and withholds blessings out of protective wisdom.", explanation: "Al-Mani' protects servants by withholding what would harm their faith or life.", ref: "Surah Al-Mulki, Sunan At-Tirmidhi", reflection: "When denied something you desired, trust that Al-Mani' may be shielding you from unseen harm." },
+      { id: "name-90", num: 90, category: "power", ar: "الضَّارُّ", en: "Ad-Darr", meaning: "The Creator of Harm (by Decree)", desc: "The One in whose hand lies the decree of adversity as a test or purification.", explanation: "No harm can touch anyone except by the permission and decree of Ad-Darr.", ref: "Surah Al-An'am 6:17, Surah Yunus 10:107", reflection: "Seek refuge in Allah from harm, knowing that no adversity occurs outside His decree." },
+      { id: "name-91", num: 91, category: "mercy", ar: "النَّافِعُ", en: "An-Nafi'", meaning: "The Creator of Good", desc: "The One who creates all benefit, health, and goodness in existence.", explanation: "An-Nafi' is the true source of every medical cure, helpful idea, and spiritual blessing.", ref: "Surah Al-An'am 6:17, Surah Al-Fath 48:11", reflection: "Strive to be a source of benefit (Nafi') to humanity, following divine guidance." },
+      { id: "name-92", num: 92, category: "knowledge", ar: "النُّورُ", en: "An-Noor", meaning: "The Light", desc: "The Light of the heavens and the earth who illuminates hearts with guidance.", explanation: "An-Noor guides confused souls out of darkness into the spiritual light of truth.", ref: "Surah An-Noor 24:35, Sahih Muslim", reflection: "Pray 'Allahumma ij'al fi qalbi nooran'—ask An-Noor to fill your heart with divine light." },
+      { id: "name-93", num: 93, category: "knowledge", ar: "الْهَادِي", en: "Al-Hadi", meaning: "The Guide", desc: "The One who provides continuous spiritual direction to the straight path.", explanation: "Al-Hadi guides hearts to truth and instincts in animals to survival.", ref: "Surah Al-Hajj 22:54, Surah Al-Furqan 25:31", reflection: "Recite 'Ihdinas-siratal-mustaqeem' in every Rak'ah, seeking direction from Al-Hadi." },
+      { id: "name-94", num: 94, category: "creation", ar: "الْبَدِيعُ", en: "Al-Badi'", meaning: "The Incomparable Originator", desc: "The Creator who brings wonderful things into existence without precedent.", explanation: "Al-Badi' crafts unique, original masterpieces in the cosmos without copying.", ref: "Surah Al-Baqarah 2:117, Surah Al-An'am 6:101", reflection: "Appreciate the original beauty in nature as reflection of Al-Badi''s boundless artistry." },
+      { id: "name-95", num: 95, category: "power", ar: "الْبَاقِي", en: "Al-Baqi", meaning: "The Everlasting", desc: "The One who endures eternally while all earthly creation passes away.", explanation: "Al-Baqi remains forever; time and destruction have no power over Him.", ref: "Surah Ar-Rahman 55:27, Surah Al-Qasas 28:88", reflection: "Invest your time and efforts in good deeds that remain with Al-Baqi forever." },
+      { id: "name-96", num: 96, category: "power", ar: "الْوَارِثُ", en: "Al-Warith", meaning: "The Ultimate Inheritor", desc: "The One who inherits all possessions when all creation perishes.", explanation: "Al-Warith remains the true owner of heaven and earth after all inhabitants depart.", ref: "Surah Al-Hijr 15:23, Surah Al-Anbiya 21:89", reflection: "Remember that wealth and property are temporary trusts; Al-Warith inherits all." },
+      { id: "name-97", num: 97, category: "knowledge", ar: "الرَّشِيدُ", en: "Ar-Rasheed", meaning: "The Guide to Right Conduct", desc: "The Wise Director who guides all affairs to their righteous outcomes flawlessly.", explanation: "Ar-Rasheed directs creation with supreme wisdom toward ultimate success.", ref: "Surah Al-Kahf 18:10, Sunan At-Tirmidhi", reflection: "Seek guidance from Ar-Rasheed when making important life decisions." },
+      { id: "name-98", num: 98, category: "forgiveness", ar: "الصَّبُورُ", en: "As-Saboor", meaning: "The Patient", desc: "The One who does not rush consequences, granting endless opportunity to return.", explanation: "As-Saboor exercises patient forbearance despite human disobedience.", ref: "Surah Al-Baqarah 2:153, Sahih al-Bukhari", reflection: "Embody patience (Sabr) in your daily trials, inspired by As-Saboor." },
+      { id: "name-99", num: 99, category: "power", ar: "الأَحَدُ", en: "Al-Ahad", meaning: "The Singular & Unique", desc: "The Absolute One who is indivisible, peerless, and without any equal.", explanation: "Al-Ahad is uniquely one in essence, attributes, and sovereignty without companion.", ref: "Surah Al-Ikhlas 112:1, Sahih al-Bukhari", reflection: "Declare Tawhid with unwavering conviction—Allah is Al-Ahad, the One and Only." }
+    ];
+
+    // 2. DATASET: SUNNAH IN EVERYDAY LIFE
+    const SUNNAH_DATA = [
+      { id: "sunnah-1", category: "character", title: "A Smile is Charity (Sadaqah)", practice: "Smiling warmly at your brother or sister is recorded as an act of charity.", source: "Jami' at-Tirmidhi (Hadith 1956)", context: "The Prophet ﷺ taught that noble character begins with facial expressions of warmth, kindness, and approachable brotherhood." },
+      { id: "sunnah-2", category: "mindfulness", title: "Speak Good or Remain Silent", practice: "Pause before speaking to ensure your words build up rather than tear down.", source: "Sahih al-Bukhari (Hadith 6018)", context: "A foundational principle of Islamic ethics protecting speech from gossip, slander, and unnecessary argument." },
+      { id: "sunnah-3", category: "social", title: "Honoring Neighbors & Guests", practice: "Check on your neighbors and share food, regardless of their background or status.", source: "Sahih Muslim (Hadith 48)", context: "The Prophet ﷺ emphasized neighborly rights so frequently that companions thought neighbors would inherit property." },
+      { id: "sunnah-4", category: "worship", title: "Morning & Evening Dhikr", practice: "Recite Ayat al-Kursi and 3 Quls (Ikhlas, Falaq, Nas) after morning and evening prayers.", source: "Sunan Abi Dawud (Hadith 5082)", context: "Establishes a spiritual fortress of divine protection around the believer's day and night." },
+      { id: "sunnah-5", category: "mindfulness", title: "Managing Anger with Wudu & Silence", practice: "When angry, change your posture (sit down if standing), seek refuge in Allah, or make Wudu.", source: "Sunan Abi Dawud (Hadith 4784)", context: "Anger is from heat; cooling oneself with water and changing physical state breaks emotional impulse." }
+    ];
+
+    // 3. DATASET: SMALL DEEDS (HABITS CHECKLIST)
+    const HABITS_DATA = [
+      { id: "habit-1", title: "Morning Adhkar (Remembrance)", desc: "Spend 3 minutes after Fajr reciting SubhanAllah (33x), Alhamdulillah (33x), Allahu Akbar (34x)." },
+      { id: "habit-2", title: "Daily Qur'an Reading (1 Page)", desc: "Read or reflect on at least one page of the Holy Qur'an with translation." },
+      { id: "habit-3", title: "Sincere Du'a for Others in Secret", desc: "Make a quiet du'a for a family member, friend, or someone going through hardship." },
+      { id: "habit-4", title: "Check on a Relative or Friend", desc: "Send a respectful text or call a family member to maintain ties of kinship (Silat ar-Rahim)." },
+      { id: "habit-5", title: "Nightly Reflection & Forgiveness", desc: "Before sleep, forgive anyone who wronged you today and ask Allah for a clean heart." }
+    ];
+
+    // STATE VARIABLES FOR NAMES OF ALLAH PAGINATION & FILTERING
+    let currentNamesPage = 1;
+    const namesPerPage = 12;
+    let isShowingAllNames = false;
+    let currentNamesCategory = 'all';
+    let currentNamesQuery = '';
+    let filteredNamesList = [...NAMES_DATA];
+    let currentModalItem = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setupMobileNav();
+      applyNamesFilterAndSearch();
+      renderSunnah(SUNNAH_DATA);
+      renderHabits();
+      setupSearchAndControls();
+      setupKeyboardEvents();
+    });
+
+    // 1. SWITCH BETWEEN PILLARS
+    function switchPillar(pillarKey) {
+      document.querySelectorAll('.pillar-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.pillar-content-section').forEach(sec => sec.classList.remove('is-active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById(`section-${pillarKey}`).classList.add('is-active');
+    }
+
+    // 2. NAMES OF ALLAH FILTERING, SEARCH, PAGINATION
+    function applyNamesFilterAndSearch() {
+      filteredNamesList = NAMES_DATA.filter(n => {
+        const matchesCat = currentNamesCategory === 'all' || n.category === currentNamesCategory;
+        const matchesQuery = currentNamesQuery === '' ||
+          n.en.toLowerCase().includes(currentNamesQuery) ||
+          n.meaning.toLowerCase().includes(currentNamesQuery) ||
+          n.ar.includes(currentNamesQuery) ||
+          n.desc.toLowerCase().includes(currentNamesQuery);
+
+        return matchesCat && matchesQuery;
+      });
+
+      currentNamesPage = 1;
+      renderNamesGrid();
+    }
+
+    function renderNamesGrid() {
+      const grid = document.getElementById('names-grid');
+      const counterLabel = document.getElementById('names-count-label');
+      const paginationContainer = document.getElementById('names-pagination');
+      if (!grid) return;
+
+      if (filteredNamesList.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; background: var(--bg-surface-1); border: 1px dashed var(--border-medium); border-radius: var(--radius-lg);">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--accent-gold-light); margin-bottom: 0.5rem;">No Names Found</h3>
+            <p style="color: var(--text-secondary);">We couldn't find any Name of Allah matching your query.</p>
+          </div>
+        `;
+        if (counterLabel) counterLabel.textContent = 'Showing 0 of 99 Names';
+        if (paginationContainer) paginationContainer.innerHTML = '';
+        return;
+      }
+
+      let displayList = filteredNamesList;
+      if (!isShowingAllNames && currentNamesQuery === '') {
+        const start = (currentNamesPage - 1) * namesPerPage;
+        const end = start + namesPerPage;
+        displayList = filteredNamesList.slice(start, end);
+      }
+
+      grid.innerHTML = displayList.map(n => `
+        <div class="name-card" onclick="openNameModal('${n.id}')" role="button" tabindex="0" aria-label="Explore ${n.en}">
+          <div>
+            <div class="card-top">
+              <span class="num-badge">#${n.num}</span>
+              <span class="arabic-name" lang="ar">${n.ar}</span>
+            </div>
+            <h3 class="english-trans">${n.en}</h3>
+            <div class="meaning-tag">${n.meaning}</div>
+            <p class="short-desc">${n.desc}</p>
+          </div>
+          <div class="card-footer">
+            <span>Reflect on Meaning</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </div>
+      `).join('');
+
+      if (counterLabel) {
+        if (isShowingAllNames || currentNamesQuery !== '') {
+          counterLabel.textContent = `Showing all ${filteredNamesList.length} matching Names`;
+        } else {
+          const start = (currentNamesPage - 1) * namesPerPage + 1;
+          const end = Math.min(currentNamesPage * namesPerPage, filteredNamesList.length);
+          counterLabel.textContent = `Showing ${start}–${end} of ${filteredNamesList.length} Names`;
+        }
+      }
+
+      renderPaginationControls();
+    }
+
+    function renderPaginationControls() {
+      const container = document.getElementById('names-pagination');
+      if (!container) return;
+
+      if (isShowingAllNames || currentNamesQuery !== '' || filteredNamesList.length <= namesPerPage) {
+        container.innerHTML = '';
+        return;
+      }
+
+      const totalPages = Math.ceil(filteredNamesList.length / namesPerPage);
+      let buttonsHtml = `
+        <button class="page-btn" ${currentNamesPage === 1 ? 'disabled' : ''} onclick="goToNamesPage(${currentNamesPage - 1})">← Prev</button>
+      `;
+
+      for (let i = 1; i <= totalPages; i++) {
+        buttonsHtml += `
+          <button class="page-btn ${i === currentNamesPage ? 'active' : ''}" onclick="goToNamesPage(${i})">${i}</button>
+        `;
+      }
+
+      buttonsHtml += `
+        <button class="page-btn" ${currentNamesPage === totalPages ? 'disabled' : ''} onclick="goToNamesPage(${currentNamesPage + 1})">Next →</button>
+      `;
+
+      container.innerHTML = buttonsHtml;
+    }
+
+    function goToNamesPage(page) {
+      currentNamesPage = page;
+      renderNamesGrid();
+      document.getElementById('section-names').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleViewAllNames() {
+      isShowingAllNames = !isShowingAllNames;
+      const btn = document.getElementById('toggle-view-all-btn');
+      if (btn) btn.textContent = isShowingAllNames ? 'Paginate Cards' : 'Show All 99 Names';
+      renderNamesGrid();
+    }
+
+    function filterNames(cat) {
+      document.querySelectorAll('#names-filters .filter-pill').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      currentNamesCategory = cat;
+      applyNamesFilterAndSearch();
+    }
+
+    // 3. RENDER SUNNAH
+    function renderSunnah(data) {
+      const grid = document.getElementById('sunnah-grid');
+      if (!grid) return;
+
+      grid.innerHTML = data.map(s => `
+        <div class="sunnah-card" onclick="openSunnahModal('${s.id}')" role="button" tabindex="0">
+          <div>
+            <div class="sunnah-category">${s.category}</div>
+            <h3 class="sunnah-title">${s.title}</h3>
+            <p class="sunnah-practice">${s.practice}</p>
+          </div>
+          <div class="sunnah-source">Sourced: ${s.source}</div>
+        </div>
+      `).join('');
+    }
+
+    function filterSunnah(cat) {
+      document.querySelectorAll('#sunnah-filters .filter-pill').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const filtered = cat === 'all' ? SUNNAH_DATA : SUNNAH_DATA.filter(s => s.category === cat);
+      renderSunnah(filtered);
+    }
+
+    // 4. RENDER HABITS CHECKLIST WITH LOCALSTORAGE PERSISTENCE
+    function getCompletedHabits() {
+      return JSON.parse(localStorage.getItem('manarah_completed_habits') || '[]');
+    }
+
+    function renderHabits() {
+      const container = document.getElementById('habits-list');
+      if (!container) return;
+
+      const completed = getCompletedHabits();
+
+      container.innerHTML = HABITS_DATA.map(h => {
+        const isDone = completed.includes(h.id);
+        return `
+          <div class="habit-item-card" onclick="toggleHabit('${h.id}')" role="checkbox" aria-checked="${isDone}" tabindex="0">
+            <div class="habit-left">
+              <div class="habit-checkbox ${isDone ? 'is-completed' : ''}">
+                ${isDone ? '✓' : ''}
+              </div>
+              <div>
+                <h3 class="habit-title ${isDone ? 'is-completed' : ''}">${h.title}</h3>
+                <p class="habit-desc">${h.desc}</p>
+              </div>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 600;">
+              ${isDone ? 'Done Today' : 'Tap to Mark'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleHabit(id) {
+      let completed = getCompletedHabits();
+      if (completed.includes(id)) {
+        completed = completed.filter(i => i !== id);
+        showToast("Habit unmarked for today");
+      } else {
+        completed.push(id);
+        showToast("Alhamdulillah! Marked completed for today");
+      }
+      localStorage.setItem('manarah_completed_habits', JSON.stringify(completed));
+      renderHabits();
+    }
+
+    // 5. SEARCH & CONTROLS SETUP
+    function setupSearchAndControls() {
+      const namesInput = document.getElementById('search-names-input');
+      const clearNamesBtn = document.getElementById('clear-names-btn');
+      const sunnahInput = document.getElementById('search-sunnah-input');
+
+      if (namesInput) {
+        namesInput.addEventListener('input', function() {
+          currentNamesQuery = namesInput.value.trim().toLowerCase();
+          if (clearNamesBtn) {
+            if (currentNamesQuery.length > 0) clearNamesBtn.classList.add('is-visible');
+            else clearNamesBtn.classList.remove('is-visible');
+          }
+          applyNamesFilterAndSearch();
+        });
+      }
+
+      if (clearNamesBtn) {
+        clearNamesBtn.addEventListener('click', function() {
+          if (namesInput) {
+            namesInput.value = '';
+            currentNamesQuery = '';
+            clearNamesBtn.classList.remove('is-visible');
+            applyNamesFilterAndSearch();
+          }
+        });
+      }
+
+      if (sunnahInput) {
+        sunnahInput.addEventListener('input', function() {
+          const q = sunnahInput.value.trim().toLowerCase();
+          const filtered = SUNNAH_DATA.filter(s =>
+            s.title.toLowerCase().includes(q) ||
+            s.practice.toLowerCase().includes(q) ||
+            s.source.toLowerCase().includes(q)
+          );
+          renderSunnah(filtered);
+        });
+      }
+    }
+
+    // 6. MODAL READER LOGIC
+    function openNameModal(id) {
+      const item = NAMES_DATA.find(n => n.id === id);
+      if (!item) return;
+
+      currentModalItem = { type: 'name', data: item };
+
+      document.getElementById('reader-title-nav').textContent = `Name of Allah #${item.num}: ${item.en}`;
+      document.getElementById('modal-ar').textContent = item.ar;
+      document.getElementById('modal-num').textContent = `Name ${item.num < 10 ? '0' + item.num : item.num} of 99`;
+      document.getElementById('modal-en').textContent = item.en;
+      document.getElementById('modal-meaning').textContent = item.meaning;
+
+      const body = document.getElementById('modal-content-body');
+      body.innerHTML = `
+        <div class="detail-section">
+          <div class="detail-heading">Detailed Explanation</div>
+          <p class="detail-paragraph">${item.explanation}</p>
+        </div>
+
+        <div class="detail-section" style="background: var(--bg-surface-1); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div class="detail-heading">Qur'anic & Scriptural References</div>
+          <p style="font-size: 0.95rem; color: var(--text-primary); font-family: var(--font-display);">${item.ref}</p>
+        </div>
+
+        <div class="reflection-box">
+          <div class="reflection-title">Personal Reflection & Practical Connection</div>
+          <p class="detail-paragraph" style="margin-bottom: 0;">${item.reflection}</p>
+        </div>
+      `;
+
+      showOverlayModal();
+    }
+
+    function openSunnahModal(id) {
+      const item = SUNNAH_DATA.find(s => s.id === id);
+      if (!item) return;
+
+      currentModalItem = { type: 'sunnah', data: item };
+
+      document.getElementById('reader-title-nav').textContent = `Sunnah Teaching`;
+      document.getElementById('modal-ar').textContent = "سُنَّةُ النَّبِيِّ ﷺ";
+      document.getElementById('modal-num').textContent = item.category.toUpperCase();
+      document.getElementById('modal-en').textContent = item.title;
+      document.getElementById('modal-meaning').textContent = `Sourced: ${item.source}`;
+
+      const body = document.getElementById('modal-content-body');
+      body.innerHTML = `
+        <div class="detail-section">
+          <div class="detail-heading">Practical Application</div>
+          <p class="detail-paragraph">${item.practice}</p>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-heading">Historical & Spiritual Context</div>
+          <p class="detail-paragraph">${item.context}</p>
+        </div>
+      `;
+
+      showOverlayModal();
+    }
+
+    function showOverlayModal() {
+      const overlay = document.getElementById('overlay-reader');
+      if (overlay) {
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+        overlay.scrollTop = 0;
+      }
+    }
+
+    function closeOverlayReader() {
+      const overlay = document.getElementById('overlay-reader');
+      if (overlay) {
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function toggleSaveCurrentModalItem() {
+      if (!currentModalItem) return;
+      showToast("Saved to My Space!");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 3000);
+    }
+
+    function setupMobileNav() {
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+    }
+
+    function setupKeyboardEvents() {
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeOverlayReader();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

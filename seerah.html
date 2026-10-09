@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — The Seerah: Life & Mission of Prophet Muhammad ﷺ</title>
+  <meta name="description" content="Explore the authentic life, mission, historical milestones, and timeless teachings of Prophet Muhammad ﷺ on Manarah. A lighthouse for your heart.">
+  
+  <!-- Premium Google Fonts matching Manarah System Architecture -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH DESIGN SYSTEM — MIDNIGHT EMERALD & GOLD THEME
+       ========================================================================== */
+    :root {
+      /* Palette Tokens */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --gold-glow-radial: radial-gradient(circle, rgba(212, 175, 106, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+
+      /* Typography Tokens */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Typography Clamps */
+      --fs-hero-title: clamp(2.2rem, 5vw + 1rem, 3.8rem);
+      --fs-section-title: clamp(1.6rem, 3vw + 0.8rem, 2.4rem);
+      --fs-quran-arabic: clamp(1.8rem, 4vw + 0.5rem, 2.7rem);
+      --fs-article-body: clamp(1.025rem, 1.2vw + 0.5rem, 1.15rem);
+
+      /* Layout Spacing & Radii */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Animation Motion Tokens */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.4s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a { color: inherit; text-decoration: none; transition: all var(--transition-fast); }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .container-narrow { max-width: 860px; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 1.5rem;
+      background: var(--accent-gold); color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem; font-weight: 700; border-radius: var(--radius-sm);
+      z-index: 9999; transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* HEADER & NAVIGATION */
+    .site-header {
+      position: sticky; top: 0; height: var(--header-h); z-index: 1000;
+      background: rgba(4, 8, 7, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { display: flex; align-items: center; gap: clamp(0.4rem, 1.5vw, 0.85rem); text-decoration: none; min-height: 44px; }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600;
+      letter-spacing: 0.18em; background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; line-height: 1;
+    }
+    .brand-wordmark .brand-ar { font-family: var(--font-arabic); font-size: clamp(1.5rem, 3.2vw, 2rem); color: var(--accent-gold); line-height: 1; opacity: 0.9; }
+
+    .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.25rem); }
+    .nav-link { font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.5rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold-light); }
+    .nav-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-gold), transparent); transition: width var(--transition-fast); border-radius: var(--radius-pill); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta-btn, .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; min-height: 44px;
+      transition: all var(--transition-smooth); cursor: pointer;
+    }
+    .nav-cta-btn {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.6rem 1.35rem;
+    }
+    .nav-cta-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.35); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight); padding: 0.75rem 1.6rem; border: none; font-weight: 700;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 106, 0.4); }
+
+    .btn-secondary {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.75rem 1.5rem;
+    }
+    .btn-secondary:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--text-primary); }
+
+    .mobile-nav-toggle { display: none; padding: 0.5rem; color: var(--text-primary); min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border-radius: var(--radius-sm); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--header-h); left: 0; width: 100%; height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight); padding: 2rem 1.5rem 3rem; flex-direction: column; gap: 1rem; z-index: 999;
+      border-top: 1px solid var(--border-subtle); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { font-size: 1.2rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); width: 100%; }
+
+    /* HERO SECTION */
+    .hero-section { padding: clamp(2.5rem, 6vh, 4.5rem) 0 clamp(1.5rem, 4vh, 2.5rem); text-align: center; position: relative; }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium); padding: 0.4rem 1.2rem; border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem); letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-gold-light); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .hero-title { font-family: var(--font-display); font-size: var(--fs-hero-title); line-height: 1.15; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: var(--text-secondary); max-width: 760px; margin: 0 auto 2.25rem; line-height: 1.65; }
+
+    /* HISTORICAL CONTEXT BANNER */
+    .context-banner {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: 3rem; text-align: left; box-shadow: var(--shadow-ambient);
+    }
+    .context-banner-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--accent-gold-light); margin-bottom: 0.75rem; }
+    .context-banner-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* SEARCH & FILTER CONTROLS */
+    .controls-bar { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .search-wrapper { position: relative; width: 100%; max-width: 640px; margin: 0 auto; }
+    .search-input {
+      width: 100%; height: 54px; background: var(--bg-surface-1); border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill); padding: 0 1.5rem 0 3.25rem; color: var(--text-primary);
+      font-family: var(--font-sans); font-size: 1rem; outline: none; transition: all var(--transition-fast);
+    }
+    .search-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.2); background: var(--bg-surface-2); }
+    .search-icon { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--accent-gold); pointer-events: none; }
+    .clear-search-btn {
+      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-tertiary);
+      padding: 0.35rem; display: none; border-radius: 50%;
+    }
+    .clear-search-btn.is-visible { display: flex; }
+    .clear-search-btn:hover { color: var(--accent-gold); background: rgba(255, 255, 255, 0.05); }
+
+    .filter-pills-row { display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+    .filter-pill {
+      font-size: 0.825rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: var(--radius-pill);
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .filter-pill:hover, .filter-pill.active { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--accent-gold-light); }
+
+    /* CHAPTERS TIMELINE DIRECTORY GRID */
+    .chapters-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;
+    }
+    .chapter-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem;
+      transition: all var(--transition-smooth); cursor: pointer; text-align: left; position: relative; min-height: 220px;
+    }
+    .chapter-card:hover, .chapter-card:focus-visible {
+      background: var(--bg-surface-2); border-color: var(--accent-gold); transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+    .num-badge {
+      font-size: 0.75rem; font-weight: 700; color: var(--accent-gold); background: rgba(212, 175, 106, 0.08);
+      padding: 0.2rem 0.65rem; border-radius: var(--radius-pill); border: 1px solid var(--border-subtle);
+    }
+    .arabic-title { font-family: var(--font-arabic); font-size: 1.6rem; color: var(--accent-gold-light); direction: rtl; line-height: 1.1; }
+    .english-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .era-tag { font-size: 0.8rem; color: var(--text-tertiary); font-style: italic; margin-bottom: 0.75rem; }
+    .short-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 1px dashed var(--border-subtle); font-size: 0.8rem; color: var(--accent-gold); font-weight: 600; }
+
+    /* EMPTY SEARCH STATE */
+    .empty-state {
+      display: none; text-align: center; padding: 4rem 1rem; background: var(--bg-surface-1);
+      border: 1px dashed var(--border-medium); border-radius: var(--radius-lg); margin-bottom: 4rem;
+    }
+    .empty-state.is-visible { display: block; }
+    .empty-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent-gold-light); margin-bottom: 0.5rem; }
+
+    /* CHAPTER DETAIL OVERLAY READER */
+    .overlay-reader {
+      position: fixed; inset: 0; z-index: 2000; background: var(--bg-midnight);
+      overflow-y: auto; display: none; flex-direction: column; -webkit-overflow-scrolling: touch;
+      opacity: 0; transition: opacity var(--transition-fast) ease-in-out;
+    }
+    .overlay-reader.is-active { display: flex; opacity: 1; }
+
+    .reader-header {
+      position: sticky; top: 0; z-index: 10; background: rgba(4, 8, 7, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-gold-light);
+      font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: var(--radius-pill);
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-subtle);
+      transition: all var(--transition-fast); min-height: 40px;
+    }
+    .back-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); }
+    .reader-title-nav { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); font-weight: 600; text-align: center; }
+
+    .reader-body { padding: clamp(2rem, 5vw, 4rem) 0 clamp(4rem, 8vh, 6rem); flex-grow: 1; }
+
+    /* DETAIL BANNER */
+    .profile-hero {
+      background: linear-gradient(180deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem); text-align: center; margin-bottom: 3rem;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-ambient);
+    }
+    .profile-arabic { font-family: var(--font-arabic); font-size: clamp(2.8rem, 6vw, 4.2rem); color: var(--accent-gold-light); direction: rtl; margin-bottom: 0.5rem; line-height: 1.2; }
+    .profile-meta-tag {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent-gold); background: rgba(212, 175, 106, 0.1); padding: 0.3rem 0.9rem;
+      border-radius: var(--radius-pill); display: inline-block; margin-bottom: 1rem; border: 1px solid var(--border-subtle);
+    }
+    .profile-name { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text-primary); margin-bottom: 0.35rem; }
+    .profile-era-date { font-size: 1rem; color: var(--accent-gold-light); font-style: italic; }
+
+    /* DETAIL CONTENT BLOCKS */
+    .detail-section { margin-bottom: 2.5rem; }
+    .detail-heading {
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
+      color: var(--accent-gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .detail-paragraph { font-size: var(--fs-article-body); color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; }
+
+    /* SCRIPTURE & HADITH BOX */
+    .scripture-box {
+      background: var(--bg-surface-0); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem; margin: 1.5rem 0; position: relative;
+    }
+    .scripture-arabic { font-family: var(--font-arabic); font-size: clamp(1.6rem, 3.5vw, 2.3rem); color: var(--text-primary); text-align: right; direction: rtl; line-height: 2; margin-bottom: 1rem; }
+    .scripture-trans { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+    .scripture-citation { font-size: 0.85rem; color: var(--accent-gold-light); font-weight: 600; text-align: right; font-family: var(--font-display); }
+
+    /* LESSONS CALLOUT BOX */
+    .lessons-box {
+      background: rgba(212, 175, 106, 0.05); border-left: 3px solid var(--accent-gold);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 1.5rem 1.75rem; margin: 2rem 0;
+    }
+    .lessons-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.75rem; }
+    .lessons-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .lessons-list li { font-size: 0.98rem; color: var(--text-primary); line-height: 1.6; display: flex; align-items: flex-start; gap: 0.6rem; }
+    .lessons-list li::before { content: "•"; color: var(--accent-gold); font-weight: bold; }
+
+    /* READER FOOTER NAVIGATION */
+    .reader-footer-nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; margin-top: 3rem;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; background: var(--bg-surface-3);
+      border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(20px); pointer-events: none; transition: all var(--transition-smooth);
+    }
+    .toast-notification.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* GENTLE CLOSING CTA */
+    .closing-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 5rem;
+    }
+    .closing-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 0.75rem; }
+    .closing-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 1.75rem; line-height: 1.65; }
+
+    /* FOOTER */
+    .site-footer { background: #020403; border-top: 1px solid var(--border-subtle); padding: clamp(3rem, 6vh, 5rem) 0 2.5rem; margin-top: auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+    .footer-brand { max-width: 360px; width: 100%; }
+    .footer-brand .brand-wordmark { margin-bottom: 0.85rem; }
+    .footer-tagline { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+    .footer-links-group { display: flex; gap: clamp(2rem, 5vw, 4.5rem); flex-wrap: wrap; width: 100%; max-width: 650px; justify-content: space-between; }
+    .footer-column-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links-list a { font-size: 0.875rem; color: var(--text-secondary); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; font-size: 0.8125rem; color: var(--text-tertiary); }
+    .accuracy-statement { max-width: 650px; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    @media (max-width: 899px) { .desktop-nav { display: none; } .mobile-nav-toggle { display: flex; } }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link">Prophets</a>
+        <a href="seerah.html" class="nav-link active" aria-current="page">Seerah</a>
+        <a href="calendar.html" class="nav-link">Calendar</a>
+        <a href="my-space.html" class="nav-cta-btn">My Space</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link active" aria-current="page">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link" style="color: var(--accent-gold);">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          THE SEERAH OF PROPHET MUHAMMAD ﷺ
+        </div>
+        <h1 class="hero-title">
+          The life that <span style="background: linear-gradient(135deg, #ffffff 20%, var(--accent-gold-light) 70%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">illuminated a path.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Journey through the authentic life and mission of Prophet Muhammad ﷺ, from early Arabia and the first revelation in Makkah to the Hijrah, community building in Madinah, and his enduring legacy.
+        </p>
+
+        <!-- HISTORICAL CONTEXT BRIEF -->
+        <div class="context-banner">
+          <div class="context-banner-title">Historical & Spiritual Context</div>
+          <p class="context-banner-text">
+            Born in Makkah in 570 CE, Prophet Muhammad ﷺ grew up known as Al-Amin (The Trustworthy). Called to prophethood at age 40, his 23-year mission transformed Arabian tribal society through pure monotheism, social justice, and divine guidance. Below, explore 17 comprehensive chapters documenting every major epoch of his life.
+          </p>
+        </div>
+
+        <!-- SEARCH AND ERA FILTERS BAR -->
+        <div class="controls-bar">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="search-input" placeholder="Search chapters, events, or locations (e.g. Badr, Hira, Hijrah, Hudaybiyyah)..." aria-label="Search Seerah chapters">
+            <button class="clear-search-btn" id="clear-search-btn" aria-label="Clear search input">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+
+          <div class="filter-pills-row" id="era-filters">
+            <button class="filter-pill active" onclick="filterByEra('all')">All 17 Chapters</button>
+            <button class="filter-pill" onclick="filterByEra('pre-prophetic')">Pre-Prophetic Era (570–610 CE)</button>
+            <button class="filter-pill" onclick="filterByEra('makkan')">Makkan Period (610–622 CE)</button>
+            <button class="filter-pill" onclick="filterByEra('madinan')">Madinan Period (622–632 CE)</button>
+            <button class="filter-pill" onclick="filterByEra('legacy')">Legacy & Farewell</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- CHAPTERS TIMELINE DIRECTORY GRID -->
+      <div class="chapters-grid" id="chapters-grid">
+        <!-- 17 Seerah Chapters Populated via JavaScript -->
+      </div>
+
+      <!-- EMPTY SEARCH STATE -->
+      <div class="empty-state" id="empty-state">
+        <h3 class="empty-title">No Chapters Found</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">We couldn't find any chapter matching your search terms.</p>
+        <button class="btn-secondary" onclick="resetSearch()">Reset Search & Era Filters</button>
+      </div>
+
+      <!-- GENTLE CLOSING CTA -->
+      <div class="closing-card">
+        <h3 class="closing-title">Explore Divine Guidance in the Qur'an</h3>
+        <p class="closing-desc">
+          The Seerah is the practical embodiment of the Holy Qur'an. Discover the 114 surahs revealed during these historical events in our interactive Qur'an Explorer.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="quran.html" class="btn-primary">
+            Open Qur'an Explorer
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="prophets.html" class="btn-secondary">
+            Stories of the 25 Prophets
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CHAPTER READER OVERLAY MODAL -->
+  <div class="overlay-reader" id="overlay-reader" role="dialog" aria-modal="true" aria-label="Seerah Chapter Detail View">
+    <div class="reader-header">
+      <button class="back-btn" onclick="closeOverlayReader()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Return to Timeline
+      </button>
+
+      <div class="reader-title-nav" id="reader-title-nav">Chapter View</div>
+
+      <div style="width: 100px; text-align: right;"></div>
+    </div>
+
+    <div class="reader-body">
+      <div class="container container-narrow">
+        <div class="profile-hero">
+          <div class="profile-arabic" id="profile-arabic">السيرة النبوية</div>
+          <div class="profile-meta-tag" id="profile-number">Chapter 01 of 17</div>
+          <h1 class="profile-name" id="profile-name">Arabia Before the Prophetic Mission</h1>
+          <div class="profile-era-date" id="profile-era-date">Pre-Prophetic Epoch • Circa 570 CE</div>
+        </div>
+
+        <div id="profile-content-body">
+          <!-- Dynamically populated chapter body -->
+        </div>
+
+        <div class="reader-footer-nav">
+          <button class="btn-secondary" id="prev-chapter-btn" onclick="navigateChapter(-1)">← Previous Chapter</button>
+          <button class="btn-primary" id="save-chapter-btn" onclick="toggleSaveCurrentChapter()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            Bookmark Chapter
+          </button>
+          <button class="btn-secondary" id="next-chapter-btn" onclick="navigateChapter(1)">Next Chapter →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Action saved</span>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Explorer</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Content Accuracy & Respect Notice:</strong> All historical narratives, dates, and scriptural citations presented in Manarah are sourced from verified classical Seerah texts (e.g., Ibn Hisham, Ibn Kathir) and authentic Hadith collections (Sahih al-Bukhari, Sahih Muslim). Manarah contains no visual depictions or portraits of the Prophet ﷺ or Companions.
+        </div>
+        <div>Manarah &copy; 2026. Built with care.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AUTHENTIC 17-CHAPTER SEERAH DATASET & INTERACTIVE APPLICATION LOGIC
+       ========================================================================== -->
+  <script>
+    // FULL VERIFIED DATASET OF 17 COMPREHENSIVE SEERAH CHAPTERS
+    const SEERAH_CHAPTERS = [
+      {
+        id: "chapter-1",
+        num: 1,
+        era: "pre-prophetic",
+        title: "Arabia Before the Prophetic Mission",
+        arabicTitle: "الجزيرة العربية قبل البعثة",
+        dateLabel: "Pre-Prophetic Epoch • Circa 570 CE",
+        shortDesc: "The social, spiritual, and tribal landscape of Makkah and the Arabian Peninsula before the light of Islam.",
+        narrative: "Before the advent of Islam, the Arabian Peninsula was dominated by tribal fragmentation, polytheism, and social inequality. Makkah served as a central trade hub and sanctuary due to the Ka'bah, originally built by Ibrahim (AS) and Isma'il (AS) as a house of pure monotheism, but over centuries filled with idols. Despite widespread moral negligence, small pockets of seekers known as the Hanifs preserved the monotheistic Abrahamic legacy.",
+        milestones: [
+          "Preservation of Makkah as an international trading crossroads between Yemen and Syria.",
+          "The Year of the Elephant (570 CE), when Abrahah's army marched toward Makkah and was thwarted by divine protection.",
+          "The Hanifs maintaining quiet devotion to the One God amidst idolatry."
+        ],
+        scriptureAr: "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ",
+        scriptureTrans: "Have you not considered, [O Muhammad], how your Lord dealt with the companions of the elephant?",
+        scriptureCitation: "Surah Al-Fil 105:1 (Sahih International)",
+        lessons: [
+          "Spiritual truth shines most brightly when moral darkness is widespread.",
+          "Allah protects His sacred symbols (the Ka'bah) to prepare for divine guidance."
+        ],
+        sources: "Tafsir Ibn Kathir (Surah Al-Fil); Ar-Raheeq Al-Makhtum (The Sealed Nectar)."
+      },
+      {
+        id: "chapter-2",
+        num: 2,
+        era: "pre-prophetic",
+        title: "Birth and Early Life",
+        arabicTitle: "مولده ونشأته صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+        dateLabel: "570 CE – 595 CE • Childhood & Youth",
+        shortDesc: "Born an orphan in Makkah, raised with purity of character and known across Quraish as Al-Amin (The Trustworthy).",
+        narrative: "Prophet Muhammad ﷺ was born in Makkah in the Year of the Elephant (570 CE) to Aminah bint Wahb and 'Abdullah ibn 'Abdul-Muttalib, who passed away before his birth. Nursed by Halimah as-Sa'diyyah in the desert, he lost his mother at age six and his grandfather 'Abdul-Muttalib at age eight. Raised by his uncle Abu Talib, his early years were marked by humility, working as a shepherd and shepherd-merchant, earning a universal reputation for flawless truthfulness (Al-Sadiq) and trustworthiness (Al-Amin).",
+        milestones: [
+          "Birth in Makkah and early childhood with Halimah as-Sa'diyyah.",
+          "Participation in Hilf al-Fudul (The Alliance of the Virtuous) protecting vulnerable travelers.",
+          "Earning the title Al-Amin among the Quraish tribes."
+        ],
+        scriptureAr: "أَلَمْ يَجِدْكَ يَتِيمًا فَآوَىٰ • وَوَجَدَكَ ضَالًّا فَهَدَىٰ",
+        scriptureTrans: "Did He not find you an orphan and give [you] refuge? And He found you seeking and guided [you].",
+        scriptureCitation: "Surah Ad-Duha 93:6-7 (Sahih International)",
+        lessons: [
+          "Early hardship and orphanhood cultivate deep empathy for the vulnerable.",
+          "Integrity and moral character are the bedrock of prophetic leadership."
+        ],
+        sources: "Sahih al-Bukhari (Hadith on Hilf al-Fudul); Ibn Hisham's Al-Seerah Al-Nabawiyyah."
+      },
+      {
+        id: "chapter-3",
+        num: 3,
+        era: "pre-prophetic",
+        title: "Marriage to Khadijah (RA) & Rebuilding the Ka'bah",
+        arabicTitle: "زواجه من خديجة وبناء الكعبة",
+        dateLabel: "595 CE – 605 CE • Maturity & Character",
+        shortDesc: "Marriage to the noble Khadijah bint Khuwaylid and arbitration during the rebuilding of the Ka'bah.",
+        narrative: "Impressed by his absolute honesty in managing her trade caravan to Syria, the noble businesswoman Khadijah bint Khuwaylid (RA) proposed marriage to Muhammad ﷺ when he was 25 and she was 40. Their marriage was a bond of deep love, mutual respect, and spiritual comfort. At age 35, when Quraish rebuilt the Ka'bah after a flood, tribal dispute flared over who would place the Black Stone (Hajar al-Aswad). Muhammad ﷺ peacefully resolved the crisis by placing the stone on a cloak and having every tribal chief lift it together.",
+        milestones: [
+          "Marriage to Khadijah (RA), who became his steadfast supporter.",
+          "Wisdom and arbitration during the Ka'bah reconstruction crisis.",
+          "Increasing inclination toward solitude and spiritual contemplation in Cave Hira."
+        ],
+        scriptureAr: "وَوَجَدَكَ عَائِلاً فَأَغْنَىٰ",
+        scriptureTrans: "And He found you poor and made [you] self-sufficient.",
+        scriptureCitation: "Surah Ad-Duha 93:8 (Sahih International)",
+        lessons: [
+          "Marital partnerships flourish on mutual trust, respect, and shared ethics.",
+          "True wisdom resolves conflict by uniting people rather than claiming personal glory."
+        ],
+        sources: "Sahih al-Bukhari (Book of Trade); Ibn Ishaq's Seerah."
+      },
+      {
+        id: "chapter-4",
+        num: 4,
+        era: "makkan",
+        title: "The First Revelation in Cave Hira",
+        arabicTitle: "بدء الوحي في غار حراء",
+        dateLabel: "610 CE (Ramadan) • Beginning of Prophethood",
+        shortDesc: "The arrival of Angel Jibril (AS) with the first verses of Surah Al-'Alaq: 'Read in the name of your Lord.'",
+        narrative: "At age 40, during customary retreats of reflection in Cave Hira on Mount An-Nur, Angel Jibril (Gabriel) appeared to Muhammad ﷺ during the month of Ramadan. Embracing him, Jibril commanded: 'Read!' The Prophet ﷺ replied: 'I cannot read.' The angel embraced him again and revealed the first five verses of Surah Al-'Alaq. Trembling, the Prophet ﷺ returned home to Khadijah (RA), saying 'Cover me, cover me!' She comforted him with famous words: 'Never! By Allah, Allah will never disgrace you; you keep good relations with family, help the poor, and serve guests.' She took him to her cousin Waraqah ibn Nawfal, a scholar who confirmed his prophethood.",
+        milestones: [
+          "First revelation of the Holy Qur'an in Cave Hira.",
+          "Khadijah (RA) becoming the very first believer in Islam.",
+          "Waraqah ibn Nawfal confirming the arrival of the Great Lawgiver (Namus)."
+        ],
+        scriptureAr: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ • خَلَقَ الإِنسَانَ مِنْ عَلَقٍ",
+        scriptureTrans: "Recite in the name of your Lord who created - Created man from a clinging substance.",
+        scriptureCitation: "Surah Al-'Alaq 96:1-2 (Sahih International)",
+        lessons: [
+          "Divine guidance begins with seeking knowledge and reading with divine intent.",
+          "A lifetime of good character gives confidence during moments of spiritual trial."
+        ],
+        sources: "Sahih al-Bukhari (Hadith 3); Sahih Muslim (Hadith 160)."
+      },
+      {
+        id: "chapter-5",
+        num: 5,
+        era: "makkan",
+        title: "The Early Muslim Community",
+        arabicTitle: "الدعوة السراً والجهراً",
+        dateLabel: "610 CE – 613 CE • Secret & Public Call",
+        shortDesc: "The private call to Islam, early believers at Dar al-Arqam, and the public call from Mount As-Safa.",
+        narrative: "For the first three years, the message of Tawhid was conveyed quietly. The earliest converts included Khadijah (RA), his close friend Abu Bakr as-Siddiq (RA), his cousin 'Ali ibn Abi Talib (RA), and his freed slave Zayd ibn Harithah (RA). They gathered discreetly in the house of Al-Arqam (Dar al-Arqam) to study revealed verses. When Allah commanded 'And warn your closest kin', the Prophet ﷺ climbed Mount As-Safa, called all Quraish clans, and asked: 'If I told you an army was behind this hill, would you believe me?' They replied 'Yes, we have never known you to lie.' He then publicly declared monotheism.",
+        milestones: [
+          "Establishment of Dar al-Arqam as the first Islamic educational center.",
+          "Conversion of core companions who anchored the early community.",
+          "The public declaration of Tawhid on Mount As-Safa."
+        ],
+        scriptureAr: "وَأَنذِرْ عَشِيرَتَكَ الأَقْرَبِينَ • وَاخْفِضْ جَنَاحَكَ لِمَنِ اتَّبَعَكَ مِنَ الْمُؤْمِنِينَ",
+        scriptureTrans: "And warn, [O Muhammad], your closest kindred. And lower your wing to those who follow you of the believers.",
+        scriptureCitation: "Surah Ash-Shu'ara 26:214-215 (Sahih International)",
+        lessons: [
+          "Strategic patience and private preparation precede public leadership.",
+          "Reputation for honesty is the strongest foundation when calling others to truth."
+        ],
+        scriptureCitation: "Surah Ash-Shu'ara 26:214-215",
+        sources: "Sahih al-Bukhari (Book of Commentary); Tafsir Ibn Kathir."
+      },
+      {
+        id: "chapter-6",
+        num: 6,
+        era: "makkan",
+        title: "Opposition and Perseverance in Makkah",
+        arabicTitle: "الاضطهاد في مكة والإن ان الصبر",
+        dateLabel: "613 CE – 615 CE • Persecution & Fortitude",
+        shortDesc: "Rising hostility from Quraish elites, torture of vulnerable companions like Bilal (RA), and spiritual fortitude.",
+        narrative: "As Islam threatened Quraish's idol-based trade and social hierarchy, chieftains led by Abu Jahl and Abu Lahab launched fierce persecution. Wealthy leaders mocked the Prophet ﷺ, while enslaved and vulnerable converts—such as Bilal ibn Rabah, Sumayyah bint Khabbat, and Ammar ibn Yasir—faced brutal torture in the desert heat. Bilal famously repeated 'Ahad, Ahad' (One God, One God) under heavy rocks. Sumayyah became the first martyr in Islam. Through it all, the Prophet ﷺ forbade violence, instructing spiritual fortitude and prayer.",
+        milestones: [
+          "Martyrdom of Sumayyah (RA) and Yasir (RA) holding to faith.",
+          "Bilal ibn Rabah's steadfastness and purchase into freedom by Abu Bakr (RA).",
+          "Revelation of Makkan surahs building deep internal certainty."
+        ],
+        scriptureAr: "وَاصْبِرْ عَلَىٰ مَا يَقُولُونَ وَاهْجُرْهُمْ هَجْرًا جَمِيلاً",
+        scriptureTrans: "And be patient over what they say and avoid them with gracious avoidance.",
+        scriptureCitation: "Surah Al-Muzzammil 73:10 (Sahih International)",
+        lessons: [
+          "Faith gives inner freedom that physical torture cannot crush.",
+          "True leadership protects and elevates the most vulnerable in society."
+        ],
+        sources: "Ibn Hisham; Musnad Ahmad; Sahih al-Bukhari."
+      },
+      {
+        id: "chapter-7",
+        num: 7,
+        era: "makkan",
+        title: "Migration to Abyssinia and the Year of Sorrow",
+        arabicTitle: "الهجرة إلى الحبشة وعام الحزن",
+        dateLabel: "615 CE – 619 CE • Exile & Grief",
+        shortDesc: "Refuge under the righteous Christian King Najashi, three-year economic boycott, and the loss of Khadijah and Abu Talib.",
+        narrative: "To protect believers, the Prophet ﷺ permitted a group to migrate to Abyssinia (Ethiopia), describing its ruler Najashi (Negus) as 'a king under whom no one is wronged.' Ja'far ibn Abi Talib (RA) eloquently recited Surah Maryam before Najashi's court, securing royal protection. Outraged, Quraish enforced a three-year economic boycott isolating Muslims in Shib Abi Talib, causing severe hunger. Shortly after the boycott lifted in 619 CE, the Prophet lost both his protective uncle Abu Talib and his beloved wife Khadijah (RA)—a year remembered as 'Aam al-Huzn (The Year of Sorrow). Seeking refuge in At-Ta'if, he was pelted with stones, yet prayed for their descendants' guidance rather than their destruction.",
+        milestones: [
+          "First and second migrations to Abyssinia establishing international refuge.",
+          "Endurance of the brutal three-year Makkan boycott.",
+          "The Year of Sorrow and the gracious prayer at At-Ta'if."
+        ],
+        scriptureAr: "قُلْ يَا عِبَادِ الَّذِينَ آمَنُوا اتَّقُوا رَبَّكُمْ لِلَّذِينَ أَحْسَنُوا فِي هَذِهِ الدُّنْيَا حَسَنَةٌ وَأَرْضُ اللَّهِ وَاسِعَةٌ",
+        scriptureTrans: "Say, 'O My servants who have believed, fear your Lord. For those who do good in this world is good, and the earth of Allah is spacious...'",
+        scriptureCitation: "Surah Az-Zumar 39:10 (Sahih International)",
+        lessons: [
+          "Seeking justice and safety across faith communities is a valid prophetic path.",
+          "Compassion toward persecutors triumphs over personal vengeance."
+        ],
+        sources: "Sahih Muslim (Hadith of Ta'if); Ar-Raheeq Al-Makhtum."
+      },
+      {
+        id: "chapter-8",
+        num: 8,
+        era: "makkan",
+        title: "The Night Journey and Ascension (Al-Isra' wa al-Mi'raj)",
+        arabicTitle: "الإسراء والمعراج",
+        dateLabel: "621 CE • Miraculous Spiritual Elevation",
+        shortDesc: "The miraculous night journey from Makkah to Jerusalem and ascension through the heavens, establishing the five daily prayers.",
+        narrative: "Following intense grief and rejection at At-Ta'if, Allah granted the Prophet ﷺ the miraculous night journey. Transported on Al-Buraq from Al-Masjid al-Haram in Makkah to Al-Masjid al-Aqsa in Jerusalem (Al-Isra'), he led all previous prophets in prayer. He was then elevated through the seven heavens (Al-Mi'raj), meeting prophets Adam, 'Isa, Yahya, Yusuf, Idris, Harun, and Musa (AS), reaching Sidrat al-Muntaha. There, Allah directly ordained the gift of the five daily obligatory prayers (Salah), initially fifty and reduced through divine mercy to five, carrying the spiritual reward of fifty.",
+        milestones: [
+          "Miraculous journey connecting Makkah and Al-Aqsa in Jerusalem.",
+          "Leading all prophets in prayer, symbolizing unified prophetic heritage.",
+          "Ordainment of the five daily prayers directly from Allah."
+        ],
+        scriptureAr: "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلاً مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ",
+        scriptureTrans: "Exalted is He who took His Servant by night from al-Masjid al-Haram to al-Masjid al-Aqsa, whose surroundings We have blessed...",
+        scriptureCitation: "Surah Al-Isra 17:1 (Sahih International)",
+        lessons: [
+          "After extreme spiritual tests and patience comes divine elevation and comfort.",
+          "Daily prayer (Salah) is the believer's personal ascension to divine presence."
+        ],
+        sources: "Sahih al-Bukhari (Hadith 3887); Sahih Muslim (Hadith 162)."
+      },
+      {
+        id: "chapter-9",
+        num: 9,
+        era: "madinan",
+        title: "The Hijrah to Madinah",
+        arabicTitle: "الهجرة النبوية المباركة إلى المدينة",
+        dateLabel: "622 CE • The Turning Point of History",
+        shortDesc: "The historic migration from Makkah to Yathrib (Madinah), launching the Islamic calendar and new community.",
+        narrative: "During the Hajj seasons, pilgrims from Yathrib accepted Islam and pledged allegiance at Al-'Aqabah. As Quraish plotted assassination, Allah permitted migration. Leaving 'Ali (RA) in his bed to return stored trust items to Makkan owners, the Prophet ﷺ and Abu Bakr (RA) departed secretly, taking shelter in Cave Thawr for three days. When Quraish pursuers reached the cave entrance, Abu Bakr worried, but the Prophet reassured him: 'Do not grieve; indeed Allah is with us.' Reaching Quba', they built the first mosque, then entered Yathrib—renamed Madinat ar-Rasul (Madinah)—welcomed with joy.",
+        milestones: [
+          "Pledges of Al-'Aqabah laying political and social foundations.",
+          " Miraculous protection in Cave Thawr during the pursuit.",
+          "Arrival in Madinah and construction of Al-Masjid an-Nabawi."
+        ],
+        scriptureAr: "إِلاَّ تَنصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ إِذْ أَخْرَجَهُ الَّذِينَ كَفَرُوا ثَانِيَ اثْنَيْنِ إِذْ هُمَا فِي الْغَارِ إِذْ يَقُولُ لِصَاحِبِهِ لاَ تَحْزَنْ إِنَّ اللَّهَ مَعَنَا",
+        scriptureTrans: "...when he said to his companion, 'Do not grieve; indeed Allah is with us.' And Allah sent down His tranquility upon him...",
+        scriptureCitation: "Surah At-Tawbah 9:40 (Sahih International)",
+        lessons: [
+          "Strategic planning and trust in Allah (Tawakkul) go hand in hand.",
+          "True faith requires willingness to sacrifice comfort for divine purpose."
+        ],
+        sources: "Sahih al-Bukhari (Book of Migration); Ibn Hisham."
+      },
+      {
+        id: "chapter-10",
+        num: 10,
+        era: "madinan",
+        title: "Building the Madinan Community & Constitution",
+        arabicTitle: "بناء المجتمع المدني وثيقة المدينة",
+        dateLabel: "622 CE – 623 CE • Governance & Brotherhood",
+        shortDesc: "Establishing Al-Masjid an-Nabawi, the brotherhood (Mu'akhah) between Ansar and Muhajirun, and the Constitution of Madinah.",
+        narrative: "In Madinah, the Prophet ﷺ implemented three historic governance pillars: First, building Al-Masjid an-Nabawi as a place of worship, government, and education. Second, establishing Mu'akhah (Brotherhood), pairing Makkan refugees (Muhajirun) with Madinan hosts (Ansar) who shared homes and wealth in unparalleled generosity. Third, drafting the Constitution of Madinah (Sahifat al-Madinah)—the world's first written constitution—guaranteeing religious freedom, civil protection, and mutual defense for Muslims, Jewish tribes, and Arab clans.",
+        milestones: [
+          "Drafting the Constitution of Madinah establishing pluralistic rule of law.",
+          "Institutionalizing the Mu'akhah bond between Ansar and Muhajirun.",
+          "Instituting the Adhan (Call to Prayer) voiced by Bilal ibn Rabah (RA)."
+        ],
+        scriptureAr: "إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُرْحَمُونَ",
+        scriptureTrans: "The believers are but brothers, so make settlement between your brothers. And fear Allah that you may receive mercy.",
+        scriptureCitation: "Surah Al-Hujurat 49:10 (Sahih International)",
+        lessons: [
+          "Social equity, religious freedom, and civic contracts are core Islamic values.",
+          "Brotherhood transforms economic scarcity into shared abundance."
+        ],
+        sources: "Ibn Hisham's Seerah; Constitution Text in Dala'il al-Nubuwwah."
+      },
+      {
+        id: "chapter-11",
+        num: 11,
+        era: "madinan",
+        title: "Major Conflicts in Historical Context",
+        arabicTitle: "الغزوات الكبرى بَدر وأُحُد والأحزاب",
+        dateLabel: "624 CE – 627 CE • Defense & Resilience",
+        shortDesc: "The defensive battles of Badr, Uhud, and the Trench (Ahzab), securing the survival of the early Muslim community.",
+        narrative: "Threatened with military extinction, Muslims were granted permission to fight defensive battles. In 624 CE, 313 ill-equipped Muslims faced 1,000 Makkan warriors at Badr, achieving a miraculous victory. In 625 CE at Uhud, archers leaving their post prematurely led to a setback, teaching a bitter lesson in discipline. In 627 CE during the Battle of the Trench (Ahzab), 10,000 Makkan and allied forces besieged Madinah. Following Salman al-Farsi's (RA) advice, Muslims dug a trench, enduring harsh cold and siege until divine winds dissolved the coalition.",
+        milestones: [
+          "Decisive victory at Badr establishing Muslim defensive credibility.",
+          "Lessons of obedience and resilience learned at Mount Uhud.",
+          "Strategic defense and coalition defeat at the Battle of the Trench."
+        ],
+        scriptureAr: "أُذِنَ لِلَّذِينَ يُقَاتَلُونَ بِأَنَّهُمْ ظُلِمُوا وَإِنَّ اللَّهَ عَلَىٰ نَصْرِهِمْ لَقَدِيرٌ",
+        scriptureTrans: "Permission [to fight] has been given to those who are being fought, because they were wronged. And indeed, Allah is competent to give them victory.",
+        scriptureCitation: "Surah Al-Hajj 22:39 (Sahih International)",
+        lessons: [
+          "Defense of justice and liberty requires discipline, unity, and courage.",
+          "Setbacks serve as spiritual teaching moments to refine intention."
+        ],
+        sources: "Sahih al-Bukhari (Book of Expeditions); Tafsir Ibn Kathir."
+      },
+      {
+        id: "chapter-12",
+        num: 12,
+        era: "madinan",
+        title: "Treaty of Hudaybiyyah & Diplomacy",
+        arabicTitle: "صلح الحديبية والدبلوماسية النبوية",
+        dateLabel: "628 CE • The Manifest Victory",
+        shortDesc: "A masterclass in peacebuilding, accepting difficult treaty terms that led to unprecedented expansion of faith.",
+        narrative: "In 628 CE, the Prophet ﷺ led 1,400 unarmed Muslims toward Makkah for Umrah. Blocked at Hudaybiyyah, he chose negotiation over conflict. Quraish sent Suhayl ibn 'Amr to draft a treaty with seemingly unfavorable terms: a ten-year truce, returning Makkan defectors, and postponing Umrah to next year. Though companions were deeply saddened, the Prophet signed. Allah revealed Surah Al-Fath, calling the treaty 'a manifest victory.' During the peaceful truce, Islam spread rapidly across Arabia through intellectual discourse and diplomacy.",
+        milestones: [
+          "Signing the 10-year Truce of Hudaybiyyah.",
+          "Diplomatic letters sent to emperors of Persia, Rome, Abyssinia, and Egypt.",
+          "Rapid, peaceful expansion of Islam across Arabian tribes."
+        ],
+        scriptureAr: "إِنَّا فَتَحْنَا لَكَ فَتْحًا مُّبِينًا • لِّيَغْفِرَ لَكَ اللَّهُ مَا تَقَدَّمَ مِن ذَنبِكَ وَمَا تَأَخَّرَ",
+        scriptureTrans: "Indeed, We have given you, [O Muhammad], a clear victory. That Allah may forgive for you what preceded of your sin and what will follow...",
+        scriptureCitation: "Surah Al-Fath 48:1-2 (Sahih International)",
+        lessons: [
+          "Peace, diplomacy, and strategic patience achieve far more than conflict.",
+          "Short-term compromises can unlock long-term spiritual victories."
+        ],
+        sources: "Sahih al-Bukhari (Book of Conditions); Zad al-Ma'ad."
+      },
+      {
+        id: "chapter-13",
+        num: 13,
+        era: "madinan",
+        title: "The Opening of Makkah",
+        arabicTitle: "فتح مكة المكرمة",
+        dateLabel: "630 CE (Ramadan) • Triumph of Mercy",
+        shortDesc: "Bloodless return to Makkah, cleansing the Ka'bah of idols, and issuing a universal amnesty to former enemies.",
+        narrative: "When Quraish allies violated the Treaty of Hudaybiyyah, the Prophet ﷺ marched toward Makkah with 10,000 Muslims in 630 CE. Entering peacefully with his head lowered in humility, no blood was shed. He cleansed the Ka'bah of 360 idols, reciting: 'Truth has come and falsehood has vanished.' Gathering Makkan leaders who had persecuted him for two decades, he asked: 'What do you expect of me?' They replied: 'A noble brother and son of a noble brother.' He declared Joseph's words: 'No blame upon you today; go, for you are free.'",
+        milestones: [
+          "Bloodless entry into Makkah and purification of the Ka'bah.",
+          "Universal amnesty issued to Quraish elites and former enemies.",
+          "Mass acceptance of Tawhid across Arabian Peninsula."
+        ],
+        scriptureAr: "وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ إِنَّ الْبَاطِلَ كَانَ زَهُوقًا",
+        scriptureTrans: "And say, 'Truth has come, and falsehood has departed. Indeed is falsehood, [by its nature], ever bound to depart.'",
+        scriptureCitation: "Surah Al-Isra 17:81 (Sahih International)",
+        lessons: [
+          "True triumph is crowned with humility, forgiveness, and magnanimity.",
+          "Purifying hearts from hatred is greater than conquering lands."
+        ],
+        sources: "Sahih al-Bukhari (Hadith 4280); Sahih Muslim (Hadith 1780)."
+      },
+      {
+        id: "chapter-14",
+        num: 14,
+        era: "madinan",
+        title: "Later Madinan Years & Spread of Islam",
+        arabicTitle: "عام الوفود وانتشار الإسلام",
+        dateLabel: "630 CE – 631 CE • Year of Delegations",
+        shortDesc: "The Year of Delegations ('Am al-Wufud), Tabuk expedition, and universal integration of Arab tribes.",
+        narrative: "Following the Opening of Makkah and victory at Hunayn, 631 CE became known as 'Am al-Wufud (The Year of Delegations). Tribal representatives from every corner of Arabia traveled to Madinah to accept Islam and learn Qur'anic guidance. The Prophet ﷺ dispatched teachers, judges, and Zakah collectors—such as Mu'adh ibn Jabal (RA) to Yemen—instructing them: 'Make things easy and do not make them difficult; give glad tidings and do not repel people.'",
+        milestones: [
+          "Reception of dozens of tribal delegations at Madinah.",
+          "Dispatch of teachers and judges to instruct new communities in ethics.",
+          "Completion of political and spiritual unification of Arabia."
+        ],
+        scriptureAr: "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ • وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا",
+        scriptureTrans: "When the victory of Allah has come and the conquest, And you see the people entering the religion of Allah in multitudes...",
+        scriptureCitation: "Surah An-Nasr 110:1-2 (Sahih International)",
+        lessons: [
+          "Educational instruction must emphasize ease, gentleness, and wisdom.",
+          "Success should be met with increased glorify of Allah and seeking forgiveness."
+        ],
+        sources: "Sahih al-Bukhari (Book of Maghazi); Ar-Raheeq Al-Makhtum."
+      },
+      {
+        id: "chapter-15",
+        num: 15,
+        era: "legacy",
+        title: "The Farewell Pilgrimage & Final Sermon",
+        arabicTitle: "حجة الوداع والخطبة الخالدة",
+        dateLabel: "632 CE (Dhul-Hijjah) • Universal Human Rights",
+        shortDesc: "The historic Farewell Hajj and sermon at Arafat establishing universal equality, women's rights, and sanctity of life.",
+        narrative: "In 632 CE, the Prophet ﷺ performed his only Hajj accompanied by over 100,000 pilgrims. At Mount Arafat, he delivered his immortal Farewell Sermon (Khutbat al-Wada'). He proclaimed the absolute sanctity of life, honor, and property, declared racism void ('An Arab has no superiority over a non-Arab... except by piety'), outlawed economic exploitation and interest (Riba), commanded kind treatment of women, and exhorted believers to hold fast to the Qur'an and Sunnah. Verse 3:3 was revealed: 'Today I have perfected for you your religion.'",
+        milestones: [
+          "Delivering the Farewell Sermon at Mount Arafat before 100,000+ pilgrims.",
+          "Proclamation of universal human rights, racial equality, and economic fairness.",
+          "Revelation of Surah Al-Ma'idah 5:3 confirming perfection of the Deen."
+        ],
+        scriptureAr: "الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِي وَرَضِيتُ لَكُمُ الإِسْلامَ دِينًا",
+        scriptureTrans: "...This day I have perfected for you your religion and completed My favor upon you and have approved for you Islam as your religion...",
+        scriptureCitation: "Surah Al-Ma'idah 5:3 (Sahih International)",
+        lessons: [
+          "Racial equality, sanctity of human life, and economic equity are sacred tenets.",
+          "Women's rights and dignified treatment are fundamental divine commands."
+        ],
+        sources: "Sahih Muslim (Hadith 1218); Musnad Ahmad (Hadith 22978)."
+      },
+      {
+        id: "chapter-16",
+        num: 16,
+        era: "legacy",
+        title: "Final Days and Passing",
+        arabicTitle: "وفاة النبي صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+        dateLabel: "12 Dhul-Hijjah 11 AH / June 632 CE",
+        shortDesc: "The peaceful passing of the Prophet ﷺ in Madinah and Abu Bakr's (RA) steadfast address to the community.",
+        narrative: "Upon returning from the Farewell Hajj, the Prophet ﷺ fell ill with a fever. Choosing to spend his final days in Aisha's (RA) room adjacent to the mosque, he appointed Abu Bakr (RA) to lead daily prayers. On Monday, 12 Dhul-Hijjah 11 AH, he passed away peacefully, repeating his final words: 'Ar-Rafiq al-A'la' (The Highest Companionship in Paradise). Shock swept Madinah, but Abu Bakr (RA) stepped forward with firmness, reciting: 'Muhammad is not but a messenger... Whoever worshipped Muhammad, know that Muhammad has passed; but whoever worships Allah, Allah is Ever-Living.'",
+        milestones: [
+          "Appointment of Abu Bakr (RA) to lead prayers during illness.",
+          "Passing away in Madinah at age 63 with final words 'Ar-Rafiq al-A'la'.",
+          "Abu Bakr's historic address anchoring faith in the Ever-Living Creator."
+        ],
+        scriptureAr: "وَمَا مُحَمَّدٌ إِلاَّ رَسُولٌ قَدْ خَلَتْ مِن قَبْلِهِ الرُّسُلُ أَفَإِن مَّاتَ أَوْ قُتِلَ انقَلَبْتُمْ عَلَىٰ أَعْقَابِكُمْ",
+        scriptureTrans: "Muhammad is not but a messenger. [Other] messengers have passed away before him. So if he was to die or be killed, would you turn back on your heels?",
+        scriptureCitation: "Surah Ali 'Imran 3:144 (Sahih International)",
+        lessons: [
+          "Prophets are mortal human messengers; our worship belongs exclusively to Allah.",
+          "Faithful communities endure by adhering to scripture and divine guidance."
+        ],
+        sources: "Sahih al-Bukhari (Hadith 4437); Sahih Muslim (Hadith 2444)."
+      },
+      {
+        id: "chapter-17",
+        num: 17,
+        era: "legacy",
+        title: "Legacy and Continuing Guidance",
+        arabicTitle: "الإرث الخالد والرحمة المهداة",
+        dateLabel: "Timeless Prophetic Heritage",
+        shortDesc: "The universal legacy of Prophet Muhammad ﷺ as a mercy to all creation (Rahmatan lil-'Alamin) and role model (Uswah Hasanah).",
+        narrative: "The mission of Prophet Muhammad ﷺ transformed world history, establishing a civilizational legacy based on monotheism, literacy, scientific inquiry, law, and moral ethics. The Qur'an describes him as 'a mercy to all creation' (Rahmatan lil-'Alamin) and the supreme exemplar (Uswah Hasanah). Through his Sunnah—recorded in verified Hadith science—his worship, character, family life, and leadership continue to guide over 1.9 billion Muslims daily.",
+        milestones: [
+          "Preservation of the Holy Qur'an and Sunnah as timeless primary sources.",
+          "Universal impact on ethics, law, governance, and human rights.",
+          "Continuous daily living model for Muslims across all nations."
+        ],
+        scriptureAr: "وَمَا أَرْسَلْنَاكَ إِلاَّ رَحْمَةً لِّلْعَالَمِينَ",
+        scriptureTrans: "And We have not sent you, [O Muhammad], except as a mercy to the worlds.",
+        scriptureCitation: "Surah Al-Anbiya 21:107 (Sahih International)",
+        lessons: [
+          "Following the Prophet's example means embodying mercy, justice, and sincerity.",
+          "Living Islam transforms personal character and enriches human society."
+        ],
+        sources: "Surah Al-Ahzab 33:21; Sahih al-Bukhari; Sahih Muslim."
+      }
+    ];
+
+    let currentFilteredChapters = [...SEERAH_CHAPTERS];
+    let currentChapterIndex = 0;
+    let activeEraFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderChaptersGrid(SEERAH_CHAPTERS);
+      setupSearchAndFilters();
+      setupMobileNav();
+      setupKeyboardNav();
+
+      // Check URL hash for direct deep links (e.g., #chapter-4)
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const foundIndex = SEERAH_CHAPTERS.findIndex(c => c.id === hash);
+        if (foundIndex !== -1) openChapterOverlay(foundIndex);
+      }
+    });
+
+    // 1. RENDER CHAPTER CARDS
+    function renderChaptersGrid(data) {
+      const grid = document.getElementById('chapters-grid');
+      const emptyState = document.getElementById('empty-state');
+      if (!grid) return;
+
+      if (data.length === 0) {
+        grid.style.display = 'none';
+        if (emptyState) emptyState.classList.add('is-visible');
+        return;
+      }
+
+      grid.style.display = 'grid';
+      if (emptyState) emptyState.classList.remove('is-visible');
+
+      grid.innerHTML = data.map((c, idx) => `
+        <div class="chapter-card" onclick="openChapterOverlayById('${c.id}')" role="button" tabindex="0" aria-label="Read ${c.title}">
+          <div>
+            <div class="card-top">
+              <span class="num-badge">Chapter ${c.num < 10 ? '0' + c.num : c.num}</span>
+              <span class="arabic-title">${c.arabicTitle}</span>
+            </div>
+            <h3 class="english-title">${c.title}</h3>
+            <div class="era-tag">${c.dateLabel}</div>
+            <p class="short-desc">${c.shortDesc}</p>
+          </div>
+          <div class="card-footer">
+            <span>Read Chapter Narrative</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 2. SEARCH & ERA FILTERING LOGIC
+    function setupSearchAndFilters() {
+      const searchInput = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-search-btn');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const query = searchInput.value.trim().toLowerCase();
+          if (clearBtn) {
+            if (query.length > 0) clearBtn.classList.add('is-visible');
+            else clearBtn.classList.remove('is-visible');
+          }
+          filterChapters();
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          if (searchInput) {
+            searchInput.value = '';
+            clearBtn.classList.remove('is-visible');
+            filterChapters();
+          }
+        });
+      }
+    }
+
+    function filterByEra(era) {
+      activeEraFilter = era;
+      document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      filterChapters();
+    }
+
+    function filterChapters() {
+      const searchInput = document.getElementById('search-input');
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+      currentFilteredChapters = SEERAH_CHAPTERS.filter(c => {
+        const matchesSearch = query === '' || 
+          c.title.toLowerCase().includes(query) ||
+          c.arabicTitle.includes(query) ||
+          c.shortDesc.toLowerCase().includes(query) ||
+          c.narrative.toLowerCase().includes(query);
+
+        const matchesEra = activeEraFilter === 'all' || c.era === activeEraFilter;
+
+        return matchesSearch && matchesEra;
+      });
+
+      renderChaptersGrid(currentFilteredChapters);
+    }
+
+    function resetSearch() {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) searchInput.value = '';
+      activeEraFilter = 'all';
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-pill')[0].classList.add('active');
+      filterChapters();
+    }
+
+    // 3. OVERLAY READER MODAL LOGIC
+    function openChapterOverlayById(id) {
+      const index = SEERAH_CHAPTERS.findIndex(c => c.id === id);
+      if (index !== -1) openChapterOverlay(index);
+    }
+
+    function openChapterOverlay(index) {
+      currentChapterIndex = index;
+      displayCurrentChapter();
+
+      const overlay = document.getElementById('overlay-reader');
+      if (overlay) {
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+        overlay.scrollTop = 0;
+      }
+
+      history.replaceState(null, null, `#${SEERAH_CHAPTERS[index].id}`);
+    }
+
+    function displayCurrentChapter() {
+      const c = SEERAH_CHAPTERS[currentChapterIndex];
+      if (!c) return;
+
+      document.getElementById('reader-title-nav').textContent = `Chapter ${c.num}: ${c.title}`;
+      document.getElementById('profile-arabic').textContent = c.arabicTitle;
+      document.getElementById('profile-number').textContent = `Chapter ${c.num < 10 ? '0' + c.num : c.num} of 17 in Seerah Timeline`;
+      document.getElementById('profile-name').textContent = c.title;
+      document.getElementById('profile-era-date').textContent = c.dateLabel;
+
+      const body = document.getElementById('profile-content-body');
+      
+      body.innerHTML = `
+        <div class="detail-section">
+          <div class="detail-heading">Historical Narrative</div>
+          <p class="detail-paragraph">${c.narrative}</p>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-heading">Key Historical Milestones</div>
+          <ul class="lessons-list" style="margin-bottom: 1.5rem;">
+            ${c.milestones.map(m => `<li><span>${m}</span></li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="scripture-box">
+          <div class="scripture-arabic" lang="ar" dir="rtl">${c.scriptureAr}</div>
+          <div class="scripture-trans">"${c.scriptureTrans}"</div>
+          <div class="scripture-citation">— ${c.scriptureCitation}</div>
+        </div>
+
+        <div class="lessons-box">
+          <div class="lessons-title">Lessons to Reflect On</div>
+          <ul class="lessons-list">
+            ${c.lessons.map(l => `<li><span>${l}</span></li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="detail-section" style="background: var(--bg-surface-1); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div class="detail-heading">Verified Primary Sources</div>
+          <p style="font-size: 0.92rem; color: var(--text-primary); font-style: italic;">${c.sources}</p>
+        </div>
+      `;
+
+      // Update Navigation Buttons
+      document.getElementById('prev-chapter-btn').style.visibility = currentChapterIndex === 0 ? 'hidden' : 'visible';
+      document.getElementById('next-chapter-btn').style.visibility = currentChapterIndex === SEERAH_CHAPTERS.length - 1 ? 'hidden' : 'visible';
+
+      updateSaveButtonState(c.id);
+    }
+
+    function closeOverlayReader() {
+      const overlay = document.getElementById('overlay-reader');
+      if (overlay) {
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+      history.replaceState(null, null, window.location.pathname);
+    }
+
+    function navigateChapter(dir) {
+      const newIndex = currentChapterIndex + dir;
+      if (newIndex >= 0 && newIndex < SEERAH_CHAPTERS.length) {
+        openChapterOverlay(newIndex);
+      }
+    }
+
+    // 4. SAVING / BOOKMARKING TO MY SPACE
+    function isChapterSaved(id) {
+      const saved = JSON.parse(localStorage.getItem('manarah_saved_seerah') || '[]');
+      return saved.includes(id);
+    }
+
+    function updateSaveButtonState(id) {
+      const btn = document.getElementById('save-chapter-btn');
+      if (!btn) return;
+      const saved = isChapterSaved(id);
+      btn.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="${saved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        ${saved ? 'Saved in My Space' : 'Bookmark Chapter'}
+      `;
+    }
+
+    function toggleSaveCurrentChapter() {
+      const c = SEERAH_CHAPTERS[currentChapterIndex];
+      if (!c) return;
+
+      let saved = JSON.parse(localStorage.getItem('manarah_saved_seerah') || '[]');
+      if (saved.includes(c.id)) {
+        saved = saved.filter(i => i !== c.id);
+        showToast("Removed from My Space");
+      } else {
+        saved.push(c.id);
+        showToast("Saved to My Space");
+      }
+      localStorage.setItem('manarah_saved_seerah', JSON.stringify(saved));
+      updateSaveButtonState(c.id);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 3000);
+    }
+
+    // 5. MOBILE NAV & KEYBOARD UTILITIES
+    function setupMobileNav() {
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+    }
+
+    function setupKeyboardNav() {
+      document.addEventListener('keydown', function(e) {
+        const overlay = document.getElementById('overlay-reader');
+        if (overlay && overlay.classList.contains('is-active')) {
+          if (e.key === 'Escape') closeOverlayReader();
+          if (e.key === 'ArrowLeft') navigateChapter(-1);
+          if (e.key === 'ArrowRight') navigateChapter(1);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

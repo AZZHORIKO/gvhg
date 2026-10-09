@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — Islamic Calendar & Observances</title>
+  <meta name="description" content="Explore the live Islamic Hijri calendar, convert Gregorian and Hijri dates, track upcoming observances, and align your days with divine rhythm on Manarah. A lighthouse for your heart.">
+  
+  <!-- Premium Google Fonts matching Manarah System Architecture -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH DESIGN SYSTEM — MIDNIGHT EMERALD & GOLD THEME
+       ========================================================================== */
+    :root {
+      /* Palette Tokens */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --gold-glow-radial: radial-gradient(circle, rgba(212, 175, 106, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+
+      /* Typography Tokens */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Typography Clamps */
+      --fs-hero-title: clamp(2.2rem, 5vw + 1rem, 3.8rem);
+      --fs-section-title: clamp(1.6rem, 3vw + 0.8rem, 2.4rem);
+      --fs-quran-arabic: clamp(1.8rem, 4vw + 0.5rem, 2.7rem);
+      --fs-article-body: clamp(1.025rem, 1.2vw + 0.5rem, 1.15rem);
+
+      /* Layout Spacing & Radii */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Animation Motion Tokens */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.4s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a { color: inherit; text-decoration: none; transition: all var(--transition-fast); }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .container-narrow { max-width: 860px; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 1.5rem;
+      background: var(--accent-gold); color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem; font-weight: 700; border-radius: var(--radius-sm);
+      z-index: 9999; transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* HEADER & NAVIGATION */
+    .site-header {
+      position: sticky; top: 0; height: var(--header-h); z-index: 1000;
+      background: rgba(4, 8, 7, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { display: flex; align-items: center; gap: clamp(0.4rem, 1.5vw, 0.85rem); text-decoration: none; min-height: 44px; }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600;
+      letter-spacing: 0.18em; background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; line-height: 1;
+    }
+    .brand-wordmark .brand-ar { font-family: var(--font-arabic); font-size: clamp(1.5rem, 3.2vw, 2rem); color: var(--accent-gold); line-height: 1; opacity: 0.9; }
+
+    .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.25rem); }
+    .nav-link { font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.5rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold-light); }
+    .nav-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-gold), transparent); transition: width var(--transition-fast); border-radius: var(--radius-pill); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta-btn, .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; min-height: 44px;
+      transition: all var(--transition-smooth); cursor: pointer;
+    }
+    .nav-cta-btn {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.6rem 1.35rem;
+    }
+    .nav-cta-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.35); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight); padding: 0.75rem 1.6rem; border: none; font-weight: 700;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 106, 0.4); }
+
+    .btn-secondary {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.75rem 1.5rem;
+    }
+    .btn-secondary:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--text-primary); }
+
+    .mobile-nav-toggle { display: none; padding: 0.5rem; color: var(--text-primary); min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border-radius: var(--radius-sm); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--header-h); left: 0; width: 100%; height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight); padding: 2rem 1.5rem 3rem; flex-direction: column; gap: 1rem; z-index: 999;
+      border-top: 1px solid var(--border-subtle); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { font-size: 1.2rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); width: 100%; }
+
+    /* HERO SECTION */
+    .hero-section { padding: clamp(2.5rem, 6vh, 4rem) 0 clamp(1.5rem, 3vh, 2.2rem); text-align: center; position: relative; }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium); padding: 0.4rem 1.2rem; border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem); letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-gold-light); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .hero-title { font-family: var(--font-display); font-size: var(--fs-hero-title); line-height: 1.15; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: var(--text-secondary); max-width: 760px; margin: 0 auto 2.25rem; line-height: 1.65; }
+
+    /* LIVE TODAY BANNER CARD */
+    .today-banner {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: 3rem; text-align: center;
+      box-shadow: var(--shadow-ambient); position: relative; overflow: hidden;
+    }
+    .today-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 106, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .today-hijri-date {
+      font-family: var(--font-arabic); font-size: clamp(2.2rem, 5vw, 3.6rem); color: var(--accent-gold-light);
+      direction: rtl; line-height: 1.2; margin-bottom: 0.5rem;
+    }
+    .today-gregorian-date {
+      font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.7rem); color: var(--text-primary);
+      margin-bottom: 0.75rem; font-weight: 600;
+    }
+    .today-status-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.825rem; color: var(--text-secondary);
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-subtle); padding: 0.35rem 0.95rem;
+      border-radius: var(--radius-pill);
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; display: inline-block; box-shadow: 0 0 10px #4ade80; }
+
+    /* CALENDAR MAIN LAYOUT GRID */
+    .calendar-layout {
+      display: grid; grid-template-columns: 1fr 340px; gap: 2rem; margin-bottom: 4rem;
+    }
+
+    /* MONTHLY CALENDAR CONTAINER */
+    .calendar-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+      padding: clamp(1.25rem, 3vw, 2rem); box-shadow: var(--shadow-ambient);
+    }
+    .calendar-header-nav {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem; gap: 1rem; flex-wrap: wrap;
+    }
+    .nav-month-btn {
+      display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px;
+      border-radius: 50%; background: var(--bg-surface-2); border: 1px solid var(--border-subtle);
+      color: var(--accent-gold-light); transition: all var(--transition-fast);
+    }
+    .nav-month-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); border-color: var(--accent-gold); }
+    .current-month-display { font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: var(--text-primary); text-align: center; }
+
+    .weekday-header-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.4rem; text-align: center;
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent-gold); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.45rem; }
+
+    .day-cell {
+      aspect-ratio: 1 / 1; min-height: 64px; background: var(--bg-surface-0); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm); padding: 0.35rem 0.45rem; display: flex; flex-direction: column;
+      justify-content: space-between; transition: all var(--transition-fast); cursor: pointer; position: relative; text-align: left;
+    }
+    .day-cell:hover { border-color: var(--accent-gold); background: var(--bg-surface-2); transform: translateY(-2px); }
+    .day-cell.is-empty { background: transparent; border-color: transparent; pointer-events: none; }
+    .day-cell.is-today {
+      background: rgba(212, 175, 106, 0.12); border-color: var(--accent-gold); box-shadow: inset 0 0 12px rgba(212, 175, 106, 0.2);
+    }
+    .day-cell.is-selected {
+      background: var(--accent-gold); color: var(--bg-midnight) !important; border-color: var(--accent-gold-light);
+    }
+    .day-cell.is-selected .greg-num, .day-cell.is-selected .hijri-num { color: var(--bg-midnight) !important; }
+    .day-cell.has-event::after {
+      content: ''; position: absolute; top: 6px; right: 6px; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent-gold); box-shadow: 0 0 8px var(--accent-gold);
+    }
+
+    .greg-num { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); line-height: 1; }
+    .hijri-num { font-size: 0.725rem; color: var(--accent-gold-light); font-family: var(--font-arabic); direction: rtl; text-align: right; line-height: 1; }
+
+    /* SIDE PANEL: SELECTED DATE & CONTROLS */
+    .side-panel { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .panel-box {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+      padding: 1.5rem; box-shadow: var(--shadow-ambient);
+    }
+    .panel-title {
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
+      color: var(--accent-gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .selected-greg-title { font-family: var(--font-display); font-size: 1.25rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .selected-hijri-sub { font-family: var(--font-arabic); font-size: 1.4rem; color: var(--accent-gold-light); margin-bottom: 1rem; direction: rtl; }
+
+    .event-badge-item {
+      background: rgba(212, 175, 106, 0.08); border-left: 3px solid var(--accent-gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.75rem 1rem; margin-bottom: 0.75rem;
+    }
+    .event-badge-name { font-size: 0.9rem; font-weight: 700; color: var(--accent-gold-light); margin-bottom: 0.2rem; }
+    .event-badge-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; }
+
+    /* OFFSET CONTROL SELECTOR */
+    .offset-control-group { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+    .offset-select {
+      width: 100%; height: 42px; background: var(--bg-surface-2); border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill); color: var(--text-primary); padding: 0 1rem; font-family: inherit;
+      font-size: 0.875rem; outline: none; cursor: pointer;
+    }
+    .offset-select:focus { border-color: var(--accent-gold); }
+
+    /* UPCOMING COUNTDOWNS GRID */
+    .countdowns-section { margin-bottom: 4rem; }
+    .section-title { font-family: var(--font-display); font-size: var(--fs-section-title); margin-bottom: 0.5rem; text-align: center; }
+    .section-subtitle { font-size: 0.95rem; color: var(--text-secondary); text-align: center; max-width: 650px; margin: 0 auto 2.5rem; }
+
+    .countdowns-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .countdown-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem;
+      transition: all var(--transition-smooth); position: relative; overflow: hidden;
+    }
+    .countdown-card:hover { border-color: var(--accent-gold); transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+    .countdown-event-name { font-family: var(--font-display); font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .countdown-hijri-date { font-family: var(--font-arabic); font-size: 1.1rem; color: var(--accent-gold-light); margin-bottom: 0.75rem; direction: rtl; }
+    .countdown-timer-box {
+      background: var(--bg-surface-0); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem; text-align: center;
+    }
+    .timer-days { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--accent-gold); line-height: 1; }
+    .timer-label { font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+    /* 12 HIJRI MONTHS GUIDE GRID */
+    .months-guide-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 4rem;
+    }
+    .month-guide-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.25rem; text-align: left; transition: all var(--transition-fast);
+    }
+    .month-guide-card:hover { border-color: var(--accent-gold); background: var(--bg-surface-2); }
+    .month-num-badge { font-size: 0.75rem; font-weight: 700; color: var(--accent-gold); background: rgba(212, 175, 106, 0.08); padding: 0.15rem 0.55rem; border-radius: var(--radius-pill); border: 1px solid var(--border-subtle); display: inline-block; margin-bottom: 0.5rem; }
+    .month-ar-name { font-family: var(--font-arabic); font-size: 1.5rem; color: var(--accent-gold-light); direction: rtl; margin-bottom: 0.2rem; }
+    .month-en-name { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.35rem; }
+    .month-meaning { font-size: 0.825rem; color: var(--text-secondary); line-height: 1.45; }
+
+    /* MOON SIGHTING EXPLANATION BOX */
+    .explanation-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 4rem; box-shadow: var(--shadow-ambient);
+    }
+    .explanation-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--accent-gold-light); margin-bottom: 0.75rem; }
+    .explanation-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; background: var(--bg-surface-3);
+      border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(20px); pointer-events: none; transition: all var(--transition-smooth);
+    }
+    .toast-notification.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* GENTLE CLOSING CTA */
+    .closing-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 5rem;
+    }
+    .closing-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 0.75rem; }
+    .closing-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 1.75rem; line-height: 1.65; }
+
+    /* FOOTER */
+    .site-footer { background: #020403; border-top: 1px solid var(--border-subtle); padding: clamp(3rem, 6vh, 5rem) 0 2.5rem; margin-top: auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+    .footer-brand { max-width: 360px; width: 100%; }
+    .footer-brand .brand-wordmark { margin-bottom: 0.85rem; }
+    .footer-tagline { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+    .footer-links-group { display: flex; gap: clamp(2rem, 5vw, 4.5rem); flex-wrap: wrap; width: 100%; max-width: 650px; justify-content: space-between; }
+    .footer-column-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links-list a { font-size: 0.875rem; color: var(--text-secondary); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; font-size: 0.8125rem; color: var(--text-tertiary); }
+    .accuracy-statement { max-width: 650px; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .calendar-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link">Prophets</a>
+        <a href="seerah.html" class="nav-link">Seerah</a>
+        <a href="calendar.html" class="nav-link active" aria-current="page">Calendar</a>
+        <a href="my-space.html" class="nav-cta-btn">My Space</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link active" aria-current="page">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link" style="color: var(--accent-gold);">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          HIJRI & GREGORIAN CALENDAR
+        </div>
+        <h1 class="hero-title">
+          Live by the rhythm of the <span style="background: linear-gradient(135deg, #ffffff 20%, var(--accent-gold-light) 70%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Hijri year.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Explore the Islamic months, keep track of sacred observances, convert dates, and prepare for the occasions that unite the global Ummah.
+        </p>
+
+        <!-- LIVE TODAY BANNER -->
+        <div class="today-banner">
+          <div class="today-hijri-date" id="live-hijri-text">Loading Hijri Date...</div>
+          <div class="today-gregorian-date" id="live-greg-text">Loading Gregorian Date...</div>
+          <div class="today-status-badge">
+            <span class="status-dot"></span>
+            <span id="live-status-label">Calculated Hijri Date • Local moon-sighting may vary by ±1 day</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- CALENDAR MAIN INTERACTIVE GRID & SIDE PANEL -->
+      <div class="calendar-layout">
+        <!-- MONTHLY CALENDAR GRID CARD -->
+        <div class="calendar-card">
+          <div class="calendar-header-nav">
+            <button class="nav-month-btn" onclick="changeMonth(-1)" aria-label="Previous Month">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="current-month-display" id="calendar-month-title">Month Year</div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <button class="btn-secondary" style="min-height: 36px; padding: 0.35rem 0.9rem; font-size: 0.8rem;" onclick="goToToday()">Today</button>
+              <button class="nav-month-btn" onclick="changeMonth(1)" aria-label="Next Month">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="weekday-header-grid">
+            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+          </div>
+
+          <div class="days-grid" id="days-grid">
+            <!-- Dynamically populated days grid -->
+          </div>
+        </div>
+
+        <!-- SIDE PANEL: SELECTED DATE DETAILS & ADJUSTMENTS -->
+        <div class="side-panel">
+          <div class="panel-box">
+            <div class="panel-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Selected Date Details
+            </div>
+            <div class="selected-greg-title" id="selected-greg-text">Select a day on the grid</div>
+            <div class="selected-hijri-sub" id="selected-hijri-text">اختر يوماً</div>
+
+            <div id="selected-events-list">
+              <!-- Dynamically populated event badges for selected day -->
+            </div>
+
+            <div class="offset-control-group">
+              <label for="offset-select" style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">Regional Sightings Adjustment:</label>
+              <select id="offset-select" class="offset-select" onchange="updateHijriOffset(this.value)">
+                <option value="0" selected>Standard Calculated (Umm al-Qura)</option>
+                <option value="-1">-1 Day (Local Sightings Adjustment)</option>
+                <option value="+1">+1 Day (Local Sightings Adjustment)</option>
+                <option value="-2">-2 Days Adjustment</option>
+                <option value="+2">+2 Days Adjustment</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPCOMING ISLAMIC OBSERVANCES & COUNTDOWNS -->
+      <section class="countdowns-section">
+        <h2 class="section-title">Major Upcoming Observances</h2>
+        <p class="section-subtitle">Real-time estimated countdowns to significant Islamic dates across the Hijri year.</p>
+
+        <div class="countdowns-grid" id="countdowns-grid">
+          <!-- Dynamically populated countdown cards -->
+        </div>
+      </section>
+
+      <!-- 12 HIJRI MONTHS GUIDE -->
+      <section style="margin-bottom: 4rem;">
+        <h2 class="section-title">The Twelve Hijri Months</h2>
+        <p class="section-subtitle">Understanding the sacred lunar cycle established in the Holy Qur'an (Surah At-Tawbah 9:36).</p>
+
+        <div class="months-guide-grid" id="months-guide-grid">
+          <!-- Dynamically populated 12 months -->
+        </div>
+      </section>
+
+      <!-- MOON SIGHTING EXPLANATION CARD -->
+      <div class="explanation-card">
+        <h3 class="explanation-title">Understanding Regional Moon-Sighting Differences</h3>
+        <p class="explanation-text">
+          The Islamic Hijri calendar is intrinsically tied to the natural lunar cycle. While standard tabular calculations provide reliable global baselines, local community observances—especially for Ramadan, Eid al-Fitr, and Eid al-Adha—are confirmed by local physical moon sighting or regional Hilal authorities. Manarah provides the offset adjustment control above so you can easily sync your calendar with your local religious authority.
+        </p>
+        <p style="font-size: 0.875rem; color: var(--accent-gold); font-weight: 600;">
+          Tip: Always follow your local community or Islamic council for the official start of Ramadan and Eid prayers.
+        </p>
+      </div>
+
+      <!-- GENTLE CLOSING CTA -->
+      <div class="closing-card">
+        <h3 class="closing-title">Enrich Your Daily Worship</h3>
+        <p class="closing-desc">
+          Combine your awareness of the Hijri calendar with authentic Sunnah habits, morning & evening Adhkar, and daily supplications in our Daily Worship hub.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="daily-worship.html" class="btn-primary">
+            Explore Daily Worship & Sunnah
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="rabbana-duas.html" class="btn-secondary">
+            Rabbana Duas
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Calendar updated</span>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Explorer</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Calendar Calculation Notice:</strong> Hijri date calculations presented on Manarah use standardized astronomical algorithms (Umm al-Qura benchmark) with user-controlled regional offset adjustments. Local moon-sighting confirmations take precedence for religious observances.
+        </div>
+        <div>Manarah &copy; 2026. Built with care.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       ISLAMIC CALENDAR ENGINE & INTERACTIVE LOGIC
+       ========================================================================== -->
+  <script>
+    // 1. DATASETS: 12 HIJRI MONTHS & KEY ISLAMIC OBSERVANCES
+    const HIJRI_MONTHS = [
+      { num: 1, ar: "مُحَرَّم", en: "Muharram", meaning: "Sacred month; 1st month of the Hijri year; contains Ashura (10th)." },
+      { num: 2, ar: "صَفَر", en: "Safar", meaning: "Month of journeying and peaceful transition." },
+      { num: 3, ar: "رَبِيع الأَوَّل", en: "Rabi' al-Awwal", meaning: "The First Spring; month of the birth and arrival of Prophet Muhammad ﷺ in Madinah." },
+      { num: 4, ar: "رَبِيع الآخِر", en: "Rabi' al-Thani", meaning: "The Second Spring; continuation of the fruitful season." },
+      { num: 5, ar: "جُمَادَى الأُولَى", en: "Jumada al-Ula", meaning: "The First Frozen Month; early winter reflection." },
+      { num: 6, ar: "جُمَادَى الآخِرَة", en: "Jumada al-Akhirah", meaning: "The Second Frozen Month; spiritual preparation for Rajab." },
+      { num: 7, ar: "رَجَب", en: "Rajab", meaning: "Sacred month of reverence; precursor to Sha'ban and Ramadan." },
+      { num: 8, ar: "شَعْبَان", en: "Sha'ban", meaning: "Month of widespread good deeds and preparation for Ramadan." },
+      { num: 9, ar: "رَمَضَان", en: "Ramadan", meaning: "The holy month of obligatory fasting, Qur'anic revelation, and Laylat al-Qadr." },
+      { num: 10, ar: "شَوَّال", en: "Shawwal", meaning: "Month of Eid al-Fitr celebration and recommended 6 days of Sunnah fasting." },
+      { num: 11, ar: "ذُو القَعْدَة", en: "Dhu al-Qa'dah", meaning: "Sacred month of truce and peaceful preparation for Hajj." },
+      { num: 12, ar: "ذُو الحِجَّة", en: "Dhu al-Hijjah", meaning: "Sacred month of Hajj, Day of Arafah (9th), and Eid al-Adha (10th)." }
+    ];
+
+    const MAJOR_EVENTS = [
+      { id: "new-year", name: "Islamic New Year", arName: "رأس السنة الهجرية", hMonth: 1, hDay: 1, desc: "1st Muharram — Beginning of the new Hijri lunar year." },
+      { id: "ashura", name: "Day of Ashura", arName: "يوم عاشوراء", hMonth: 1, hDay: 10, desc: "10th Muharram — Day of Sunnah fasting; commemorates Prophet Musa (AS) being saved from Pharaoh." },
+      { id: "mawlid", name: "Mawlid an-Nabi", arName: "مولد النبي ﷺ", hMonth: 3, hDay: 12, desc: "12th Rabi' al-Awwal — Commemorating the birth and mission of Prophet Muhammad ﷺ." },
+      { id: "isra-miraj", name: "Al-Isra' wa al-Mi'raj", arName: "الإسراء والمعراج", hMonth: 7, hDay: 27, desc: "27th Rajab — Remembering the miraculous night journey and ascension." },
+      { id: "nisf-shaban", name: "Mid-Sha'ban", arName: "ليلة النصف من شعبان", hMonth: 8, hDay: 15, desc: "15th Sha'ban — Night of reflection and prayer preceding Ramadan." },
+      { id: "ramadan-start", name: "First Day of Ramadan", arName: "أول أيام شهر رمضان", hMonth: 9, hDay: 1, desc: "1st Ramadan — Beginning of the month of fasting, reflection, and Qur'an." },
+      { id: "laylat-qadr", name: "Laylat al-Qadr (27th Night)", arName: "ليلة القدر", hMonth: 9, hDay: 27, desc: "The Night of Decree, sought during the odd nights of the last 10 days of Ramadan." },
+      { id: "eid-fitr", name: "Eid al-Fitr", arName: "عيد الفطر المبارك", hMonth: 10, hDay: 1, desc: "1st Shawwal — Joyous celebration marking the conclusion of Ramadan fasting." },
+      { id: "arafah", name: "Day of Arafah", arName: "يوم عرفة", hMonth: 12, hDay: 9, desc: "9th Dhu al-Hijjah — The pinnacle day of Hajj pilgrimage and recommended Sunnah fast." },
+      { id: "eid-adha", name: "Eid al-Adha", arName: "عيد الأضحى المبارك", hMonth: 12, hDay: 10, desc: "10th Dhu al-Hijjah — Festival of Sacrifice honoring Prophet Ibrahim's (AS) devotion." }
+    ];
+
+    // 2. STATE VARIABLES
+    let currentViewingDate = new Date(); // Gregorian date being viewed on calendar grid
+    let selectedGridDate = new Date();  // Date clicked by user
+    let hijriOffsetDays = 0;             // Regional offset (-2 to +2)
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setupMobileNav();
+      renderMonthsGuide();
+      updateLiveBanner();
+      renderCalendarGrid();
+      updateSelectedDateDetails(selectedGridDate);
+      renderCountdowns();
+    });
+
+    // 3. HIJRI CALENDAR CONVERSION UTILITY (Tabular / Umm al-Qura with Offset)
+    function getHijriDetails(gregDate, offset = 0) {
+      const date = new Date(gregDate);
+      date.setDate(date.getDate() + offset);
+
+      // Attempt native Intl formatted output
+      try {
+        const formatter = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura', {
+          day: 'numeric',
+          month: 'numeric',
+          year: 'numeric'
+        });
+        const parts = formatter.formatToParts(date);
+        let day = 1, month = 1, year = 1447;
+        parts.forEach(p => {
+          if (p.type === 'day') day = parseInt(p.value, 10);
+          if (p.type === 'month') month = parseInt(p.value, 10);
+          if (p.type === 'year') year = parseInt(p.value, 10);
+        });
+        
+        const monthObj = HIJRI_MONTHS.find(m => m.num === month) || HIJRI_MONTHS[0];
+        return { day, month: monthObj.num, monthEn: monthObj.en, monthAr: monthObj.ar, year };
+      } catch (e) {
+        // Algorithmic Fallback
+        const julianDay = Math.floor((date.getTime() / 86400000) + 2440587.5);
+        const l = julianDay - 1948440 + 10632;
+        const n = Math.floor((l - 1) / 10631);
+        const l1 = l - 10631 * n + 354;
+        const j = (Math.floor((10985 - l1) / 5316)) * (Math.floor((50 * l1) / 17719)) + (Math.floor(l1 / 5670)) * (Math.floor((43 * l1) / 15238));
+        const l2 = l1 - (Math.floor((30 - j) / 15)) * (Math.floor((17719 * j) / 50)) - (Math.floor(j / 16)) * (Math.floor((15238 * j) / 43)) + 29;
+        const m = Math.floor((24 * l2) / 709);
+        const d = l2 - Math.floor((709 * m) / 24);
+        const y = 30 * n + j - 30;
+        
+        const monthObj = HIJRI_MONTHS.find(m0 => m0.num === m) || HIJRI_MONTHS[0];
+        return { day: d, month: monthObj.num, monthEn: monthObj.en, monthAr: monthObj.ar, year: y };
+      }
+    }
+
+    // 4. LIVE HERO BANNER UPDATE
+    function updateLiveBanner() {
+      const today = new Date();
+      const hijri = getHijriDetails(today, hijriOffsetDays);
+
+      const gregStr = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      const hijriStr = `${hijri.day} ${hijri.monthAr} ${hijri.year} هـ (${hijri.day} ${hijri.monthEn} ${hijri.year} AH)`;
+
+      document.getElementById('live-hijri-text').textContent = hijriStr;
+      document.getElementById('live-greg-text').textContent = gregStr;
+    }
+
+    // 5. CALENDAR GRID RENDERING
+    function renderCalendarGrid() {
+      const grid = document.getElementById('days-grid');
+      const title = document.getElementById('calendar-month-title');
+      if (!grid || !title) return;
+
+      const year = currentViewingDate.getFullYear();
+      const month = currentViewingDate.getMonth();
+
+      title.textContent = currentViewingDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      grid.innerHTML = '';
+
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+
+      // Empty padding cells for previous month days
+      for (let i = 0; i < firstDayIndex; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'day-cell is-empty';
+        grid.appendChild(emptyCell);
+      }
+
+      const today = new Date();
+
+      for (let day = 1; day <= totalDaysInMonth; day++) {
+        const cellDate = new Date(year, month, day);
+        const hijri = getHijriDetails(cellDate, hijriOffsetDays);
+
+        const isToday = cellDate.toDateString() === today.toDateString();
+        const isSelected = cellDate.toDateString() === selectedGridDate.toDateString();
+
+        // Check if there's a major event on this Hijri day
+        const hasEvent = MAJOR_EVENTS.some(e => e.hMonth === hijri.month && e.hDay === hijri.day);
+
+        const dayCell = document.createElement('div');
+        dayCell.className = `day-cell ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''} ${hasEvent ? 'has-event' : ''}`;
+        dayCell.setAttribute('role', 'button');
+        dayCell.setAttribute('tabindex', '0');
+        dayCell.setAttribute('aria-label', `${cellDate.toDateString()}, Hijri ${hijri.day} ${hijri.monthEn}`);
+
+        dayCell.innerHTML = `
+          <div class="greg-num">${day}</div>
+          <div class="hijri-num">${hijri.day} ${hijri.monthAr.split(' ')[0]}</div>
+        `;
+
+        dayCell.addEventListener('click', function() {
+          selectedGridDate = cellDate;
+          renderCalendarGrid();
+          updateSelectedDateDetails(cellDate);
+        });
+
+        grid.appendChild(dayCell);
+      }
+    }
+
+    function changeMonth(dir) {
+      currentViewingDate.setMonth(currentViewingDate.getMonth() + dir);
+      renderCalendarGrid();
+    }
+
+    function goToToday() {
+      currentViewingDate = new Date();
+      selectedGridDate = new Date();
+      renderCalendarGrid();
+      updateSelectedDateDetails(selectedGridDate);
+    }
+
+    function updateHijriOffset(val) {
+      hijriOffsetDays = parseInt(val, 10);
+      updateLiveBanner();
+      renderCalendarGrid();
+      updateSelectedDateDetails(selectedGridDate);
+      renderCountdowns();
+      showToast(`Hijri offset set to ${hijriOffsetDays > 0 ? '+' : ''}${hijriOffsetDays} days`);
+    }
+
+    // 6. SELECTED DATE DETAILS PANEL
+    function updateSelectedDateDetails(date) {
+      const gregText = document.getElementById('selected-greg-text');
+      const hijriText = document.getElementById('selected-hijri-text');
+      const eventsList = document.getElementById('selected-events-list');
+
+      if (!gregText || !hijriText || !eventsList) return;
+
+      const hijri = getHijriDetails(date, hijriOffsetDays);
+
+      gregText.textContent = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      hijriText.textContent = `${hijri.day} ${hijri.monthAr} ${hijri.year} هـ`;
+
+      const matchedEvents = MAJOR_EVENTS.filter(e => e.hMonth === hijri.month && e.hDay === hijri.day);
+
+      if (matchedEvents.length === 0) {
+        eventsList.innerHTML = `
+          <p style="font-size: 0.85rem; color: var(--text-tertiary); font-style: italic; margin-top: 0.5rem;">
+            No listed major observances for this day.
+          </p>
+        `;
+      } else {
+        eventsList.innerHTML = matchedEvents.map(e => `
+          <div class="event-badge-item">
+            <div class="event-badge-name">${e.name} (${e.arName})</div>
+            <div class="event-badge-desc">${e.desc}</div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // 7. COUNTDOWNS RENDERING LOGIC
+    function renderCountdowns() {
+      const container = document.getElementById('countdowns-grid');
+      if (!container) return;
+
+      const today = new Date();
+
+      // Simple estimation logic for upcoming annual events
+      container.innerHTML = MAJOR_EVENTS.slice(0, 6).map(e => {
+        // Calculate estimated days remaining
+        // Search next 365 days for matching Hijri day/month
+        let daysDiff = 0;
+        let testDate = new Date(today);
+        
+        for (let i = 0; i <= 365; i++) {
+          const h = getHijriDetails(testDate, hijriOffsetDays);
+          if (h.month === e.hMonth && h.day === e.hDay) {
+            daysDiff = Math.ceil((testDate - today) / (1000 * 60 * 60 * 24));
+            break;
+          }
+          testDate.setDate(testDate.getDate() + 1);
+        }
+
+        return `
+          <div class="countdown-card">
+            <div>
+              <div class="countdown-event-name">${e.name}</div>
+              <div class="countdown-hijri-date">${e.arName} • ${e.hDay} ${HIJRI_MONTHS.find(m => m.num === e.hMonth).ar}</div>
+              <p style="font-size: 0.825rem; color: var(--text-secondary); line-height: 1.45; margin-bottom: 1rem;">${e.desc}</p>
+            </div>
+            <div class="countdown-timer-box">
+              <div class="timer-days">${daysDiff === 0 ? 'Today!' : daysDiff + ' Days'}</div>
+              <div class="timer-label">${daysDiff === 0 ? 'Observance Today' : 'Estimated Remaining'}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 8. 12 HIJRI MONTHS GUIDE RENDERING
+    function renderMonthsGuide() {
+      const grid = document.getElementById('months-guide-grid');
+      if (!grid) return;
+
+      grid.innerHTML = HIJRI_MONTHS.map(m => `
+        <div class="month-guide-card">
+          <span class="month-num-badge">Month ${m.num < 10 ? '0' + m.num : m.num}</span>
+          <div class="month-ar-name">${m.ar}</div>
+          <h3 class="month-en-name">${m.en}</h3>
+          <p class="month-meaning">${m.meaning}</p>
+        </div>
+      `).join('');
+    }
+
+    // 9. UTILITY & NAVIGATION HELPERS
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 3000);
+    }
+
+    function setupMobileNav() {
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+    }
+  </script>
+</body>
+</html>

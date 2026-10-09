@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — My Heart: Mood-Based Qur'anic Reflections</title>
+  <meta name="description" content="Explore peaceful, spiritually grounded Qur'anic guidance and reflections tailored to what your heart is carrying today. A lighthouse for your heart.">
+  
+  <!-- Premium Fonts Matching Manarah System Architecture -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH DESIGN SYSTEM — MIDNIGHT EMERALD & GOLD THEME
+       ========================================================================== */
+    :root {
+      /* Colors */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --gold-glow-radial: radial-gradient(circle, rgba(212, 175, 106, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+
+      /* Typography */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Typography Clamps */
+      --fs-hero-title: clamp(2.2rem, 5vw + 1rem, 3.8rem);
+      --fs-section-title: clamp(1.6rem, 3vw + 0.8rem, 2.4rem);
+      --fs-quran-arabic: clamp(1.8rem, 4vw + 0.5rem, 2.7rem);
+      --fs-article-body: clamp(1.025rem, 1.2vw + 0.5rem, 1.15rem);
+
+      /* Spacing & Radii */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Transitions & Shadows */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.4s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a { color: inherit; text-decoration: none; transition: all var(--transition-fast); }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .container-narrow { max-width: 860px; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 1.5rem;
+      background: var(--accent-gold); color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem; font-weight: 700; border-radius: var(--radius-sm);
+      z-index: 9999; transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* HEADER & NAVIGATION */
+    .site-header {
+      position: sticky; top: 0; height: var(--header-h); z-index: 1000;
+      background: rgba(4, 8, 7, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { display: flex; align-items: center; gap: clamp(0.4rem, 1.5vw, 0.85rem); text-decoration: none; min-height: 44px; }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600;
+      letter-spacing: 0.18em; background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; line-height: 1;
+    }
+    .brand-wordmark .brand-ar { font-family: var(--font-arabic); font-size: clamp(1.5rem, 3.2vw, 2rem); color: var(--accent-gold); line-height: 1; opacity: 0.9; }
+
+    .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.25rem); }
+    .nav-link { font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.5rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold-light); }
+    .nav-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-gold), transparent); transition: width var(--transition-fast); border-radius: var(--radius-pill); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta-btn, .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; min-height: 44px;
+      transition: all var(--transition-smooth); cursor: pointer;
+    }
+    .nav-cta-btn {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.6rem 1.35rem;
+    }
+    .nav-cta-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.35); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight); padding: 0.75rem 1.6rem; border: none; font-weight: 700;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 106, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.75rem 1.5rem;
+    }
+    .btn-secondary:hover {
+      background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--text-primary);
+    }
+
+    .mobile-nav-toggle { display: none; padding: 0.5rem; color: var(--text-primary); min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border-radius: var(--radius-sm); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--header-h); left: 0; width: 100%; height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight); padding: 2rem 1.5rem 3rem; flex-direction: column; gap: 1rem; z-index: 999;
+      border-top: 1px solid var(--border-subtle); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { font-size: 1.2rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); width: 100%; }
+
+    /* HERO SECTION */
+    .hero-section { padding: clamp(2.5rem, 6vh, 4.5rem) 0 clamp(1.5rem, 4vh, 2.5rem); text-align: center; position: relative; }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium); padding: 0.4rem 1.2rem; border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem); letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-gold-light); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .hero-title { font-family: var(--font-display); font-size: var(--fs-hero-title); line-height: 1.15; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: var(--text-secondary); max-width: 720px; margin: 0 auto 2.5rem; line-height: 1.65; }
+
+    /* MOOD SELECTOR SECTION */
+    .mood-section { margin-bottom: 3.5rem; }
+    .mood-group-title {
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700;
+      color: var(--accent-gold); margin-bottom: 1rem; text-align: left;
+    }
+    .mood-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem;
+    }
+    .mood-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.15rem 1.35rem; text-align: left; transition: all var(--transition-smooth); cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-height: 68px;
+    }
+    .mood-card:hover, .mood-card:focus-visible {
+      background: var(--bg-surface-2); border-color: var(--accent-gold); transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 106, 0.1);
+    }
+    .mood-card.active {
+      background: var(--bg-surface-2); border-color: var(--accent-gold);
+      box-shadow: 0 0 25px rgba(212, 175, 106, 0.25);
+    }
+    .mood-card-label { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+    .mood-card-icon {
+      width: 28px; height: 28px; border-radius: 50%; background: rgba(212, 175, 106, 0.1);
+      display: flex; align-items: center; justify-content: center; color: var(--accent-gold); flex-shrink: 0;
+      transition: all var(--transition-fast);
+    }
+    .mood-card.active .mood-card-icon, .mood-card:hover .mood-card-icon {
+      background: var(--accent-gold); color: var(--bg-midnight);
+    }
+
+    /* REFLECTION DISPLAY CARD */
+    .reflection-container { margin-bottom: 4rem; scroll-margin-top: 100px; }
+    .reflection-card {
+      background: linear-gradient(180deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 4vw, 3.25rem); box-shadow: var(--shadow-ambient); position: relative;
+    }
+    .reflection-header-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-gold);
+      background: rgba(212, 175, 106, 0.1); padding: 0.35rem 1rem; border-radius: var(--radius-pill);
+      margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);
+    }
+
+    /* QUR'AN VERSE DISPLAY BLOCK */
+    .verse-block {
+      background: var(--bg-surface-0); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: 2rem; position: relative;
+    }
+    .arabic-text {
+      font-family: var(--font-arabic); font-size: var(--fs-quran-arabic); color: var(--text-primary);
+      text-align: right; direction: rtl; line-height: 2.2; word-spacing: 2px; margin-bottom: 1.5rem;
+    }
+    .translation-text {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--text-secondary); line-height: 1.75;
+      margin-bottom: 1rem; font-style: normal;
+    }
+    .citation-bar {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+      border-top: 1px dashed var(--border-subtle); padding-top: 1rem; font-size: 0.85rem; color: var(--accent-gold-light);
+    }
+    .citation-title { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+    .translation-source { font-size: 0.78rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* REFLECTION CONTENT & TAKEAWAY */
+    .reflection-section { margin-bottom: 2rem; }
+    .section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.5rem; }
+    .reflection-body { font-size: var(--fs-article-body); color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; }
+    
+    .takeaway-box {
+      background: rgba(212, 175, 106, 0.05); border-left: 3px solid var(--accent-gold);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+    }
+    .takeaway-title { font-size: 0.85rem; font-weight: 700; color: var(--accent-gold-light); margin-bottom: 0.35rem; }
+    .takeaway-desc { font-size: 0.95rem; color: var(--text-primary); line-height: 1.6; }
+
+    /* JOURNAL / PERSONAL REFLECTION PROMPT */
+    .journal-box {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; margin-bottom: 2rem;
+    }
+    .journal-title { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .journal-prompt { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .journal-textarea {
+      width: 100%; min-height: 90px; background: var(--bg-surface-0); border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm); padding: 0.85rem 1rem; color: var(--text-primary);
+      font-family: var(--font-sans); font-size: 0.9375rem; outline: none; transition: border-color var(--transition-fast);
+      resize: vertical; margin-bottom: 0.75rem;
+    }
+    .journal-textarea:focus { border-color: var(--accent-gold); }
+    .journal-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .journal-status { font-size: 0.8rem; color: var(--text-tertiary); }
+
+    /* ACTION BUTTONS BAR */
+    .actions-bar {
+      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; background: var(--bg-surface-3);
+      border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(20px); pointer-events: none; transition: all var(--transition-smooth);
+    }
+    .toast-notification.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* RELATED REFLECTIONS */
+    .related-section { padding-bottom: 4rem; }
+    .related-title { font-family: var(--font-display); font-size: var(--fs-section-title); margin-bottom: 1.5rem; text-align: center; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .related-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem; transition: all var(--transition-smooth); cursor: pointer; text-align: left;
+    }
+    .related-card:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); transform: translateY(-3px); }
+    .related-card-category { font-size: 0.75rem; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .related-card-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.35rem; }
+    .related-card-snippet { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* GENTLE CLOSING CTA */
+    .closing-cta-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 5rem;
+    }
+    .closing-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+    .closing-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.65; }
+
+    /* FOOTER */
+    .site-footer { background: #020403; border-top: 1px solid var(--border-subtle); padding: clamp(3rem, 6vh, 5rem) 0 2.5rem; margin-top: auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+    .footer-brand { max-width: 360px; width: 100%; }
+    .footer-brand .brand-wordmark { margin-bottom: 0.85rem; }
+    .footer-tagline { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+    .footer-links-group { display: flex; gap: clamp(2rem, 5vw, 4.5rem); flex-wrap: wrap; width: 100%; max-width: 650px; justify-content: space-between; }
+    .footer-column-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links-list a { font-size: 0.875rem; color: var(--text-secondary); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; font-size: 0.8125rem; color: var(--text-tertiary); }
+    .accuracy-statement { max-width: 650px; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    @media (max-width: 899px) { .desktop-nav { display: none; } .mobile-nav-toggle { display: flex; } }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link active" aria-current="page">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link">Prophets</a>
+        <a href="seerah.html" class="nav-link">Seerah</a>
+        <a href="calendar.html" class="nav-link">Calendar</a>
+        <a href="my-space.html" class="nav-cta-btn">My Space</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link active" aria-current="page">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link" style="color: var(--accent-gold);">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          MY HEART • QUR'ANIC REFLECTIONS
+        </div>
+        <h1 class="hero-title">
+          Come as you are. <span style="background: linear-gradient(135deg, #ffffff 20%, var(--accent-gold-light) 70%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Reflect with the Qur'an.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Whatever your heart is carrying today, take a quiet moment to pause and explore the guidance, wisdom, and reminders found in the Holy Qur'an.
+        </p>
+
+        <!-- MOOD CATEGORY SELECTOR -->
+        <section class="mood-section" aria-label="Select a feeling or spiritual need">
+          <div class="mood-group-title">1. Emotional Support & Comfort</div>
+          <div class="mood-grid" id="group-emotional">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="mood-group-title">2. Seeking Guidance & Peace</div>
+          <div class="mood-grid" id="group-guidance">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="mood-group-title">3. Spiritual Growth & Connection</div>
+          <div class="mood-grid" id="group-growth">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- DYNAMIC REFLECTION READER AREA -->
+    <section class="reflection-container" id="reflection-display" aria-live="polite">
+      <div class="container container-narrow">
+        <div class="reflection-card" id="reflection-card-body">
+          <!-- Dynamically populated reflection content -->
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED REFLECTIONS -->
+    <section class="related-section">
+      <div class="container">
+        <h2 class="related-title">Continue Reflecting</h2>
+        <div class="related-grid" id="related-grid-container">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GENTLE CLOSING CTA -->
+    <div class="container container-narrow">
+      <div class="closing-cta-card">
+        <h3 class="closing-title">Explore Full Surah Contexts</h3>
+        <p class="closing-desc">
+          Reflecting on individual verses opens the doorway to deeper study. Discover complete 4-paragraph educational guides for all 114 chapters in our Qur'an Explorer.
+        </p>
+        <a href="quran.html" class="btn-primary">
+          Open Qur'an Surah Explorer
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Action completed</span>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Explorer</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Content Accuracy & Guidance Notice:</strong> All Qur'anic verses and English translations are verified against Tanzil and Sahih International datasets. Reflections serve as educational & contemplative aids and do not replace classical scholarship or qualified personal mental health care.
+        </div>
+        <div>Manarah &copy; 2026. Built with care.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       VERIFIED MOOD REFLECTION DATASET & APPLICATION LOGIC
+       ========================================================================== -->
+  <script>
+    // VERIFIED DATASET FOR ALL 12 MOOD CATEGORIES
+    const REFLECTIONS_DATA = [
+      {
+        id: "anxious",
+        categoryGroup: "emotional",
+        label: "When I feel anxious or overwhelmed",
+        title: "WHEN I FEEL ANXIOUS OR OVERWHELMED",
+        surahName: "Ash-Sharh",
+        surahNum: 94,
+        verseRange: "5-6",
+        citation: "Surah Ash-Sharh 94:5-6",
+        arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا • إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        translation: "For indeed, with hardship [will be] ease. Indeed, with hardship [will be] ease.",
+        transSource: "Sahih International",
+        reflection: "Hardship and ease are not distant sequential events separated by years; the Qur'anic grammar implies that ease is wrapped inside the very structure of difficulty. Allah repeats this promise twice to anchor the trembling heart, assuring us that divine relief is already present alongside our strain.",
+        takeaway: "Identify one small aspect of your current pressure that you can place in Allah's care, then take a quiet moment for a calm, deep breath.",
+        journalPrompt: "What is one fear you can hand over to Allah while taking the next small practical step available to you?"
+      },
+      {
+        id: "sad",
+        categoryGroup: "emotional",
+        label: "When I feel sad or discouraged",
+        title: "WHEN I FEEL SAD OR DISCOURAGED",
+        surahName: "Ad-Duha",
+        surahNum: 93,
+        verseRange: "3-5",
+        citation: "Surah Ad-Duha 93:3-5",
+        arabic: "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ • وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ الْأُولَىٰ • وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ",
+        translation: "Your Lord has not taken leave of you, [O Muhammad], nor has He detested you. And the Hereafter is better for you than the first [life]. And your Lord is going to give you, and you will be satisfied.",
+        transSource: "Sahih International",
+        reflection: "Revealed during a painful silence when divine inspiration seemed paused, these verses met the Prophet's ﷺ feeling of abandonment with tender divine warmth. Sadness is not a sign of divine anger or spiritual failure; it is a human state met with reassurance that better days lie ahead.",
+        takeaway: "Remind yourself that emotional pain is a temporary season, not your permanent reality. Offer a silent, sincere du'a asking Allah to mend your heart.",
+        journalPrompt: "What blessing or relief can you recall from a previous difficult time that reminds you of Allah's gentle care?"
+      },
+      {
+        id: "patience",
+        categoryGroup: "emotional",
+        label: "When I need patience",
+        title: "WHEN I NEED PATIENCE",
+        surahName: "Al-Baqarah",
+        surahNum: 2,
+        verseRange: "153",
+        citation: "Surah Al-Baqarah 2:153",
+        arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+        translation: "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient.",
+        transSource: "Sahih International",
+        reflection: "Sabr (patience) in Islam is not passive resignation or silent suffering; it is active emotional fortitude and dignified endurance. When coupled with prayer, patience connects human vulnerability to divine infinite strength.",
+        takeaway: "Stand up for a brief two-rak'ah prayer or sit quietly in remembrance, consciously handing your timing and expectations over to Allah.",
+        journalPrompt: "Where in your life are you currently being called to practice dignified patience?"
+      },
+      {
+        id: "hope",
+        categoryGroup: "emotional",
+        label: "When I need hope",
+        title: "WHEN I NEED HOPE",
+        surahName: "Az-Zumar",
+        surahNum: 39,
+        verseRange: "53",
+        citation: "Surah Az-Zumar 39:53",
+        arabic: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ",
+        translation: "Say, 'O My servants who have transgressed against themselves [by sinning], do not despair of the mercy of Allah. Indeed, Allah forgives all sins. Indeed, it is He who is the Forgiving, the Merciful.'",
+        transSource: "Sahih International",
+        reflection: "Notice how Allah addresses believers not as outcasts, but as 'My servants'—a term of immense honor and belonging—even after they have transgressed against themselves. Hope in Islam is anchored in Allah's nature as the Most Merciful, which infinitely surpasses human shortcomings.",
+        takeaway: "Speak the words 'Astaghfirullah' (I seek forgiveness from Allah) with a hopeful heart, trusting that sincere repentance instantly opens a clean page.",
+        journalPrompt: "What step toward spiritual renewal can you take today knowing that Allah's mercy is unconditional?"
+      },
+      {
+        id: "grateful",
+        categoryGroup: "growth",
+        label: "When I feel grateful",
+        title: "WHEN I FEEL GRATEFUL",
+        surahName: "Ibrahim",
+        surahNum: 14,
+        verseRange: "7",
+        citation: "Surah Ibrahim 14:7",
+        arabic: "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ",
+        translation: "And [remember] when your Lord proclaimed, 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.'",
+        transSource: "Sahih International",
+        reflection: "Gratitude (Shukr) transforms ordinary life into perpetual spiritual increase. It shifts our gaze from what is absent to the countless unseen favors sustaining us at every breath.",
+        takeaway: "Write down or speak out loud three specific, subtle blessings you experienced today that you might usually take for granted.",
+        journalPrompt: "How can you turn your gratitude into a practical act of kindness toward someone else today?"
+      },
+      {
+        id: "lonely",
+        categoryGroup: "emotional",
+        label: "When I feel lonely",
+        title: "WHEN I FEEL LONELY",
+        surahName: "Qaf",
+        surahNum: 50,
+        verseRange: "16",
+        citation: "Surah Qaf 50:16",
+        arabic: "وَلَقَدْ خَلَقْنَا الْإِنسَانَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِ نَفْسُهُ ۖ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ",
+        translation: "And We have already created man and know what his soul whispers to him, and We are closer to him than his jugular vein.",
+        transSource: "Sahih International",
+        reflection: "Loneliness often feels like being completely unheard or misunderstood by those around us. This verse reassures us that Allah hears the quietest internal whispers of the soul before they even form into spoken words.",
+        takeaway: "Pour out your unedited thoughts directly to Allah in personal du'a, knowing He understands every unspoken ache.",
+        journalPrompt: "How does knowing Allah is closer to you than your own breath shift your experience of solitude?"
+      },
+      {
+        id: "uncertain",
+        categoryGroup: "guidance",
+        label: "When I feel afraid or uncertain",
+        title: "WHEN I FEEL AFRAID OR UNCERTAIN",
+        surahName: "At-Talaq",
+        surahNum: 65,
+        verseRange: "2-3",
+        citation: "Surah At-Talaq 65:2-3",
+        arabic: "وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا • وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+        translation: "And whoever fears Allah - He will make for him a way out, and will provide for him from where he does not expect. And whoever relies upon Allah - then He is sufficient for him.",
+        transSource: "Sahih International",
+        reflection: "Fear of the unknown often traps us in mental loops trying to control every outcome. God-consciousness (Taqwa) and trust (Tawakkul) liberate us by assuring that divine exits appear from avenues we could never calculate.",
+        takeaway: "Recite 'Hasbunallahu wa ni'mal wakeel' (Allah is sufficient for us, and He is the best Disposer of affairs) when uncertainty strikes.",
+        journalPrompt: "What is one area of your future where you can practice letting go of rigid control and trusting Allah?"
+      },
+      {
+        id: "forgiveness",
+        categoryGroup: "growth",
+        label: "When I need forgiveness",
+        title: "WHEN I NEED FORGIVENESS",
+        surahName: "Al-Baqarah",
+        surahNum: 2,
+        verseRange: "222",
+        citation: "Surah Al-Baqarah 2:222",
+        arabic: "إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ",
+        translation: "Indeed, Allah loves those who are constantly repentant and loves those who purify themselves.",
+        transSource: "Sahih International",
+        reflection: "The word Tawwab refers to someone who turns back to Allah repeatedly. Allah does not love us because we are infallible; He loves the sincere effort of returning to Him after stumbling.",
+        takeaway: "Perform wudu (ablution) mindfully, feeling the physical water wash away your stress and mistakes, then pray two rak'ahs of repentance.",
+        journalPrompt: "What burden can you release today by seeking Allah's forgiveness and offering yourself grace?"
+      },
+      {
+        id: "guidance",
+        categoryGroup: "guidance",
+        label: "When I seek guidance",
+        title: "WHEN I SEEK GUIDANCE",
+        surahName: "Al-Fatihah",
+        surahNum: 1,
+        verseRange: "5-6",
+        citation: "Surah Al-Fatihah 1:5-6",
+        arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ • اهْدِنَا الصِّرَٰطَ الْمُسْتَقِيمَ",
+        translation: "It is You we worship and You we ask for help. Guide us to the straight path.",
+        transSource: "Sahih International",
+        reflection: "Seeking guidance is the core petition of every Muslim's life. By asking for the 'Straight Path', we acknowledge our need for continuous divine orientation in choices both big and small.",
+        takeaway: "Before making a decision today, pray Istikharah or make a sincere du'a asking Allah to incline your heart toward what is best for your faith and life.",
+        journalPrompt: "What situation in your life right now requires seeking divine clarity over human assumptions?"
+      },
+      {
+        id: "trust",
+        categoryGroup: "guidance",
+        label: "When I want to strengthen trust in Allah",
+        title: "WHEN I WANT TO STRENGTHEN TRUST IN ALLAH",
+        surahName: "Al-Anfal",
+        surahNum: 8,
+        verseRange: "2",
+        citation: "Surah Al-Anfal 8:2",
+        arabic: "إِنَّمَا الْمُؤْمِنُونَ الَّذِينَ إِذَا ذُكِرَ اللَّهُ وَجِلَتْ قُلُوبُهُمْ وَإِذَا تُلِيَتْ عَلَيْهِمْ آيَاتُهُ زَادَتْهُمْ إِيمَانًا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ",
+        translation: "The believers are only those who, when Allah is mentioned, their hearts feel fear, and when His verses are recited to them, it increases them in faith; and upon their Lord they rely.",
+        transSource: "Sahih International",
+        reflection: "Trust in Allah is like a muscle that grows stronger through contemplation of His words and divine remembrance. True Tawakkul combines active practical effort with total emotional reliance on Allah's ultimate decree.",
+        takeaway: "Reflect on a past difficulty in your life that eventually resolved in ways you didn't foresee, recognizing Allah's subtle guidance in your journey.",
+        journalPrompt: "What past experience reminds you that Allah's planning is superior to your own?"
+      },
+      {
+        id: "restless",
+        categoryGroup: "guidance",
+        label: "When my heart feels restless",
+        title: "WHEN MY HEART FEELS RESTLESS",
+        surahName: "Ar-Ra'd",
+        surahNum: 13,
+        verseRange: "28",
+        citation: "Surah Ar-Ra'd 13:28",
+        arabic: "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+        translation: "Those who have believed and whose hearts are assured by the remembrance of Allah. Unquestionably, by the remembrance of Allah hearts find rest.",
+        transSource: "Sahih International",
+        reflection: "The human heart was created with a spiritual need that material possessions, entertainment, or status can never fulfill. True tranquility (tuma'ninah) descends when the mind aligns with divine remembrance.",
+        takeaway: "Put away digital distractions for 10 minutes, close your eyes, and repeat 'SubhanAllah, Alhamdulillah, Allahu Akbar' slowly with contemplation.",
+        journalPrompt: "What digital or worldly noise can you silence today to create space for spiritual peace?"
+      },
+      {
+        id: "closer",
+        categoryGroup: "growth",
+        label: "When I want to grow closer to Allah",
+        title: "WHEN I WANT TO GROW CLOSER TO ALLAH",
+        surahName: "Al-Baqarah",
+        surahNum: 2,
+        verseRange: "186",
+        citation: "Surah Al-Baqarah 2:186",
+        arabic: "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دعانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
+        translation: "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me.",
+        transSource: "Sahih International",
+        reflection: "In almost every other instance in the Qur'an where people ask the Prophet ﷺ a question, Allah commands him to say: 'Say [O Muhammad]...'. But when asked about Allah's closeness, Allah removes all intermediaries and answers directly: 'Indeed I am near.'",
+        takeaway: "Make a heart-to-heart du'a right now, speaking to Allah in your native language with complete intimacy and sincerity.",
+        journalPrompt: "What personal prayer would you speak to Allah if you knew with complete certainty that He is listening right now?"
+      }
+    ];
+
+    let currentSelectedId = "anxious";
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderMoodCards();
+      setupMobileNav();
+      
+      // Check for URL hash or default to 'anxious'
+      const hash = window.location.hash.replace('#', '');
+      if (hash && REFLECTIONS_DATA.some(r => r.id === hash)) {
+        currentSelectedId = hash;
+      }
+      
+      displayReflection(currentSelectedId);
+      renderRelatedGrid();
+    });
+
+    // 1. RENDER MOOD SELECTOR CARDS
+    function renderMoodCards() {
+      const emotionalContainer = document.getElementById('group-emotional');
+      const guidanceContainer = document.getElementById('group-guidance');
+      const growthContainer = document.getElementById('group-growth');
+
+      if (!emotionalContainer || !guidanceContainer || !growthContainer) return;
+
+      emotionalContainer.innerHTML = '';
+      guidanceContainer.innerHTML = '';
+      growthContainer.innerHTML = '';
+
+      REFLECTIONS_DATA.forEach(item => {
+        const cardHtml = `
+          <button class="mood-card ${item.id === currentSelectedId ? 'active' : ''}" 
+                  onclick="selectMood('${item.id}')"
+                  id="btn-mood-${item.id}"
+                  aria-selected="${item.id === currentSelectedId}">
+            <span class="mood-card-label">${item.label}</span>
+            <div class="mood-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </button>
+        `;
+
+        if (item.categoryGroup === 'emotional') emotionalContainer.innerHTML += cardHtml;
+        else if (item.categoryGroup === 'guidance') guidanceContainer.innerHTML += cardHtml;
+        else if (item.categoryGroup === 'growth') growthContainer.innerHTML += cardHtml;
+      });
+    }
+
+    // 2. SELECT MOOD & UPDATE DISPLAY
+    function selectMood(moodId) {
+      currentSelectedId = moodId;
+      document.querySelectorAll('.mood-card').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+
+      const activeBtn = document.getElementById(`btn-mood-${moodId}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-selected', 'true');
+      }
+
+      displayReflection(moodId);
+      renderRelatedGrid();
+      
+      // Update location hash silently
+      history.replaceState(null, null, `#${moodId}`);
+    }
+
+    // 3. DISPLAY REFLECTION CARD
+    function displayReflection(moodId) {
+      const data = REFLECTIONS_DATA.find(r => r.id === moodId) || REFLECTIONS_DATA[0];
+      const cardContainer = document.getElementById('reflection-card-body');
+      if (!cardContainer) return;
+
+      const isSaved = isReflectionSaved(data.id);
+      const savedNotes = getSavedJournalNote(data.id);
+
+      cardContainer.innerHTML = `
+        <div class="reflection-header-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          ${data.title}
+        </div>
+
+        <div class="verse-block">
+          <div class="arabic-text" lang="ar" dir="rtl">${data.arabic}</div>
+          <p class="translation-text">"${data.translation}"</p>
+          <div class="citation-bar">
+            <span class="citation-title">${data.citation}</span>
+            <span class="translation-source">Translation: ${data.transSource}</span>
+          </div>
+        </div>
+
+        <div class="reflection-section">
+          <div class="section-label">Thoughtful Reflection</div>
+          <p class="reflection-body">${data.reflection}</p>
+        </div>
+
+        <div class="takeaway-box">
+          <div class="takeaway-title">A Moment to Take With You</div>
+          <div class="takeaway-desc">${data.takeaway}</div>
+        </div>
+
+        <div class="journal-box">
+          <div class="journal-title">Personal Reflection Journal (Private)</div>
+          <div class="journal-prompt">${data.journalPrompt}</div>
+          <textarea class="journal-textarea" id="journal-input-${data.id}" placeholder="Write your quiet thoughts or personal du'a here... (saved locally on your device)">${savedNotes}</textarea>
+          <div class="journal-actions">
+            <button class="btn-secondary" onclick="saveJournalNote('${data.id}')" style="min-height: 36px; padding: 0.4rem 1rem; font-size: 0.8rem;">
+              Save Note Locally
+            </button>
+            <span class="journal-status" id="journal-status-${data.id}">${savedNotes ? 'Note saved' : 'Private to your browser'}</span>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <button class="btn-primary" onclick="toggleSaveReflection('${data.id}')" id="save-btn-${data.id}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            ${isSaved ? 'Saved in My Space' : 'Bookmark Reflection'}
+          </button>
+
+          <button class="btn-secondary" onclick="copyReference('${data.citation}')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Citation
+          </button>
+
+          <button class="btn-secondary" onclick="shareReflection('${data.citation}', '${data.id}')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+        </div>
+      `;
+    }
+
+    // 4. RENDER RELATED CARDS
+    function renderRelatedGrid() {
+      const container = document.getElementById('related-grid-container');
+      if (!container) return;
+
+      const related = REFLECTIONS_DATA.filter(r => r.id !== currentSelectedId).slice(0, 3);
+      
+      container.innerHTML = related.map(item => `
+        <div class="related-card" onclick="selectMood('${item.id}')" role="button" tabindex="0">
+          <div class="related-card-category">${item.label}</div>
+          <div class="related-card-title">${item.citation}</div>
+          <div class="related-card-snippet">"${item.translation}"</div>
+        </div>
+      `).join('');
+    }
+
+    // 5. STORAGE & SAVING ACTIONS
+    function isReflectionSaved(id) {
+      const saved = JSON.parse(localStorage.getItem('manarah_saved_reflections') || '[]');
+      return saved.includes(id);
+    }
+
+    function toggleSaveReflection(id) {
+      let saved = JSON.parse(localStorage.getItem('manarah_saved_reflections') || '[]');
+      if (saved.includes(id)) {
+        saved = saved.filter(item => item !== id);
+        showToast("Removed from My Space");
+      } else {
+        saved.push(id);
+        showToast("Saved to My Space");
+      }
+      localStorage.setItem('manarah_saved_reflections', JSON.stringify(saved));
+      displayReflection(id);
+    }
+
+    function saveJournalNote(id) {
+      const input = document.getElementById(`journal-input-${id}`);
+      const status = document.getElementById(`journal-status-${id}`);
+      if (!input) return;
+
+      const notes = JSON.parse(localStorage.getItem('manarah_journal_notes') || '{}');
+      notes[id] = input.value.trim();
+      localStorage.setItem('manarah_journal_notes', JSON.stringify(notes));
+
+      if (status) status.textContent = 'Note saved locally!';
+      showToast("Personal note saved");
+    }
+
+    function getSavedJournalNote(id) {
+      const notes = JSON.parse(localStorage.getItem('manarah_journal_notes') || '{}');
+      return notes[id] || '';
+    }
+
+    // 6. UTILITY ACTIONS (COPY & SHARE)
+    function copyReference(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(`Copied "${text}" to clipboard`);
+        }).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast(`Copied "${text}"`);
+    }
+
+    function shareReflection(citation, id) {
+      const shareUrl = `${window.location.origin}${window.location.pathname}#${id}`;
+      const shareData = {
+        title: `Manarah — Qur'anic Reflection`,
+        text: `Explore this Qur'anic reflection on Manarah: ${citation}`,
+        url: shareUrl
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        copyReference(shareUrl);
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      if (!toast || !toastMsg) return;
+
+      toastMsg.textContent = message;
+      toast.classList.add('is-visible');
+
+      setTimeout(() => {
+        toast.classList.remove('is-visible');
+      }, 3000);
+    }
+
+    // 7. MOBILE MENU TOGGLE
+    function setupMobileNav() {
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+    }
+  </script>
+</body>
+</html>

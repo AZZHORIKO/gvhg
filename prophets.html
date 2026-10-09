@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0c0070">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manarah">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MANARAH | مَنَارَة — Stories of the 25 Prophets in the Qur'an</title>
+  <meta name="description" content="Explore the inspiring lives, trials, and timeless wisdom of the 25 prophets mentioned by name in the Holy Qur'an on Manarah. A lighthouse for your heart.">
+  
+  <!-- Premium Google Fonts matching Manarah Core Design System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MANARAH DESIGN SYSTEM — MIDNIGHT EMERALD & GOLD THEME
+       ========================================================================== */
+    :root {
+      /* Palette Tokens */
+      --bg-midnight: #040807;
+      --bg-surface-0: #070e0c;
+      --bg-surface-1: #0d1714;
+      --bg-surface-2: #14221e;
+      --bg-surface-3: #1c2d28;
+      
+      --border-subtle: rgba(212, 175, 106, 0.12);
+      --border-medium: rgba(212, 175, 106, 0.22);
+      --border-glow: rgba(212, 175, 106, 0.45);
+
+      --text-primary: #f5f7f6;
+      --text-secondary: #a9b8b2;
+      --text-tertiary: #6e8079;
+
+      --accent-gold: #d4af6a;
+      --accent-gold-light: #f5e6c8;
+      --accent-gold-dark: #9e7d3b;
+      --gold-glow-radial: radial-gradient(circle, rgba(212, 175, 106, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+
+      /* Typography Tokens */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Responsive Typography Clamps */
+      --fs-hero-title: clamp(2.2rem, 5vw + 1rem, 3.8rem);
+      --fs-section-title: clamp(1.6rem, 3vw + 0.8rem, 2.4rem);
+      --fs-quran-arabic: clamp(1.8rem, 4vw + 0.5rem, 2.7rem);
+      --fs-article-body: clamp(1.025rem, 1.2vw + 0.5rem, 1.15rem);
+
+      /* Layout Spacing & Radii */
+      --site-max-width: 1240px;
+      --header-h: clamp(68px, 8vh, 84px);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+
+      /* Animation Motion Tokens */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.2s var(--ease-out-expo);
+      --transition-smooth: 0.4s var(--ease-out-expo);
+
+      --shadow-ambient: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --shadow-card-hover: 0 22px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 106, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-midnight);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      touch-action: manipulation;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(100% 50% at 50% 0%, rgba(20, 38, 33, 0.8) 0%, rgba(4, 8, 7, 1) 100%),
+        var(--bg-midnight);
+      background-attachment: fixed;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 106, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 106, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    a { color: inherit; text-decoration: none; transition: all var(--transition-fast); }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+
+    .container {
+      width: 100%;
+      max-width: var(--site-max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      position: relative;
+      z-index: 1;
+    }
+    .container-narrow { max-width: 860px; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 1.5rem;
+      background: var(--accent-gold); color: var(--bg-midnight);
+      padding: 0.75rem 1.25rem; font-weight: 700; border-radius: var(--radius-sm);
+      z-index: 9999; transition: top var(--transition-fast);
+    }
+    .skip-link:focus { top: 1.5rem; }
+
+    /* HEADER & NAVIGATION */
+    .site-header {
+      position: sticky; top: 0; height: var(--header-h); z-index: 1000;
+      background: rgba(4, 8, 7, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand-wordmark { display: flex; align-items: center; gap: clamp(0.4rem, 1.5vw, 0.85rem); text-decoration: none; min-height: 44px; }
+    .brand-wordmark .brand-en {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.85rem); font-weight: 600;
+      letter-spacing: 0.18em; background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold-light) 60%, var(--accent-gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; line-height: 1;
+    }
+    .brand-wordmark .brand-ar { font-family: var(--font-arabic); font-size: clamp(1.5rem, 3.2vw, 2rem); color: var(--accent-gold); line-height: 1; opacity: 0.9; }
+
+    .desktop-nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.25rem); }
+    .nav-link { font-size: 0.9375rem; font-weight: 500; color: var(--text-secondary); position: relative; padding: 0.5rem 0; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold-light); }
+    .nav-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent-gold), transparent); transition: width var(--transition-fast); border-radius: var(--radius-pill); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta-btn, .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; min-height: 44px;
+      transition: all var(--transition-smooth); cursor: pointer;
+    }
+    .nav-cta-btn {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.6rem 1.35rem;
+    }
+    .nav-cta-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.35); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+      color: var(--bg-midnight); padding: 0.75rem 1.6rem; border: none; font-weight: 700;
+      box-shadow: 0 4px 15px rgba(212, 175, 106, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 106, 0.4); }
+
+    .btn-secondary {
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium);
+      color: var(--accent-gold-light); padding: 0.75rem 1.5rem;
+    }
+    .btn-secondary:hover { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--text-primary); }
+
+    .mobile-nav-toggle { display: none; padding: 0.5rem; color: var(--text-primary); min-width: 44px; min-height: 44px; align-items: center; justify-content: center; border-radius: var(--radius-sm); }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--header-h); left: 0; width: 100%; height: calc(100dvh - var(--header-h));
+      background: var(--bg-midnight); padding: 2rem 1.5rem 3rem; flex-direction: column; gap: 1rem; z-index: 999;
+      border-top: 1px solid var(--border-subtle); overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu .nav-link { font-size: 1.2rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); width: 100%; }
+
+    /* HERO SECTION */
+    .hero-section { padding: clamp(2.5rem, 6vh, 4.5rem) 0 clamp(1.5rem, 4vh, 2.5rem); text-align: center; position: relative; }
+    .hero-pill-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212, 175, 106, 0.08);
+      border: 1px solid var(--border-medium); padding: 0.4rem 1.2rem; border-radius: var(--radius-pill);
+      font-size: clamp(0.75rem, 1.5vw, 0.84rem); letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-gold-light); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .hero-title { font-family: var(--font-display); font-size: var(--fs-hero-title); line-height: 1.15; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: clamp(0.95rem, 1.8vw, 1.15rem); color: var(--text-secondary); max-width: 760px; margin: 0 auto 2.25rem; line-height: 1.65; }
+
+    /* INTRODUCTORY ESSAY BANNER */
+    .intro-banner {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3vw, 2.5rem); margin-bottom: 3rem; text-align: left; box-shadow: var(--shadow-ambient);
+    }
+    .intro-banner-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--accent-gold-light); margin-bottom: 0.75rem; }
+    .intro-banner-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* SEARCH & FILTER CONTROLS */
+    .controls-bar { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .search-wrapper { position: relative; width: 100%; max-width: 640px; margin: 0 auto; }
+    .search-input {
+      width: 100%; height: 54px; background: var(--bg-surface-1); border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill); padding: 0 1.5rem 0 3.25rem; color: var(--text-primary);
+      font-family: var(--font-sans); font-size: 1rem; outline: none; transition: all var(--transition-fast);
+    }
+    .search-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(212, 175, 106, 0.2); background: var(--bg-surface-2); }
+    .search-icon { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--accent-gold); pointer-events: none; }
+    .clear-search-btn {
+      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-tertiary);
+      padding: 0.35rem; display: none; border-radius: 50%;
+    }
+    .clear-search-btn.is-visible { display: flex; }
+    .clear-search-btn:hover { color: var(--accent-gold); background: rgba(255, 255, 255, 0.05); }
+
+    .filter-pills-row { display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+    .filter-pill {
+      font-size: 0.825rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: var(--radius-pill);
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .filter-pill:hover, .filter-pill.active { background: var(--bg-surface-2); border-color: var(--accent-gold); color: var(--accent-gold-light); }
+
+    /* PROPHETS GRID */
+    .prophets-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;
+    }
+    .prophet-card {
+      background: var(--bg-surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem;
+      transition: all var(--transition-smooth); cursor: pointer; text-align: left; position: relative; min-height: 220px;
+    }
+    .prophet-card:hover, .prophet-card:focus-visible {
+      background: var(--bg-surface-2); border-color: var(--accent-gold); transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+    .num-badge {
+      font-size: 0.75rem; font-weight: 700; color: var(--accent-gold); background: rgba(212, 175, 106, 0.08);
+      padding: 0.2rem 0.65rem; border-radius: var(--radius-pill); border: 1px solid var(--border-subtle);
+    }
+    .arabic-name { font-family: var(--font-arabic); font-size: 1.8rem; color: var(--accent-gold-light); direction: rtl; line-height: 1; }
+    .english-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .transliteration { font-size: 0.85rem; color: var(--text-tertiary); font-style: italic; margin-bottom: 0.75rem; }
+    .short-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; pt: 0.75rem; border-top: 1px dashed var(--border-subtle); font-size: 0.8rem; color: var(--accent-gold); font-weight: 600; }
+
+    /* EMPTY SEARCH STATE */
+    .empty-state {
+      display: none; text-align: center; padding: 4rem 1rem; background: var(--bg-surface-1);
+      border: 1px dashed var(--border-medium); border-radius: var(--radius-lg); margin-bottom: 4rem;
+    }
+    .empty-state.is-visible { display: block; }
+    .empty-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent-gold-light); margin-bottom: 0.5rem; }
+
+    /* PROPHET DETAIL OVERLAY READER */
+    .overlay-reader {
+      position: fixed; inset: 0; z-index: 2000; background: var(--bg-midnight);
+      overflow-y: auto; display: none; flex-direction: column; -webkit-overflow-scrolling: touch;
+      opacity: 0; transition: opacity var(--transition-fast) ease-in-out;
+    }
+    .overlay-reader.is-active { display: flex; opacity: 1; }
+
+    .reader-header {
+      position: sticky; top: 0; z-index: 10; background: rgba(4, 8, 7, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-gold-light);
+      font-size: 0.9rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: var(--radius-pill);
+      background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-subtle);
+      transition: all var(--transition-fast); min-height: 40px;
+    }
+    .back-btn:hover { background: var(--accent-gold); color: var(--bg-midnight); }
+    .reader-title-nav { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); font-weight: 600; text-align: center; }
+
+    .reader-body { padding: clamp(2rem, 5vw, 4rem) 0 clamp(4rem, 8vh, 6rem); flex-grow: 1; }
+
+    /* DETAIL BANNER */
+    .profile-hero {
+      background: linear-gradient(180deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem); text-align: center; margin-bottom: 3rem;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-ambient);
+    }
+    .profile-arabic { font-family: var(--font-arabic); font-size: clamp(3rem, 7vw, 4.5rem); color: var(--accent-gold-light); direction: rtl; margin-bottom: 0.5rem; line-height: 1.2; }
+    .profile-meta-tag {
+      font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent-gold); background: rgba(212, 175, 106, 0.1); padding: 0.3rem 0.9rem;
+      border-radius: var(--radius-pill); display: inline-block; margin-bottom: 1rem; border: 1px solid var(--border-subtle);
+    }
+    .profile-name { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); color: var(--text-primary); margin-bottom: 0.35rem; }
+    .profile-honorific { font-size: 1.1rem; color: var(--text-secondary); font-style: italic; }
+
+    /* DETAIL CONTENT BLOCKS */
+    .detail-section { margin-bottom: 2.5rem; }
+    .detail-heading {
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
+      color: var(--accent-gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .detail-paragraph { font-size: var(--fs-article-body); color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; }
+
+    /* SCRIPTURE CARD */
+    .scripture-box {
+      background: var(--bg-surface-0); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem; margin: 1.5rem 0; position: relative;
+    }
+    .scripture-arabic { font-family: var(--font-arabic); font-size: clamp(1.6rem, 3.5vw, 2.3rem); color: var(--text-primary); text-align: right; direction: rtl; line-height: 2; margin-bottom: 1rem; }
+    .scripture-trans { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+    .scripture-citation { font-size: 0.85rem; color: var(--accent-gold-light); font-weight: 600; text-align: right; font-family: var(--font-display); }
+
+    /* LESSONS CALLOUT BOX */
+    .lessons-box {
+      background: rgba(212, 175, 106, 0.05); border-left: 3px solid var(--accent-gold);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 1.5rem 1.75rem; margin: 2rem 0;
+    }
+    .lessons-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.75rem; }
+    .lessons-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .lessons-list li { font-size: 0.98rem; color: var(--text-primary); line-height: 1.6; display: flex; align-items: flex-start; gap: 0.6rem; }
+    .lessons-list li::before { content: "•"; color: var(--accent-gold); font-weight: bold; }
+
+    /* READER FOOTER NAVIGATION */
+    .reader-footer-nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; margin-top: 3rem;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-notification {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; background: var(--bg-surface-3);
+      border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-pill); font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(20px); pointer-events: none; transition: all var(--transition-smooth);
+    }
+    .toast-notification.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* GENTLE CLOSING CTA */
+    .closing-card {
+      background: linear-gradient(135deg, var(--bg-surface-2) 0%, var(--bg-surface-1) 100%);
+      border: 1px solid var(--border-medium); border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 5rem;
+    }
+    .closing-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 0.75rem; }
+    .closing-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 1.75rem; line-height: 1.65; }
+
+    /* FOOTER */
+    .site-footer { background: #020403; border-top: 1px solid var(--border-subtle); padding: clamp(3rem, 6vh, 5rem) 0 2.5rem; margin-top: auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem; margin-bottom: clamp(2.5rem, 5vh, 4rem); }
+    .footer-brand { max-width: 360px; width: 100%; }
+    .footer-brand .brand-wordmark { margin-bottom: 0.85rem; }
+    .footer-tagline { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+    .footer-links-group { display: flex; gap: clamp(2rem, 5vw, 4.5rem); flex-wrap: wrap; width: 100%; max-width: 650px; justify-content: space-between; }
+    .footer-column-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 700; }
+    .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links-list a { font-size: 0.875rem; color: var(--text-secondary); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; font-size: 0.8125rem; color: var(--text-tertiary); }
+    .accuracy-statement { max-width: 650px; line-height: 1.6; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    @media (max-width: 899px) { .desktop-nav { display: none; } .mobile-nav-toggle { display: flex; } }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Manarah Homepage">
+        <span class="brand-en">MANARAH</span>
+        <span class="brand-ar" lang="ar">مَنَارَة</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="my-heart.html" class="nav-link">My Heart</a>
+        <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+        <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+        <a href="prophets.html" class="nav-link active" aria-current="page">Prophets</a>
+        <a href="seerah.html" class="nav-link">Seerah</a>
+        <a href="calendar.html" class="nav-link">Calendar</a>
+        <a href="my-space.html" class="nav-cta-btn">My Space</a>
+      </nav>
+
+      <button class="mobile-nav-toggle" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation">
+      <a href="my-heart.html" class="nav-link">My Heart</a>
+      <a href="quran.html" class="nav-link">Qur'an Explorer</a>
+      <a href="learn-islam.html" class="nav-link">Learn Islam</a>
+      <a href="prophets.html" class="nav-link active" aria-current="page">Stories of the Prophets</a>
+      <a href="seerah.html" class="nav-link">Seerah of Prophet Muhammad ﷺ</a>
+      <a href="rabbana-duas.html" class="nav-link">Rabbana Duas</a>
+      <a href="calendar.html" class="nav-link">Islamic Calendar</a>
+      <a href="daily-worship.html" class="nav-link">Daily Worship & Sunnah</a>
+      <a href="my-space.html" class="nav-link" style="color: var(--accent-gold);">My Private Space</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-pill-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          THE PROPHETS IN THE QUR'AN
+        </div>
+        <h1 class="hero-title">
+          Their stories. <span style="background: linear-gradient(135deg, #ffffff 20%, var(--accent-gold-light) 70%, var(--accent-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our guidance.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Discover the 25 prophets mentioned by name in the Holy Qur'an. Explore the trials they faced and reflect on the faith, patience, courage, and trust in Allah woven throughout their lives.
+        </p>
+
+        <!-- INTRODUCTORY BRIEF -->
+        <div class="intro-banner">
+          <div class="intro-banner-title">Qur'anic Narratives of Guidance</div>
+          <p class="intro-banner-text">
+            While Allah sent many messengers throughout human history, the Holy Qur'an explicitly names 25 prophets. The depth of their narrative varies in scripture: some narratives span entire surahs, while others offer concise, powerful mentions. Each prophet exemplifies a distinct facet of spiritual fortitude, moral leadership, and devotion to pure monotheism (Tawhid).
+          </p>
+        </div>
+
+        <!-- SEARCH AND FILTERS BAR -->
+        <div class="controls-bar">
+          <div class="search-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="search-input" placeholder="Search by name in English or Arabic (e.g. Ibrahim, موسى)..." aria-label="Search prophets by name or theme">
+            <button class="clear-search-btn" id="clear-search-btn" aria-label="Clear search input">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+
+          <div class="filter-pills-row" id="theme-filters">
+            <button class="filter-pill active" onclick="filterByTheme('all')">All 25 Prophets</button>
+            <button class="filter-pill" onclick="filterByTheme('faith')">Faith & Perseverance</button>
+            <button class="filter-pill" onclick="filterByTheme('patience')">Patience through Hardship</button>
+            <button class="filter-pill" onclick="filterByTheme('leadership')">Leadership & Justice</button>
+            <button class="filter-pill" onclick="filterByTheme('repentance')">Repentance & Return</button>
+            <button class="filter-pill" onclick="filterByTheme('wisdom')">Wisdom & Gratitude</button>
+            <button class="filter-pill" onclick="filterByTheme('monotheism')">Calling to Monotheism</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- PROPHETS DIRECTORY GRID -->
+      <div class="prophets-grid" id="prophets-grid">
+        <!-- 25 Prophet Cards Populated via JavaScript -->
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div class="empty-state" id="empty-state">
+        <h3 class="empty-title">No Prophets Found</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">We couldn't find any prophet matching your search term.</p>
+        <button class="btn-secondary" onclick="resetSearch()">Reset Search & Filters</button>
+      </div>
+
+      <!-- GENTLE CLOSING CTA -->
+      <div class="closing-card">
+        <h3 class="closing-title">Explore the Final Messenger</h3>
+        <p class="closing-desc">
+          Prophet Muhammad ﷺ was sent as the seal of all prophets and a mercy to all creation. Delve deeper into his life, teachings, and noble character in our dedicated Seerah experience.
+        </p>
+        <a href="seerah.html" class="btn-primary">
+          Explore the Seerah of Prophet Muhammad ﷺ
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- OVERLAY READER MODAL -->
+  <div class="overlay-reader" id="overlay-reader" role="dialog" aria-modal="true" aria-label="Prophet Story Detail View">
+    <div class="reader-header">
+      <button class="back-btn" onclick="closeOverlayReader()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Return to Directory
+      </button>
+
+      <div class="reader-title-nav" id="reader-title-nav">Prophet Details</div>
+
+      <div style="width: 100px; text-align: right;"></div>
+    </div>
+
+    <div class="reader-body">
+      <div class="container container-narrow">
+        <div class="profile-hero">
+          <div class="profile-arabic" id="profile-arabic">آدم</div>
+          <div class="profile-meta-tag" id="profile-number">Prophet 01 of 25</div>
+          <h1 class="profile-name" id="profile-name">Adam</h1>
+          <div class="profile-honorific" id="profile-honorific">ʿAlayhi as-Salām (Peace be upon him)</div>
+        </div>
+
+        <div id="profile-content-body">
+          <!-- Dynamically populated profile body -->
+        </div>
+
+        <div class="reader-footer-nav">
+          <button class="btn-secondary" id="prev-prophet-btn" onclick="navigateProphet(-1)">← Previous Prophet</button>
+          <button class="btn-primary" id="save-prophet-btn" onclick="toggleSaveCurrentProphet()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            Bookmark Prophet
+          </button>
+          <button class="btn-secondary" id="next-prophet-btn" onclick="navigateProphet(1)">Next Prophet →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Action saved</span>
+  </div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wordmark">
+            <span class="brand-en">MANARAH</span>
+            <span class="brand-ar" lang="ar">مَنَارَة</span>
+          </a>
+          <p class="footer-tagline">A lighthouse for your heart. Designed for contemplation, continuous learning, and spiritual growth.</p>
+        </div>
+        <div class="footer-links-group">
+          <div>
+            <div class="footer-column-title">Navigation</div>
+            <ul class="footer-links-list">
+              <li><a href="my-heart.html">My Heart</a></li>
+              <li><a href="quran.html">Qur'an Explorer</a></li>
+              <li><a href="learn-islam.html">Learn Islam</a></li>
+              <li><a href="prophets.html">Prophets</a></li>
+              <li><a href="seerah.html">Seerah</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-column-title">Resources</div>
+            <ul class="footer-links-list">
+              <li><a href="rabbana-duas.html">Rabbana Duas</a></li>
+              <li><a href="calendar.html">Islamic Calendar</a></li>
+              <li><a href="daily-worship.html">Daily Worship</a></li>
+              <li><a href="my-space.html">My Space</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="accuracy-statement">
+          <strong>Content Accuracy Notice:</strong> All prophetic stories and scriptural citations presented in Manarah are sourced directly from the Holy Qur'an and verified classical tafsir works (e.g. Tafsir Ibn Kathir). Manarah presents educational content without fictionalized accounts or physical representations.
+        </div>
+        <div>Manarah &copy; 2026. Built with care.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AUTHENTIC DATASET & INTERACTIVE APPLICATION LOGIC
+       ========================================================================== -->
+  <script>
+    // VERIFIED DATASET OF ALL 25 PROPHETS MENTIONED BY NAME IN THE QUR'AN
+    const PROPHETS_DATA = [
+      {
+        id: "adam",
+        num: 1,
+        name: "Adam",
+        arabic: "آدم",
+        transliteration: "ʿĀdam",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "repentance",
+        shortDesc: "The first human being and first prophet created by Allah, taught the names of all things, and an exemplar of swift repentance.",
+        summary: "Adam (AS) was created directly by Allah from clay, blessed with intellect, and made the father of humanity. When he succumbed to Satan's whisper in Paradise, his immediate response was sincere repentance—setting the model for human accountability.",
+        trials: "Faced the pride and enmity of Iblis (Satan), who refused to prostrate out of arrogance, and experienced the trial of temptation in Paradise before being sent to Earth as Allah's vicegerent.",
+        lessons: [
+          "Human dignity stems from knowledge and spiritual awareness granted by Allah.",
+          "Sin is followed by divine grace when accompanied by immediate, humble repentance.",
+          "Arrogance (Iblis's downfall) destroys, while humility (Adam's response) elevates."
+        ],
+        scriptureAr: "قَالاَ رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ",
+        scriptureTrans: "They said, 'Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy upon us, we will surely be among the losers.'",
+        scriptureCitation: "Surah Al-A'raf 7:23 (Sahih International)",
+        quranRef: "Surah Al-Baqarah 2:30-39, Surah Al-A'raf 7:11-25"
+      },
+      {
+        id: "idris",
+        num: 2,
+        name: "Idris",
+        arabic: "إدريس",
+        transliteration: "Idrīs",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "wisdom",
+        shortDesc: "Renowned for his truthfulness, patience, high spiritual status, and early advancement in wisdom and learning.",
+        summary: "Idris (AS) was among the earliest prophets after Adam. The Qur'an praises him as a man of truth (Siddiq) and patience, whom Allah raised to a high station both spiritually and intellectually.",
+        trials: "Maintained steadfast devotion and called his people to righteous conduct amidst growing moral negligence in early human history.",
+        lessons: [
+          "True elevation comes from steadfast faith, integrity, and devotion.",
+          "Pursuing knowledge and living truthfully elevates a person in Allah's sight."
+        ],
+        scriptureAr: "وَاذْكُرْ فِي الْكِتَابِ إِدْرِيسَ إِنَّهُ كَانَ صِدِّيقًا نَّبِيًّا • وَرَفَعْنَاهُ مَكَانًا عَلِيًّا",
+        scriptureTrans: "And mention in the Book, Idris. Indeed, he was a man of truth and a prophet. And We raised him to a high station.",
+        scriptureCitation: "Surah Maryam 19:56-57 (Sahih International)",
+        quranRef: "Surah Maryam 19:56-57, Surah Al-Anbiya 21:85"
+      },
+      {
+        id: "nuh",
+        num: 3,
+        name: "Nuh",
+        arabic: "نوح",
+        transliteration: "Nūḥ",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "patience",
+        shortDesc: "Demonstrated monumental patience over 950 years of calling his people to pure monotheism, building the Ark under divine guidance.",
+        summary: "Nuh (AS) preached Tawhid night and day for nearly a millennium. Despite persistent ridicule and rejection from his nation, he remained devoted until Allah commanded him to build the Ark to preserve faith and creation.",
+        trials: "Endured centuries of social mockery, isolation, and the grief of his own son rejecting the message before the Great Flood.",
+        lessons: [
+          "Success in Allah's sight is measured by unwavering perseverance, not numerical results.",
+          "Faithful trust in Allah provides safety even when surrounding society collapses."
+        ],
+        scriptureAr: "قَالَ رَبِّ إِنِّي دَعَوْتُ قَوْمِي لَيْلاً وَنَهَارًا • فَلَمْ يَزِدْهُمْ دُعَائِي إِلاَّ فِرَارًا",
+        scriptureTrans: "He said, 'My Lord, indeed I invited my people night and day. But my invitation increased them not except in flight.'",
+        scriptureCitation: "Surah Nuh 71:5-6 (Sahih International)",
+        quranRef: "Surah Nuh 71:1-28, Surah Hud 11:25-48"
+      },
+      {
+        id: "hud",
+        num: 4,
+        name: "Hud",
+        arabic: "هود",
+        transliteration: "Hūd",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "monotheism",
+        shortDesc: "Sent to the powerful tribe of 'Ad, warning them against pride in their material strength and calling them back to Allah.",
+        summary: "Hud (AS) was sent to the mighty nation of 'Ad, known for their immense physical stature and monumental architecture. He reminded them that material wealth without moral grounding leads to destruction.",
+        trials: "Confronted extreme arrogance and mockery from powerful chieftains who boasted 'Who is greater than us in strength?'",
+        lessons: [
+          "Physical power and technological advancement cannot protect a nation that abandons justice.",
+          "True gratitude for worldly blessings requires submitting to the Creator."
+        ],
+        scriptureAr: "وَإِلَى عَادٍ أَخَاهُمْ هُودًا قَالَ يَا قَوْمِ اعْبُدُوا اللَّهَ مَا لَكُم مِّنْ إِلَهٍ غَيْرُهُ",
+        scriptureTrans: "And to 'Ad [We sent] their brother Hud. He said, 'O my people, worship Allah; you have no deity other than Him...'",
+        scriptureCitation: "Surah Hud 11:50 (Sahih International)",
+        quranRef: "Surah Hud 11:50-60, Surah Al-A'raf 7:65-72"
+      },
+      {
+        id: "salih",
+        num: 5,
+        name: "Salih",
+        arabic: "صالح",
+        transliteration: "Ṣāliḥ",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "monotheism",
+        shortDesc: "Sent to Thamud with the miracle of the She-Camel, warning them against tyranny, greed, and corruption.",
+        summary: "Salih (AS) preached to Thamud, who carved magnificent homes out of mountains. As a test of their faith and ethics, Allah sent a miraculous She-Camel, commanding them to share water resources with her.",
+        trials: "Faced defiance from greedy leaders who harmed the She-Camel and plotted against Salih's life.",
+        lessons: [
+          "Sacred resources and rights of the vulnerable must be respected.",
+          "Transgressing divine boundaries out of short-sighted greed brings ruin."
+        ],
+        scriptureAr: "قَالَ يَا قَوْمِ اعْبُدُوا اللَّهَ مَا لَكُم مِّنْ إِلَهٍ غَيْرُهُ هُوَ أَنشَأَكُم مِّنَ الأَرْضِ وَاسْتَعْمَرَكُمْ فِيهَا",
+        scriptureTrans: "...He said, 'O my people, worship Allah; you have no deity other than Him. He has produced you from the earth and settled you in it...'",
+        scriptureCitation: "Surah Hud 11:61 (Sahih International)",
+        quranRef: "Surah Hud 11:61-68, Surah Al-A'raf 7:73-79"
+      },
+      {
+        id: "ibrahim",
+        num: 6,
+        name: "Ibrahim",
+        arabic: "إبراهيم",
+        transliteration: "Ibrāhīm",
+        honorific: "ʿAlayhi as-Salām (Khalilullah - Friend of Allah)",
+        theme: "faith",
+        shortDesc: "The patriarch of monotheism, tested through fire and sacrifice, who built the Ka'bah and exemplified pure devotion.",
+        summary: "Ibrahim (AS) investigated creation using reason to find the One True God. He stood alone against idolatry, survived King Nimrod's fire, rebuilt the Ka'bah with his son Isma'il, and became the forefather of many prophets.",
+        trials: "Thrown into a roaring fire by his people, commanded to leave his family in a barren valley, and tested with sacrificing his beloved son.",
+        lessons: [
+          "Total trust in Allah (Tawakkul) transforms moments of extreme trial into peace.",
+          "True faith requires living courageously according to conviction regardless of societal pressure."
+        ],
+        scriptureAr: "إِنَّ إِبْرَاهِيمَ كَانَ أُمَّةً قَانِتًا لِّلَّهِ حَنِيفًا وَلَمْ يَكُ مِنَ الْمُشْرِكِينَ",
+        scriptureTrans: "Indeed, Ibrahim was a comprehensive leader, devoutly obedient to Allah, inclining toward truth, and he was not of those who associate partners with Him.",
+        scriptureCitation: "Surah An-Nahl 16:120 (Sahih International)",
+        quranRef: "Surah Al-Baqarah 2:124-132, Surah Ibrahim 14:35-41, Surah Al-Anbiya 21:51-71"
+      },
+      {
+        id: "lut",
+        num: 7,
+        name: "Lut",
+        arabic: "لوط",
+        transliteration: "Lūṭ",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "faith",
+        shortDesc: "Stood firm against widespread moral corruption and lawlessness in Sodom, calling his people to purity and righteousness.",
+        summary: "Lut (AS), nephew of Ibrahim, was sent to towns that pioneered shameless immorality and highway robbery. He stood alone as a pillar of moral purity, continuously warning them of divine retribution.",
+        trials: "Experienced intense grief over his community's hostility and even his own wife's betrayal of his ethical mission.",
+        lessons: [
+          "A believer stands firm in moral principles even when surrounded by societal decay.",
+          "Truth and purity are non-negotiable values before Allah."
+        ],
+        scriptureAr: "وَلُوطًا إِذْ قَالَ لِقَوْمِهِ أَتَأْتُونَ الْفَاحِشَةَ مَا سَبَقَكُم بِهَا مِنْ أَحَدٍ مِّن الْعَالَمِينَ",
+        scriptureTrans: "And [We sent] Lut when he said to his people, 'Do you commit such immorality as no one has preceded you with from among the worlds?'",
+        scriptureCitation: "Surah Al-A'raf 7:80 (Sahih International)",
+        quranRef: "Surah Al-A'raf 7:80-84, Surah Hud 11:77-83"
+      },
+      {
+        id: "ismail",
+        num: 8,
+        name: "Isma'il",
+        arabic: "إسماعيل",
+        transliteration: "Ismāʿīl",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "faith",
+        shortDesc: "The dutiful eldest son of Ibrahim who submitted willingly to Allah's decree and helped build the Holy Ka'bah.",
+        summary: "Isma'il (AS) demonstrated legendary obedience when his father shared his divine dream. Together, father and son raised the foundations of the Ka'bah in Makkah, praying for a righteous nation to emerge from their lineage.",
+        trials: "Left as an infant with his mother Hajar in the uncultivated valley of Makkah, and later willingly submitted to Allah's ultimate command.",
+        lessons: [
+          "Honoring parents and submitting to divine wisdom bring everlasting blessing.",
+          "Sincere sacrifices in Allah's path leave legacies that benefit humanity for millenniums."
+        ],
+        scriptureAr: "وَٱذْكُرْ فِى ٱلْكِتَـٰبِ إِسْمَـٰعِيلَ ۚ إِنَّهُۥ كَانَ صَادِقَ ٱلْوَعْدِ وَكَانَ رَسُولاًۭ نَّبِيًّۭا",
+        scriptureTrans: "And mention in the Book, Isma'il. Indeed, he was true to his promise, and he was a messenger and a prophet.",
+        scriptureCitation: "Surah Maryam 19:54 (Sahih International)",
+        quranRef: "Surah Al-Baqarah 2:125-129, Surah Maryam 19:54-55, Surah As-Saffat 37:101-107"
+      },
+      {
+        id: "ishaq",
+        num: 9,
+        name: "Ishaq",
+        arabic: "إسحاق",
+        transliteration: "Isḥāq",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "wisdom",
+        shortDesc: "The gifted son of Ibrahim and Sarah, praised in scripture as a prophet endowed with deep wisdom and righteousness.",
+        summary: "Ishaq (AS) was promised to Ibrahim and Sarah in their old age as a glad tidings from angels. He continued the monotheistic legacy of his father across the region of Canaan, forefathering generations of prophets through his son Ya'qub.",
+        trials: "Nurtured faith and righteous governance in a challenging era, serving as a pillar of peace and guidance.",
+        lessons: [
+          "Allah's promises are true, transcending human biological limitations.",
+          "Righteous lineage is built through continuous devotion and character training."
+        ],
+        scriptureAr: "وَبَشَّرْنَاهُ بِإِسْحَاقَ نَبِيًّا مِّنَ الصَّالِحِينَ",
+        scriptureTrans: "And We gave him the good tidings of Ishaq, a prophet from among the righteous.",
+        scriptureCitation: "Surah As-Saffat 37:112 (Sahih International)",
+        quranRef: "Surah As-Saffat 37:112-113, Surah Hud 11:71-73"
+      },
+      {
+        id: "yaqub",
+        num: 10,
+        name: "Ya'qub",
+        arabic: "يعقوب",
+        transliteration: "Yaʿqūb",
+        honorific: "ʿAlayhi as-Salām (Israel)",
+        theme: "patience",
+        shortDesc: "Also known as Israel; an exemplar of 'beautiful patience' (Sabrun Jameel) through decades of grief and separation.",
+        summary: "Ya'qub (AS), son of Ishaq, raised twelve sons. When his beloved son Yusuf was taken from him through sibling jealousy, Ya'qub turned his grief entirely to Allah, maintaining unwavering hope without bitterness.",
+        trials: "Suffered decades of agonizing separation from Yusuf and later Binyamin, eventually losing his eyesight from grief.",
+        lessons: [
+          "Sabrun Jameel (beautiful patience) means crying out to Allah alone without complaining resentfully to people.",
+          "Hope in Allah's mercy must never be abandoned, even in dark times."
+        ],
+        scriptureAr: "قَالَ إِنَّمَا أَشْكُو بَثِّي وَحُزْنِي إِلَى اللَّهِ وَأَعْلَمُ مِنَ اللَّهِ مَا لاَ تَعْلَمُونَ",
+        scriptureTrans: "He said, 'I only complain of my suffering and my grief to Allah, and I know from Allah that which you do not know.'",
+        scriptureCitation: "Surah Yusuf 12:86 (Sahih International)",
+        quranRef: "Surah Yusuf 12:18, 12:83-86, Surah Al-Baqarah 2:132-133"
+      },
+      {
+        id: "yusuf",
+        num: 11,
+        name: "Yusuf",
+        arabic: "يوسف",
+        transliteration: "Yūsuf",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "patience",
+        shortDesc: "His life is 'the best of stories' (Ahsan al-Qasas)—rising from a well to prison to Minister of Egypt through moral purity.",
+        summary: "Yusuf (AS) was thrown into a well by jealous brothers, sold into slavery in Egypt, falsely imprisoned for resisting seduction, and eventually elevated to managing Egypt's economy during a great famine.",
+        trials: "Betrayed by brothers, tempted by Potiphar's wife, unjust imprisonment for years, and ultimate test of power over those who harmed him.",
+        lessons: [
+          "Moral integrity and chastity bring divine elevation.",
+          "Forgiveness and reconciliation are the hallmarks of noble souls."
+        ],
+        scriptureAr: "إِنَّهُ مَن يَتَّقِ وَيَصْبِرْ فَإِنَّ اللَّهَ لاَ يُضِيعُ أَجْرَ الْمُحْسِنِينَ",
+        scriptureTrans: "...Indeed, he who fears Allah and is patient, then indeed, Allah does not allow to be lost the reward of those who do good.",
+        scriptureCitation: "Surah Yusuf 12:90 (Sahih International)",
+        quranRef: "Surah Yusuf 12:1-111 (Complete Surah)"
+      },
+      {
+        id: "ayyub",
+        num: 12,
+        name: "Ayyub",
+        arabic: "أيوب",
+        transliteration: "Ayyūb",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "patience",
+        shortDesc: "The symbol of legendary patience in health and hardship, calling upon Allah with profound humility and trust.",
+        summary: "Ayyub (AS) was blessed with health, wealth, and family, all of which were stripped away in a severe test lasting years. He never complained against Allah, holding firmly to devotion until divine relief was granted.",
+        trials: "Endured severe illness, loss of all wealth, death of children, and social isolation, remaining steadfast in praise.",
+        lessons: [
+          "Physical suffering is not a sign of divine disfavor, but a venue for spiritual refinement.",
+          "Humility in prayer opens the doors of divine healing and restoration."
+        ],
+        scriptureAr: "وَأَيُّوبَ إِذْ نَادَى رَبَّهُ أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ • فَاسْتَجَبْنَا لَهُ",
+        scriptureTrans: "And [mention] Ayyub, when he called to his Lord, 'Indeed, adversity has touched me, and You are the Most Merciful of the merciful.' So We responded to him...",
+        scriptureCitation: "Surah Al-Anbiya 21:83-84 (Sahih International)",
+        quranRef: "Surah Al-Anbiya 21:83-84, Surah Sad 38:41-44"
+      },
+      {
+        id: "shuayb",
+        num: 13,
+        name: "Shu'ayb",
+        arabic: "شعيب",
+        transliteration: "Shuʿayb",
+        honorific: "ʿAlayhi as-Salām (Khatib al-Anbiya - Orator of the Prophets)",
+        theme: "leadership",
+        shortDesc: "Sent to Madyan; preached economic justice, fair weights and measures, and ethical business practices.",
+        summary: "Shu'ayb (AS) was renowned for his eloquent speech. He preached to Madyan, who cheated in marketplace trade and robbed travelers. He taught that spiritual devotion is inseparable from fair economic practices.",
+        trials: "Faced financial cartels and political threats of exile from corrupt leaders who mocked his religious devotion.",
+        lessons: [
+          "Faith must govern marketplace transactions and business ethics.",
+          "Short-changing others in trade brings systemic collapse and divine anger."
+        ],
+        scriptureAr: "وَيَا قَوْمِ أَوْفُوا الْمِكْيَالَ وَالْمِيزَانَ بِالْقِسْطِ وَلاَ تَبْخَسُوا النَّاسَ أَشْيَاءَهُمْ",
+        scriptureTrans: "And O my people, give full measure and weight in justice and do not deprive the people of their due...",
+        scriptureCitation: "Surah Hud 11:85 (Sahih International)",
+        quranRef: "Surah Hud 11:84-95, Surah Al-A'raf 7:85-93"
+      },
+      {
+        id: "musa",
+        num: 14,
+        name: "Musa",
+        arabic: "موسى",
+        transliteration: "Mūsā",
+        honorific: "ʿAlayhi as-Salām (Kalimullah - The One Who Spoke to Allah)",
+        theme: "leadership",
+        shortDesc: "The most mentioned prophet in the Qur'an; confronted Pharaoh's tyranny and led Bani Isra'il with immense courage.",
+        summary: "Musa (AS) was saved as an infant in a basket on the Nile, raised in Pharaoh's palace, called directly by Allah at Mount Tur, confronted Pharaoh with miracles, divided the Red Sea, and received the Torah.",
+        trials: "Faced Pharaoh's military tyranny, managed rebellion and stubbornness among his liberated people, and led them through the wilderness.",
+        lessons: [
+          "Tyranny may seem invincible, but divine justice will always prevail.",
+          "True leadership requires standing for the weak with courage and patience."
+        ],
+        scriptureAr: "قَالَ كَلاَّ إِنَّ مَعِيَ رَبِّي سَيَهْدِينِ",
+        scriptureTrans: "[Musa] said, 'No! Indeed, with me is my Lord; He will guide me.'",
+        scriptureCitation: "Surah Ash-Shu'ara 26:62 (Sahih International)",
+        quranRef: "Surah Al-Qasas 28:1-46, Surah Taha 20:9-98, Surah Al-A'raf 7:103-160"
+      },
+      {
+        id: "harun",
+        num: 15,
+        name: "Harun",
+        arabic: "هارون",
+        transliteration: "Hārūn",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "leadership",
+        shortDesc: "The eloquent brother and trusted companion of Musa, who served as a prophet and pillar of unity.",
+        summary: "Harun (AS) was appointed as prophet in response to Musa's du'a requesting an eloquent assistant. He stood beside Musa before Pharaoh and guarded the people's unity when Musa went to receive the Law.",
+        trials: "Struggled to prevent Bani Isra'il from worshipping the Golden Calf while Musa was away at Mount Tur.",
+        lessons: [
+          "Brothers and allies should support one another in righteous endeavors.",
+          "Preserving community unity and preventing schism require profound wisdom."
+        ],
+        scriptureAr: "وَاجْعَل لِّي وَزِيرًا مِّنْ أَهْلِي • هَارُونَ أَخِي • اشْدُدْ بِهِ أَزْرِي",
+        scriptureTrans: "And appoint for me a minister from my family - Harun, my brother. Increase through him my strength...",
+        scriptureCitation: "Surah Taha 20:29-31 (Sahih International)",
+        quranRef: "Surah Taha 20:29-36, 20:85-94, Surah Al-A'raf 7:142"
+      },
+      {
+        id: "dhulkifl",
+        num: 16,
+        name: "Dhul-Kifl",
+        arabic: "ذو الكفل",
+        transliteration: "Dhū l-Kifl",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "patience",
+        shortDesc: "Praised in scripture alongside Ismail and Idris for his steadfast patience, righteousness, and fulfillment of solemn vows.",
+        summary: "Dhul-Kifl (AS) is mentioned in the Qur'an among the righteous who maintained exceptional discipline, justice, and devotion. While detailed biographies vary among commentators, scripture highlights his high status and patience.",
+        trials: "Fulfilling demanding spiritual and judicial duties with unbending integrity and patience.",
+        lessons: [
+          "Fulfilling vows and commitments is an essential mark of prophetic character.",
+          "Quiet, daily steadfastness is treasured in the sight of Allah."
+        ],
+        scriptureAr: "وَإِسْمَاعِيلَ وَإِدْرِيسَ وَذَا الْكِفْلِ كُلٌّ مِّنَ الصَّابِرِينَ • وَأَدْخَلْنَاهُمْ فِي رَحْمَتِنَا إِنَّهُم مِّنَ الصَّالِحِينَ",
+        scriptureTrans: "And [mention] Isma'il and Idris and Dhul-Kifl; all were of the patient. And We admitted them into Our mercy. Indeed, they were of the righteous.",
+        scriptureCitation: "Surah Al-Anbiya 21:85-86 (Sahih International)",
+        quranRef: "Surah Al-Anbiya 21:85-86, Surah Sad 38:48"
+      },
+      {
+        id: "dawud",
+        num: 17,
+        name: "Dawud",
+        arabic: "داود",
+        transliteration: "Dāwūd",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "leadership",
+        shortDesc: "Defeated Goliath, granted wise kingdom and the Psalms (Zabur), known for softening iron and beautiful songs of praise.",
+        summary: "Dawud (AS) killed Jalut (Goliath) in youth, was appointed king and prophet, received the Zabur, and was blessed with a voice that caused mountains and birds to join him in praising Allah.",
+        trials: "Balancing powerful political kingship with deep personal worship and remaining just in judicial disputes.",
+        lessons: [
+          "True power lies in devotion and humility before the Ultimate King.",
+          "Gratitude and worship must increase as material success grows."
+        ],
+        scriptureAr: "يَا جِبَالُ أَوِّبِي مَعَهُ وَالطَّيْرَ وَأَلَنَّا لَهُ الْحَدِيدَ",
+        scriptureTrans: "...'O mountains, repeat [Our] praises with him, and the birds [also].' And We made pliable for him iron.",
+        scriptureCitation: "Surah Saba 34:10 (Sahih International)",
+        quranRef: "Surah Sad 38:17-26, Surah Al-Baqarah 2:251, Surah Saba 34:10-11"
+      },
+      {
+        id: "sulayman",
+        num: 18,
+        name: "Sulayman",
+        arabic: "سليمان",
+        transliteration: "Sulaymān",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "wisdom",
+        shortDesc: "Son of Dawud; granted a kingdom unmatched in human history, understanding the speech of animals and wind.",
+        summary: "Sulayman (AS) ruled a vast empire with forces of humans, jinn, and animals. Despite unmatched power, he remained an exceptionally grateful servant (Ni'mal 'Abd), attributing every gift to Allah.",
+        trials: "Tested with immense power and worldly kingdom without allowing wealth to distract from his devotion to Allah.",
+        lessons: [
+          "Worldly power is a temporary trust to be used for justice and divine service.",
+          "True wisdom is recognizing that all talents and achievements belong to Allah."
+        ],
+        scriptureAr: "قَالَ رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَى وَالِدَيَّ",
+        scriptureTrans: "...He said, 'My Lord, enable me to be grateful for Your favor which You have bestowed upon me and upon my parents...'",
+        scriptureCitation: "Surah An-Naml 27:19 (Sahih International)",
+        quranRef: "Surah An-Naml 27:15-44, Surah Sad 38:30-40, Surah Al-Anbiya 21:78-82"
+      },
+      {
+        id: "ilyas",
+        num: 19,
+        name: "Ilyas",
+        arabic: "إلياس",
+        transliteration: "Ilyās",
+        honorific: "ʿAlayhi as-Salām (Elijah)",
+        theme: "monotheism",
+        shortDesc: "Called his people away from the worship of the idol Ba'l, standing firm for monotheism despite intense opposition.",
+        summary: "Ilyas (AS) was sent to the Kingdom of Israel to confront idol worship, specifically the cult of Ba'l. He reminded his people that Allah alone is the Lord of their ancestors and Creator of all.",
+        trials: "Faced hostile political rulers and widespread idolatry, calling his society back to truth.",
+        lessons: [
+          "Popularity in society must never be bought at the expense of monotheistic truth.",
+          "Allah preserves and honors those who stand for His oneness."
+        ],
+        scriptureAr: "أَتَدْعُونَ بَعْلاً وَتَذَرُونَ أَحْسَنَ الْخَالِقِينَ • اللَّهَ رَبَّكُمْ وَرَبَّ آبَائِكُمُ الأَوَّلِينَ",
+        scriptureTrans: "Do you call upon Ba'l and leave the Best of creators - Allah, your Lord and the Lord of your first forefathers?",
+        scriptureCitation: "Surah As-Saffat 37:125-126 (Sahih International)",
+        quranRef: "Surah As-Saffat 37:123-132, Surah Al-An'am 6:85"
+      },
+      {
+        id: "alyasa",
+        num: 20,
+        name: "Al-Yasa'",
+        arabic: "اليسع",
+        transliteration: "Al-Yasaʿ",
+        honorific: "ʿAlayhi as-Salām (Elisha)",
+        theme: "wisdom",
+        shortDesc: "Succeeded Ilyas in guidance; praised in scripture as among the outstandingly righteous and favored of creation.",
+        summary: "Al-Yasa' (AS) continued the prophetic mission after Ilyas, guiding his people with wisdom and justice. The Qur'an includes him in the elite company of honored prophets given spiritual distinction.",
+        trials: "Guiding a community through political instability and maintaining prophetic standards.",
+        lessons: [
+          "Carrying on the righteous legacy of predecessors is a noble duty.",
+          "Spiritual honor is granted to those who maintain righteousness."
+        ],
+        scriptureAr: "وَإِسْمَاعِيلَ وَالْيَسَعَ وَيُونُسَ وَلُوطًا وَكُلاًّ فَضَّلْنَا عَلَى الْعَالَمِينَ",
+        scriptureTrans: "And Isma'il and Al-Yasa' and Yunus and Lut - and all [of them] We preferred over the worlds.",
+        scriptureCitation: "Surah Al-An'am 6:86 (Sahih International)",
+        quranRef: "Surah Al-An'am 6:86, Surah Sad 38:48"
+      },
+      {
+        id: "yunus",
+        num: 21,
+        name: "Yunus",
+        arabic: "يونس",
+        transliteration: "Yūnus",
+        honorific: "ʿAlayhi as-Salām (Dhun-Nun - Companion of the Fish)",
+        theme: "repentance",
+        shortDesc: "Swallowed by a whale after leaving his city in frustration; saved through his famous prayer of sincere repentance.",
+        summary: "Yunus (AS) left Nineveh in frustration when his people initially rejected him. Boarding a ship, he was cast overboard and swallowed by a giant fish, where he uttered the immortal du'a of repentance.",
+        trials: "Trapped in triple darkness (night, sea, and belly of the whale), realizing his impatience before divine permission.",
+        lessons: [
+          "Never abandon duty out of frustration or personal impatience.",
+          "The du'a of Yunus ('La ilaha illa anta subhanaka inni kuntu minaz-zalimin') rescues from deep despair."
+        ],
+        scriptureAr: "فَنَادَى فِي الظُّلُمَاتِ أَن لاَّ إِلَهَ إِلاَّ أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ • فَاسْتَجَبْنَا لَهُ",
+        scriptureTrans: "...And he called out within the darknesses, 'There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers.' So We responded to him...",
+        scriptureCitation: "Surah Al-Anbiya 21:87-88 (Sahih International)",
+        quranRef: "Surah Al-Anbiya 21:87-88, Surah As-Saffat 37:139-148, Surah Yunus 10:98"
+      },
+      {
+        id: "zakariyya",
+        num: 22,
+        name: "Zakariyya",
+        arabic: "زكريا",
+        transliteration: "Zakariyyā",
+        honorific: "ʿAlayhi as-Salām (Peace be upon him)",
+        theme: "faith",
+        shortDesc: "The elderly guardian of Maryam whose sincere, quiet du'a for a righteous heir was granted through Yahya.",
+        summary: "Zakariyya (AS) served as sanctuary guardian. Seeing Maryam provided with divine out-of-season fruit inspired him to pray quietly for a righteous heir despite his old age and his wife's barrenness.",
+        trials: "Old age, barrenness, and holding firm to faith under Roman occupation and religious corruption.",
+        lessons: [
+          "No prayer is too big for Allah; divine grace transcends human biological limitations.",
+          "Quiet, sincere du'a made with humility moves divine decree."
+        ],
+        scriptureAr: "إِذْ نَادَى رَبَّهُ نِدَاءً خَفِيًّا • قَالَ رَبِّ إِنِّي وَهَنَ الْعَظْمُ مِنِّي وَاشْتَعَلَ الرَّأْسُ شَيْبًا وَلَمْ أَكُن بِدُعَائِكَ رَبِّ شَقِيًّا",
+        scriptureTrans: "When he called to his Lord a private supplication. He said, 'My Lord, indeed my bones have weakened, and my head has flared with white, and never have I been in my supplication to You, my Lord, unhappy.'",
+        scriptureCitation: "Surah Maryam 19:3-4 (Sahih International)",
+        quranRef: "Surah Maryam 19:2-11, Surah Ali 'Imran 3:37-41, Surah Al-Anbiya 21:89-90"
+      },
+      {
+        id: "yahya",
+        num: 23,
+        name: "Yahya",
+        arabic: "يحيى",
+        transliteration: "Yaḥyā",
+        honorific: "ʿAlayhi as-Salām (John the Baptist)",
+        theme: "faith",
+        shortDesc: "Granted wisdom as a youth, pure and compassionate, who affirmed 'Isa's mission with steadfast devotion.",
+        summary: "Yahya (AS), son of Zakariyya, was blessed with spiritual wisdom, compassion, and purity from his youth. He lived an ascetic life devoted to scripture and monotheism, preparing hearts for 'Isa.",
+        trials: "Standing firm against corrupt political rulers of his time with uncompromising moral courage.",
+        lessons: [
+          "Youth is a time for spiritual depth, wisdom, and moral courage.",
+          "Gentleness and compassion toward creation are true prophetic qualities."
+        ],
+        scriptureAr: "يَا يَحْيَى خُذِ الْكِتَابَ بِقُوَّةٍ وَآتَيْنَاهُ الْحُكْمَ صَبِيًّا • وَحَنَانًا مِّن لَّدُنَّا وَزَكَاةً وَكَانَ تَقِيًّا",
+        scriptureTrans: "[It was said], 'O Yahya, hold the Scripture with strength.' And We gave him judgment while yet a boy, and affection from Us and purity, and he was fearing of Allah.",
+        scriptureCitation: "Surah Maryam 19:12-13 (Sahih International)",
+        quranRef: "Surah Maryam 19:12-15, Surah Ali 'Imran 3:39"
+      },
+      {
+        id: "isa",
+        num: 24,
+        name: "Isa",
+        arabic: "عيسى",
+        transliteration: "ʿĪsā",
+        honorific: "ʿAlayhi as-Salām (Ibn Maryam - Son of Mary)",
+        theme: "faith",
+        shortDesc: "Born miraculously to the Virgin Maryam; spoke in cradle, cured sick by divine leave, and affirmed pure monotheism.",
+        summary: "Isa (AS) was created miraculously without a father, spoke in defense of his mother as an infant, received the Gospel (Injeel), performed magnificent miracles by Allah's leave, and taught pure monotheism.",
+        trials: "Accusations against his mother, opposition from corrupt religious authorities, and false claims attributing divinity to him.",
+        lessons: [
+          "Miracles occur solely by Allah's permission to affirm divine truth.",
+          "'Isa was a noble servant and messenger of Allah, not divine or a partner to God."
+        ],
+        scriptureAr: "قَالَ إِنِّي عَبْدُ اللَّهِ آتَانِيَ الْكِتَابَ وَجَعَلَنِي نَبِيًّا • وَجَعَلَنِي مُبَارَكًا أَيْنَ مَا كُنتُ",
+        scriptureTrans: "[Isa] said, 'Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet. And He has made me blessed wherever I am...'",
+        scriptureCitation: "Surah Maryam 19:30-31 (Sahih International)",
+        quranRef: "Surah Maryam 19:16-36, Surah Ali 'Imran 3:45-55, Surah Al-Ma'idah 5:110-118"
+      },
+      {
+        id: "muhammad",
+        num: 25,
+        name: "Muhammad",
+        arabic: "محمد",
+        transliteration: "Muḥammad",
+        honorific: "ﷺ (Khatam an-Nabiyyin - Seal of the Prophets)",
+        theme: "monotheism",
+        shortDesc: "The final Messenger sent to all humanity, through whom the Holy Qur'an was revealed as guidance for the world.",
+        summary: "Prophet Muhammad ﷺ was born in Makkah, known as Al-Amin (The Trustworthy). Called to prophethood at age 40 in Cave Hira, he established justice, mercy, brotherhood, and pure monotheism across Arabia.",
+        trials: "13 years of persecution in Makkah, economic boycotts, loss of loved ones, military defense in Madinah, and uniting Arabia under Islam.",
+        lessons: [
+          "Exemplified perfect character (Khuluqin 'Azim) in personal, family, and governance life.",
+          "Sent as a universal mercy to all creation (Rahmatan lil-'Alamin)."
+        ],
+        scriptureAr: "مَّا كَانَ مُحَمَّدٌ أَبَا أَحَدٍ مِّن رِّجَالِكُمْ وَلَكِن رَّسُولَ اللَّهِ وَخَاتَمَ النَّبِيِّينَ",
+        scriptureTrans: "Muhammad is not the father of any one of your men, but [he is] the Messenger of Allah and Seal of the prophets...",
+        scriptureCitation: "Surah Al-Ahzab 33:40 (Sahih International)",
+        quranRef: "Surah Al-Ahzab 33:40, Surah Al-Fath 48:29, Surah Ali 'Imran 3:144, Surah Al-Anbiya 21:107"
+      }
+    ];
+
+    let currentFilteredProphets = [...PROPHETS_DATA];
+    let currentProphetIndex = 0;
+    let activeThemeFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProphetsGrid(PROPHETS_DATA);
+      setupSearchAndFilters();
+      setupMobileNav();
+      setupKeyboardNav();
+
+      // Check URL hash for direct links (e.g. #musa)
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const foundIndex = PROPHETS_DATA.findIndex(p => p.id === hash);
+        if (foundIndex !== -1) openProphetOverlay(foundIndex);
+      }
+    });
+
+    // 1. RENDER PROPHET CARDS
+    function renderProphetsGrid(data) {
+      const grid = document.getElementById('prophets-grid');
+      const emptyState = document.getElementById('empty-state');
+      if (!grid) return;
+
+      if (data.length === 0) {
+        grid.style.display = 'none';
+        if (emptyState) emptyState.classList.add('is-visible');
+        return;
+      }
+
+      grid.style.display = 'grid';
+      if (emptyState) emptyState.classList.remove('is-visible');
+
+      grid.innerHTML = data.map((p, idx) => `
+        <div class="prophet-card" onclick="openProphetOverlayById('${p.id}')" role="button" tabindex="0" aria-label="Explore story of Prophet ${p.name}">
+          <div>
+            <div class="card-top">
+              <span class="num-badge">Prophet ${p.num < 10 ? '0' + p.num : p.num}</span>
+              <span class="arabic-name">${p.arabic}</span>
+            </div>
+            <h3 class="english-name">${p.name}</h3>
+            <div class="transliteration">${p.transliteration}</div>
+            <p class="short-desc">${p.shortDesc}</p>
+          </div>
+          <div class="card-footer">
+            <span>Read Qur'anic Story</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 2. SEARCH & FILTERING LOGIC
+    function setupSearchAndFilters() {
+      const searchInput = document.getElementById('search-input');
+      const clearBtn = document.getElementById('clear-search-btn');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const query = searchInput.value.trim().toLowerCase();
+          if (clearBtn) {
+            if (query.length > 0) clearBtn.classList.add('is-visible');
+            else clearBtn.classList.remove('is-visible');
+          }
+          filterProphets();
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          if (searchInput) {
+            searchInput.value = '';
+            clearBtn.classList.remove('is-visible');
+            filterProphets();
+          }
+        });
+      }
+    }
+
+    function filterByTheme(theme) {
+      activeThemeFilter = theme;
+      document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      filterProphets();
+    }
+
+    function filterProphets() {
+      const searchInput = document.getElementById('search-input');
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+      currentFilteredProphets = PROPHETS_DATA.filter(p => {
+        const matchesSearch = query === '' || 
+          p.name.toLowerCase().includes(query) ||
+          p.transliteration.toLowerCase().includes(query) ||
+          p.arabic.includes(query) ||
+          p.shortDesc.toLowerCase().includes(query);
+
+        const matchesTheme = activeThemeFilter === 'all' || p.theme === activeThemeFilter;
+
+        return matchesSearch && matchesTheme;
+      });
+
+      renderProphetsGrid(currentFilteredProphets);
+    }
+
+    function resetSearch() {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) searchInput.value = '';
+      activeThemeFilter = 'all';
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-pill')[0].classList.add('active');
+      filterProphets();
+    }
+
+    // 3. OVERLAY READER LOGIC
+    function openProphetOverlayById(id) {
+      const index = PROPHETS_DATA.findIndex(p => p.id === id);
+      if (index !== -1) openProphetOverlay(index);
+    }
+
+    function openProphetOverlay(index) {
+      currentProphetIndex = index;
+      displayCurrentProfile();
+
+      const overlay = document.getElementById('overlay-reader');
+      if (overlay) {
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+        overlay.scrollTop = 0;
+      }
+
+      history.replaceState(null, null, `#${PROPHETS_DATA[index].id}`);
+    }
+
+    function displayCurrentProfile() {
+      const p = PROPHETS_DATA[currentProphetIndex];
+      if (!p) return;
+
+      document.getElementById('reader-title-nav').textContent = `Prophet ${p.name}`;
+      document.getElementById('profile-arabic').textContent = p.arabic;
+      document.getElementById('profile-number').textContent = `Prophet ${p.num < 10 ? '0' + p.num : p.num} of 25 in Qur'an`;
+      document.getElementById('profile-name').textContent = p.name;
+      document.getElementById('profile-honorific').textContent = p.honorific;
+
+      const body = document.getElementById('profile-content-body');
+      
+      let extraLinkHtml = '';
+      if (p.id === 'muhammad') {
+        extraLinkHtml = `
+          <div style="margin: 1.5rem 0; padding: 1.25rem; background: rgba(212, 175, 106, 0.08); border: 1px solid var(--border-medium); border-radius: var(--radius-md); text-align: center;">
+            <p style="font-size: 0.95rem; color: var(--accent-gold-light); margin-bottom: 0.75rem;">Explore the complete life, battles, character, and mission of Prophet Muhammad ﷺ:</p>
+            <a href="seerah.html" class="btn-primary" style="display: inline-flex;">Open Full Seerah Page →</a>
+          </div>
+        `;
+      }
+
+      body.innerHTML = `
+        <div class="detail-section">
+          <div class="detail-heading">Qur'anic Narrative Overview</div>
+          <p class="detail-paragraph">${p.summary}</p>
+        </div>
+
+        ${extraLinkHtml}
+
+        <div class="detail-section">
+          <div class="detail-heading">Central Trials & Turning Points</div>
+          <p class="detail-paragraph">${p.trials}</p>
+        </div>
+
+        <div class="scripture-box">
+          <div class="scripture-arabic" lang="ar" dir="rtl">${p.scriptureAr}</div>
+          <div class="scripture-trans">"${p.scriptureTrans}"</div>
+          <div class="scripture-citation">— ${p.scriptureCitation}</div>
+        </div>
+
+        <div class="lessons-box">
+          <div class="lessons-title">Lessons to Reflect On</div>
+          <ul class="lessons-list">
+            ${p.lessons.map(l => `<li><span>${l}</span></li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="detail-section" style="background: var(--bg-surface-1); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div class="detail-heading">Key Qur'anic References</div>
+          <p style="font-size: 0.95rem; color: var(--text-primary);">${p.quranRef}</p>
+          <a href="quran.html" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600; display: inline-block; margin-top: 0.5rem;">Explore these surahs in Qur'an Explorer →</a>
+        </div>
+      `;
+
+      // Update Navigation Buttons
+      document.getElementById('prev-prophet-btn').style.visibility = currentProphetIndex === 0 ? 'hidden' : 'visible';
+      document.getElementById('next-prophet-btn').style.visibility = currentProphetIndex === PROPHETS_DATA.length - 1 ? 'hidden' : 'visible';
+
+      updateSaveButtonState(p.id);
+    }
+
+    function closeOverlayReader() {
+      const overlay = document.getElementById('overlay-reader');
+      if (overlay) {
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+      history.replaceState(null, null, window.location.pathname);
+    }
+
+    function navigateProphet(dir) {
+      const newIndex = currentProphetIndex + dir;
+      if (newIndex >= 0 && newIndex < PROPHETS_DATA.length) {
+        openProphetOverlay(newIndex);
+      }
+    }
+
+    // 4. SAVING / BOOKMARKING TO MY SPACE
+    function isProphetSaved(id) {
+      const saved = JSON.parse(localStorage.getItem('manarah_saved_prophets') || '[]');
+      return saved.includes(id);
+    }
+
+    function updateSaveButtonState(id) {
+      const btn = document.getElementById('save-prophet-btn');
+      if (!btn) return;
+      const saved = isProphetSaved(id);
+      btn.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="${saved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        ${saved ? 'Saved in My Space' : 'Bookmark Prophet'}
+      `;
+    }
+
+    function toggleSaveCurrentProphet() {
+      const p = PROPHETS_DATA[currentProphetIndex];
+      if (!p) return;
+
+      let saved = JSON.parse(localStorage.getItem('manarah_saved_prophets') || '[]');
+      if (saved.includes(p.id)) {
+        saved = saved.filter(i => i !== p.id);
+        showToast("Removed from My Space");
+      } else {
+        saved.push(p.id);
+        showToast("Saved to My Space");
+      }
+      localStorage.setItem('manarah_saved_prophets', JSON.stringify(saved));
+      updateSaveButtonState(p.id);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 3000);
+    }
+
+    // 5. MOBILE NAV & KEYBOARD UTILITIES
+    function setupMobileNav() {
+      const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileToggleBtn && mobileMenu) {
+        mobileToggleBtn.addEventListener('click', function() {
+          const isExpanded = mobileToggleBtn.getAttribute('aria-expanded') === 'true';
+          mobileToggleBtn.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('is-open');
+        });
+      }
+    }
+
+    function setupKeyboardNav() {
+      document.addEventListener('keydown', function(e) {
+        const overlay = document.getElementById('overlay-reader');
+        if (overlay && overlay.classList.contains('is-active')) {
+          if (e.key === 'Escape') closeOverlayReader();
+          if (e.key === 'ArrowLeft') navigateProphet(-1);
+          if (e.key === 'ArrowRight') navigateProphet(1);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
